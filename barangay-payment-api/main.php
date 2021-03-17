@@ -13,14 +13,19 @@
 	}
 
 	switch($_SERVER['REQUEST_METHOD']) {
-		case 'GET':
+		case 'POST':
 			switch ($req[0]) {
 				case 'users':
 					if (count($req) > 1) {
-						echo json_encode($gm->select("SELECT * FROM tbl_users", $req[1]), JSON_PRETTY_PRINT);
+						echo json_encode($gm->select("tbl_".$req[0], $req[1]), JSON_PRETTY_PRINT);
 					} else {
-						echo json_encode($gm->select("SELECT * FROM tbl_users", null), JSON_PRETTY_PRINT);
+						echo json_encode($gm->select("tbl_".$req[0], null), JSON_PRETTY_PRINT);
 					}
+				break;
+
+				case 'insert':
+					$d = json_decode(file_get_contents("php://input"));
+					echo json_encode($gm->insert("tbl_users", $d));
 				break;
 				
 				default:
