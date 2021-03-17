@@ -27,6 +27,15 @@
 					$d = json_decode(file_get_contents("php://input"));
 					echo json_encode($gm->insert("tbl_users", $d));
 				break;
+
+				case 'update':
+					if (count($req) > 1) {
+						$d = json_decode(file_get_contents("php://input"));
+						echo json_encode($gm->update("tbl_users", $d, "user_id=$req[1]"));
+					} else {
+						http_response_code(403);
+					}
+				break;
 				
 				default:
 					http_response_code(403);
