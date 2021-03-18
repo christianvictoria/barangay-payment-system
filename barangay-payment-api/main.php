@@ -15,6 +15,11 @@
 	switch($_SERVER['REQUEST_METHOD']) {
 		case 'POST':
 			switch ($req[0]) {
+				case 'token':
+					$d = json_decode(file_get_contents("php://input"));
+					echo $auth->showToken($d);
+					break;
+
 				case 'users':
 					if (count($req) > 1) {
 						echo json_encode($gm->select("tbl_".$req[0], $req[1]), JSON_PRETTY_PRINT);
@@ -26,28 +31,33 @@
 				case 'insert':
 					$d = json_decode(file_get_contents("php://input"));
 					echo json_encode($gm->insert("tbl_users", $d));
-				break;
-
-				case 'update':
-					if (count($req) > 1) {
-						$d = json_decode(file_get_contents("php://input"));
-						echo json_encode($gm->update("tbl_users", $d, "user_id=$req[1]"));
-					} else {
-						http_response_code(403);
-					}
-				break;
+					break;
 				
 				default:
 					http_response_code(403);
 					echo "Invalid Route/Endpoint";
-				break;
+					break;
 			}
 
-		break;
+			break;
+
+		case 'PUT':
+			switch ($req[0]) {
+				case 'update':
+					$d = json_decode(file_get_contents("php://input"));
+					echo json_encode($gm->update("tbl_users", $d, "user_id=$req[1]"));
+					break;
+				
+				default:
+					http_response_code(403);
+					echo "Invalid Route/Endpoint";
+					break;
+			}
+			break;
 
 		default:
 			http_response_code(403);
 			echo "Please contact the Systems Administrator";
-		break;
+			break;
 	}
 ?>

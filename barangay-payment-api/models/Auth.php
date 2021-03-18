@@ -36,8 +36,12 @@
 			return "$header.$payload." .str_replace("=", "", base64_encode($signature));
 		}
 
-		public function showToken() {
-			return $this->generateToken("201811230", "201811230@gordoncollege.edu.ph", "Christian V. Alip");
+		public function showToken($data) {
+			$user_data = []; 
+			foreach ($data as $key => $value) {
+				array_push($user_data, $value);
+			}
+			return $this->generateToken($user_data[0], $user_data[1], $user_data[2]);
 		}
 	}
 ?>
