@@ -7,7 +7,7 @@
 	$auth = new Auth($pdo);
 
 	if (isset($_REQUEST['request'])) {
-		$req = explode('/', rtrim($_REQUEST['request'], '/'));
+		$req = explode('/', rtrim(base64_decode($_REQUEST['request']), '/'));
 	} else {
 		$req = array("errorcatcher");
 	}
