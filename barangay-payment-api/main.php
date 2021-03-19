@@ -29,7 +29,7 @@
 				break;
 
 				case 'insert':
-					$d = json_decode(file_get_contents("php://input"));
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($gm->insert("tbl_users", $d));
 					break;
 				
@@ -44,7 +44,7 @@
 		case 'PUT':
 			switch ($req[0]) {
 				case 'update':
-					$d = json_decode(file_get_contents("php://input"));
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($gm->update("tbl_users", $d, "user_id=$req[1]"));
 					break;
 				
