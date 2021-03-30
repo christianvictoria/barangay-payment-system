@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+mat-sidenav-container
+{
+    height: 100%;
+}
+
+mat-sidenav
+{
+    background-color:#FFFAFA;
+    width: 250px;
+}
+.main-container
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #eeeeee;
+}
+mat-sidenav
+{
+    padding: 12px;
+}
+.spacer
+{
+    flex: 1 1 auto;
+}
+mat-toolbar
+{
+    background-color: 	#FFFAFA;
+}
+mat-list
+{
+    margin-top: 150px;
+}
+mat-sidenav-container mat-list mat-list-item
+{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+.pointer{
+    cursor: pointer;
+}
