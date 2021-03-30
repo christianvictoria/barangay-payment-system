@@ -7,7 +7,7 @@
 	$auth = new Auth($pdo);
 
 	if (isset($_REQUEST['request'])) {
-		$req = explode('/', rtrim(base64_decode($_REQUEST['request']), '/'));
+		$req = explode('/', rtrim($_REQUEST['request'], '/'));
 	} else {
 		$req = array("errorcatcher");
 	}
@@ -20,7 +20,23 @@
 					echo $auth->showToken($d);
 					break;
 
-				case 'users':
+				case 'payments':
+					if (count($req) > 1) {
+						echo json_encode($gm->select("tbl_".$req[0], $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($gm->select("tbl_".$req[0], null), JSON_PRETTY_PRINT);
+					}
+				break;
+
+				case 'history':
+					if (count($req) > 1) {
+						echo json_encode($gm->select("tbl_payment_".$req[0], $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($gm->select("tbl_payment_".$req[0], null), JSON_PRETTY_PRINT);
+					}
+				break;
+
+				case 'expenses':
 					if (count($req) > 1) {
 						echo json_encode($gm->select("tbl_".$req[0], $req[1]), JSON_PRETTY_PRINT);
 					} else {

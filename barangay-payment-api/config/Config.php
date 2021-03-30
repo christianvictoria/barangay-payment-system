@@ -15,7 +15,7 @@
 	require_once("./models/Get.php");
 	require_once("./models/Post.php");
 
-	define("DBASE", "db_barangay_payment");
+	define("DBASE", "db_barangay_management");
 	define("USER", "root");
 	define("PW", "");
 	define("SERVER", "localhost");
