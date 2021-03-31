@@ -47,7 +47,7 @@
 
 				$sql = $this->pdo->prepare($sqlstr);
 				$sql->execute($values);
-				return $this->select("tbl_users", null);
+				return $this->select($table, null);
 
 			} catch(\PDOException $e) {
 				$errmsg = $e->getMessage(); $code = 403;
@@ -76,7 +76,7 @@
 
 				$sql = $this->pdo->prepare($sqlstr);
 				$sql->execute($values);
-				return $this->select("tbl_users", null);
+				return $this->select($table, null);
 			} catch(\PDOException $e) {
 				$errmsg = $e->getMessage(); $code = 403;
 			}
