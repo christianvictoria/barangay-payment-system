@@ -1,0 +1,102 @@
+  <div>
+  <h1 mat-dialog-title>NEW PAYMENT</h1>
+  <mat-divider [vertical]="false"></mat-divider>
+  <p>Please complete the fields below.</p>
+  </div>
+
+  <div>
+    <div class="modalFields">
+        <mat-list role="list" class="left">
+          <mat-list-item class="fieldNamesno" role="listitem">Payment No.</mat-list-item>
+        </mat-list>
+
+        <div class="inputs" class="left">
+          <mat-form-field appearance="outline" class="left">
+          <input class="paymentInfo" matInput >
+          </mat-form-field>
+        </div>
+
+        <mat-list role="list" class="right">
+          <mat-list-item class="fieldNamesno" role="listitem">Date of Payment</mat-list-item>
+        </mat-list>
+
+        <div class="inputs" class="right">
+          <mat-form-field appearance="outline" class="right">
+          <input class="paymentInfo" matInput >
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+  <mat-divider [vertical]="false"></mat-divider>
+  <br>
+  <mat-dialog-content class="mat-typography">
+
+    <div class="parents">
+      <div class="modalFields">
+      
+          <mat-list role="list" class="right">
+                <mat-list-item class="fieldNamesno" role="listitem">First Name</mat-list-item>
+                <mat-list-item class="fieldNames" role="listitem">Last Name</mat-list-item>
+                <mat-list-item class="fieldNames" role="listitem">Middle Name</mat-list-item>
+                <mat-list-item class="fieldNames" role="listitem">Contact Number</mat-list-item>
+                <mat-list-item class="fieldNames" role="listitem">Address</mat-list-item>
+                <mat-list-item class="fieldNames" role="listitem">Gender</mat-list-item>
+          </mat-list>
+
+          <div class="inputs">
+            <mat-form-field appearance="outline">
+            <input class="paymentInfo" matInput >
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <input class="paymentInfo" matInput >
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <input class="paymentInfo" matInput >
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <input class="paymentInfo" matInput >
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <input class="paymentInfo" matInput >
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-select class="paymentInfo">
+                <mat-option class="paymentInfo" value="one">Male</mat-option>
+                <mat-option class="paymentInfo" value="two">Female</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+            <mat-list role="list" class="left">
+              <mat-list-item class="fieldNamesno" role="listitem">Purpose</mat-list-item>
+              <mat-list-item class="fieldNames" role="listitem">Payment For</mat-list-item>
+              <mat-list-item class="fieldNames" role="listitem">Payment Receive</mat-list-item>
+          </mat-list>
+
+          <div class="inputs">
+            <mat-form-field appearance="outline">
+            <input class="paymentInfo" matInput >
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <input class="paymentInfo" matInput >
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <input class="paymentInfo" matInput >
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+  
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end">
+    <button class="addProjBtn" mat-raised-button color="primary" mat-dialog-close>Add Payment</button>
+  </mat-dialog-actions>
