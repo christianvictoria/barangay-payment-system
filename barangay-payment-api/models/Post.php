@@ -45,16 +45,16 @@
 			$this->sql = "SELECT 
 								$table.exp_id,
 								$table.res_id,
-								tbl_residents.res_lname,
-								tbl_residents.res_fname,
-								tbl_residents.res_mname,
+								tbl_profiling_residents.res_lname,
+								tbl_profiling_residents.res_fname,
+								tbl_profiling_residents.res_mname,
 								$table.exp_desc,
 								$table.exp_for,
 								$table.exp_money_release,
 								$table.exp_date
 								FROM $table
-								LEFT JOIN tbl_residents
-								ON $table.res_id = tbl_residents.res_id
+								LEFT JOIN tbl_profiling_residents
+								ON $table.res_id = tbl_profiling_residents.res_id
 								ORDER BY exp_id";
 
 			$data = array(); $errmsg = ""; $code = 0;
@@ -76,41 +76,41 @@
 				$this->sql = "SELECT 
 								$table.pt_id,
 								$table.checkup_id,
-								tbl_residents.res_lname,
-								tbl_residents.res_fname,
-								tbl_residents.res_mname,
+								tbl_profiling_residents.res_lname,
+								tbl_profiling_residents.res_fname,
+								tbl_profiling_residents.res_mname,
 								$table.pt_desc,
 								$table.pt_money_recieved,
 								$table.pt_date,
 								$table.pt_isPayed,
 								$table.pt_isDeleted
 								FROM $table
-								LEFT JOIN tbl_checkups
-								ON $table.checkup_id = tbl_checkups.checkup_id
-								LEFT JOIN tbl_residents
-								ON tbl_checkups.res_id = tbl_residents.res_id
+								LEFT JOIN tbl_clinic_checkups
+								ON $table.checkup_id = tbl_clinic_checkups.checkup_id
+								LEFT JOIN tbl_profiling_residents
+								ON tbl_clinic_checkups.res_id = tbl_profiling_residents.res_id
 								WHERE $table.trans_id is NULL ";
 			} else if (isset($payment) && $payment == "transaction") {
 				$this->sql = "SELECT 
 								$table.pt_id,
 								$table.trans_id,
-								tbl_residents.res_lname,
-								tbl_residents.res_fname,
-								tbl_residents.res_mname,
-								tbl_documents.docu_type,
-								tbl_documents.docu_prc,
+								tbl_profiling_residents.res_lname,
+								tbl_profiling_residents.res_fname,
+								tbl_profiling_residents.res_mname,
+								tbl_docuissuance_documents.docu_type,
+								tbl_docuissuance_documents.docu_prc,
 								$table.pt_desc,
 								$table.pt_money_recieved,
 								$table.pt_date,
 								$table.pt_isPayed,
 								$table.pt_isDeleted
 								FROM $table
-								LEFT JOIN tbl_doctransaction
-								ON $table.trans_id = tbl_doctransaction.trans_id
-								LEFT JOIN tbl_residents
-								ON tbl_doctransaction.res_id = tbl_residents.res_id
-								LEFT JOIN tbl_documents
-								ON tbl_doctransaction.docu_id = tbl_documents.docu_id
+								LEFT JOIN tbl_docuissuance_doctransaction
+								ON $table.trans_id = tbl_docuissuance_doctransaction.trans_id
+								LEFT JOIN tbl_profiling_residents
+								ON tbl_docuissuance_doctransaction.res_id = tbl_profiling_residents.res_id
+								LEFT JOIN tbl_docuissuance_documents
+								ON tbl_docuissuance_doctransaction.docu_id = tbl_docuissuance_documents.docu_id
 								WHERE $table.checkup_id is NULL ";
 			}
 

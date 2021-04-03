@@ -18,52 +18,52 @@
 			switch ($req[0]) {
 				case 'payments':
 					if (count($req) > 2) {
-						echo json_encode($post->select_payments("tbl_".$req[0], $req[1], $req[2]), JSON_PRETTY_PRINT);
+						echo json_encode($post->select_payments("tbl_payment_".$req[0], $req[1], $req[2]), JSON_PRETTY_PRINT);
 					} else {
-						echo json_encode($post->select_payments("tbl_".$req[0], $req[1], null), JSON_PRETTY_PRINT);
+						echo json_encode($post->select_payments("tbl_payment_".$req[0], $req[1], null), JSON_PRETTY_PRINT);
 					}
 				break;
 
 				case 'expenses':
 					if (count($req) > 1) {
-						echo json_encode($post->select_expenses("tbl_".$req[0]), JSON_PRETTY_PRINT);
+						echo json_encode($post->select_expenses("tbl_payment_".$req[0]), JSON_PRETTY_PRINT);
 					} else {
-						echo json_encode($post->select_expenses("tbl_".$req[0]), JSON_PRETTY_PRINT);
+						echo json_encode($post->select_expenses("tbl_payment_".$req[0]), JSON_PRETTY_PRINT);
 					}
 				break;
 
 				case 'newPayment':
 					if (count($req) > 1) {
 						$d = json_decode(file_get_contents("php://input"));
-						echo json_encode($post->new_payment("tbl_payments", $d, $req[1]));
+						echo json_encode($post->new_payment("tbl_payment_payments", $d, $req[1]));
 					} else {
 						$d = json_decode(file_get_contents("php://input"));
-						echo json_encode($post->new_payment("tbl_payments", $d, null));
+						echo json_encode($post->new_payment("tbl_payment_payments", $d, null));
 					}
 					break;
 
 				case 'updatePayment':
 					if (count($req) > 2) {
 						$d = json_decode(file_get_contents("php://input"));
-						echo json_encode($post->update_payment("tbl_payments", $d, "pt_id=".$req[1], $req[2]));
+						echo json_encode($post->update_payment("tbl_payment_payments", $d, "pt_id=".$req[1], $req[2]));
 					} else {
 						$d = json_decode(file_get_contents("php://input"));
-						echo json_encode($post->update_payment("tbl_payments", $d, "pt_id=".$req[1], null));
+						echo json_encode($post->update_payment("tbl_payment_payments", $d, "pt_id=".$req[1], null));
 					}
 					break;
 
 				case 'newExpenses':
 					$d = json_decode(file_get_contents("php://input"));
-					echo json_encode($gm->insert("tbl_expenses", $d));
+					echo json_encode($gm->insert("tbl_payment_expenses", $d));
 					break;
 
 				case 'updateExpenses':
 					if (count($req) > 1) {
 						$d = json_decode(file_get_contents("php://input"));
-						echo json_encode($gm->update("tbl_expenses", $d, "exp_id=".$req[1]));
+						echo json_encode($gm->update("tbl_payment_expenses", $d, "exp_id=".$req[1]));
 					} else {
 						$d = json_decode(file_get_contents("php://input"));
-						echo json_encode($gm->update("tbl_expenses", $d, null));
+						echo json_encode($gm->update("tbl_payment_expenses", $d, null));
 					}
 					break;
 				
