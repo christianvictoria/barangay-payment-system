@@ -29,19 +29,7 @@
 			return $this->sendPayload($data, "success", $errmsg, $code);
 		}
 
-		public function update_account($table, $data, $conditionString) {
-			try {
-				$this->sql = "UPDATE $table SET acc_username='$data' WHERE $conditionString";
-				$sql = $this->pdo->prepare($this->sql);
-				$sql->execute();
-				return $this->select($table, $conditionString);
-			} catch(\PDOException $e) {
-				$errmsg = $e->getMessage(); $code = 403;
-			}
-			return array("code" => $code, "errmsg" => $errmsg);
-		}
-
-		public function select_expenses($table) {
+		public function select_expenses($table, $filter_data) {
 			$this->sql = "SELECT 
 								$table.exp_id,
 								$table.res_id,
@@ -51,11 +39,15 @@
 								$table.exp_desc,
 								$table.exp_for,
 								$table.exp_money_release,
-								$table.exp_date
+								$table.exp_date,
+								$table.exp_isDeleted
 								FROM $table
 								LEFT JOIN tbl_profiling_residents
-								ON $table.res_id = tbl_profiling_residents.res_id
-								ORDER BY exp_id";
+								ON $table.res_id = tbl_profiling_residents.res_id ";
+
+			if ($filter_data != null) {
+				$this->sql .= " WHERE exp_isDeleted = $filter_data ORDER BY exp_id";
+			}
 
 			$data = array(); $errmsg = ""; $code = 0;
 			try {
@@ -133,7 +125,7 @@
 			return $this->sendPayload($data, "success", $errmsg, $code);
 		}
 
-		public function new_payment($table, $data, $payment) {
+		public function new_payment_expenses($table, $data, $payment) {
 			$fields = []; $values = [];
 			foreach ($data as $key => $value) {
 				array_push($fields, $key);
@@ -154,11 +146,8 @@
 
 				$sql = $this->pdo->prepare($sqlstr);
 				$sql->execute($values);
-				if (isset($payment) && $payment == "checkup") {
-					return $this->select_payments($table, $payment, null);
-				} else if(isset($payment) && $payment == "transaction") {
-					return $this->select_payments($table, $payment, null);
-				}
+				if ($payment == "checkup" || $payment == "transaction") return $this->select_payments($table, $payment, "0");
+				return $this->select_expenses($table, "0");
 
 			} catch(\PDOException $e) {
 				$errmsg = $e->getMessage(); $code = 403;
@@ -166,7 +155,7 @@
 			return array("code" => $code, "errmsg" => $errmsg);
 		}
 
-		public function update_payment($table, $data, $conditionString, $payment) {
+		public function update_payment_expenses($table, $data, $conditionString, $payment) {
 			$fields = []; $values = []; $setStr = "";
 			foreach ($data as $key => $value) {
 				array_push($fields, $key);
@@ -187,11 +176,9 @@
 
 				$sql = $this->pdo->prepare($sqlstr);
 				$sql->execute($values);
-				if (isset($payment) && $payment == "checkup") {
-					return $this->select_payments($table, $payment, null);
-				} else if(isset($payment) && $payment == "transaction") {
-					return $this->select_payments($table, $payment, null);
-				}
+				if ($payment == "checkup" || $payment == "transaction") return $this->select_payments($table, $payment, "0");
+				return $this->select_expenses($table, "0");
+
 			} catch(\PDOException $e) {
 				$errmsg = $e->getMessage(); $code = 403;
 			}
