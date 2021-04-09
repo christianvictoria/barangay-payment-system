@@ -223,6 +223,7 @@
         margin: 0;
         padding: 0;
         opacity: 0.5;
+        color: white;
     }
 
     .payment-card1 {
@@ -266,14 +267,14 @@
     }
 
     .title {
-        font-size: 28px;
+        font-size: 22px;
         text-align: right;
         color: #ffffff;
         font-family: 'Poppins', sans-serif;
     }
 
     .numbers {
-        font-size: 38px;
+        font-size: 22px;
         font-weight: bold;
         text-align: right;
         color: #ffffff;
@@ -330,8 +331,8 @@
 
     .sideprop1 {
         font-family: 'Poppins', sans-serif;
-        padding-top: 30px;
-        font-size: 28px;
+        padding-top: 50px;
+        font-size: 22px;
         margin-bottom: 30px;
         width: 90%;
         height: 90px;
@@ -342,9 +343,9 @@
 
     .sideprop2 {
         font-family: 'Poppins', sans-serif;
-        padding-top: 30px;
-        font-size: 28px;
-        margin-bottom: 20px;
+        padding-top: 50px;
+        font-size: 22px;
+        margin-bottom: 10px;
         width: 90%;
         height: 90px;
         color: #ffffff;
@@ -394,7 +395,7 @@
         text-align: center;
         color: #404040;
         font-family: 'Poppins', sans-serif;
-        font-size: 25px;
+        font-size: 22px;
         font-weight: bold;
     }
 
@@ -404,13 +405,13 @@
 
     .contenttitle {
         font-family: 'Poppins', sans-serif;
-        font-size: 20px;
+        font-size: 22px;
         margin-bottom: 10px;
         color: #2d2a25;
         text-align: left;
         font-family: 'Poppins', sans-serif;
         margin-left: 18px;
-        margin-top: 20px;
+        margin-top: 22px;
         margin-bottom: 15px;
         font-weight: bold;
     }

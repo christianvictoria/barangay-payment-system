@@ -16,7 +16,7 @@
 
   <mat-toolbar  style="color:rgb(255, 255, 255); background-color:#3B8BEB; padding-left: 30px;"><button mat-icon-button (click) ="sidebarRef.toggle()"><mat-icon style="margin-right: 50px;" >menu</mat-icon></button>Barangay Payment System
   <div class="spacer"></div>
-  <a mat-button><mat-icon>settings_applications</mat-icon></a>
+  <a mat-button><img src="/assets/admin.png"></a>
   <a mat-button (click)="logout()"> <mat-icon>logout</mat-icon></a>
   </mat-toolbar>
   
@@ -26,60 +26,60 @@
 
   <div class="dashboardCard">
       <mat-card class="payment-card1">
+        <mat-card-content ><br>
+          <p class="numbers">2,500</p>
+        </mat-card-content>
         <mat-card-content >
           <p class="title">Total Expenses</p>
-        </mat-card-content><br>
-        <mat-card-content >
-          <p class="numbers">2,500</p>
           <div class="iconsDashboard">
             <img src="/assets/expense.png" class="img-card">
           </div>
-        </mat-card-content><br>
+        </mat-card-content>
         <mat-card-content >
           <p class="percent">-4% From Last Week</p>
         </mat-card-content>
       </mat-card>
 
       <mat-card class="payment-card2">
+          <mat-card-content ><br>
+            <p class="numbers">2,500</p>
+          </mat-card-content>
           <mat-card-content >
             <p class="title">Total Receive</p>
-          </mat-card-content><br>
-          <mat-card-content >
-            <p class="numbers">2,500</p>
             <div class="iconsDashboard">
               <img src="/assets/payment.png" class="img-card">
             </div>
-          </mat-card-content><br>
+          </mat-card-content>
           <mat-card-content >
             <p class="percent">-4% From Last Week</p>
           </mat-card-content>
       </mat-card>
 
       <mat-card class="payment-card3">
+          <mat-card-content ><br>
+            <p class="numbers">22,500</p>
+          </mat-card-content>
           <mat-card-content >
             <p class="title">Total Residents</p>
-          </mat-card-content><br>
-          <mat-card-content >
-            <p class="numbers">22,500</p>
             <div class="iconsDashboard">
               <img src="/assets/resident.png" class="img-card">
             </div>
-          </mat-card-content><br>
+          </mat-card-content>
           <mat-card-content >
             <p class="percent">-12% From Last Week</p>
           </mat-card-content>
       </mat-card>
 
       <mat-card class="payment-card4">
+          <mat-card-content ><br>
+            <p class="numbers">101</p>
+          </mat-card-content>
           <mat-card-content >
             <p class="title">Total Activities</p>
-          </mat-card-content><br>
-          <mat-card-content >
-            <p class="numbers">101</p>
             <div class="iconsDashboard">
               <img src="/assets/activity.png" class="img-card">
             </div>
-          </mat-card-content><br>
+          </mat-card-content>
           <mat-card-content >
             <p class="percent">-6% From Last Week</p>
           </mat-card-content>
@@ -88,7 +88,7 @@
 
   <div class="dashboardSecondCard">
     <mat-card class="chart-card">
-      <mat-card-title style="margin-bottom: 25px;" class="poppins"></mat-card-title>
+      <mat-card-title style="margin-bottom: 25px;" class="titlecases">Monthly Expenses and Received Graph</mat-card-title>
         <div class="chart-wrapper">
             <canvas baseChart
                     [datasets]="barChartData"
@@ -104,18 +104,18 @@
       <mat-card-title class="titlecases">Total Cases</mat-card-title>
       <div class="sidecard">
         <mat-card class="sideprop1">
-            <p>Settled Case</p>
+          <p class="numbers">82</p>
             <div class="iconsCases">
               <img src="/assets/settle.png" class="img-card">
             </div>
-            <p class="numbers">82</p>
+            <p>Settled Case</p>
         </mat-card>
         <mat-card class="sideprop2">
-            <p>Scheduled Case</p>
+            <p class="numbers">21</p>
             <div class="iconsCases">
               <img src="/assets/schedule.png" class="img-card">
             </div>
-            <p class="numbers">21</p>
+            <p>Scheduled Case</p>
         </mat-card>
     </div>
     </mat-card>
