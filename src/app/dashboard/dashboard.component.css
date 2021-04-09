@@ -228,9 +228,9 @@
 
     .payment-card1 {
         width: 380px;
-        height: 132px;
-        margin-left: 5px;
-        margin-right: 5px;
+        height: 115px;
+        margin-left: 15px;
+        margin-right: 15px;
         padding: 25px;
         text-align: right;
         background-color: #d52750;
@@ -238,9 +238,9 @@
 
     .payment-card2 {
         width: 380px;
-        height: 132px;
-        margin-left: 5px;
-        margin-right: 5px;
+        height: 115px;
+        margin-left: 15px;
+        margin-right: 15px;
         padding: 25px;
         text-align: right;
         background-color: #34a066;
@@ -248,9 +248,9 @@
 
     .payment-card3 {
         width: 380px;
-        height: 132px;
-        margin-left: 5px;
-        margin-right: 5px;
+        height: 115px;
+        margin-left: 15px;
+        margin-right: 15px;
         padding: 25px;
         text-align: right;
         background-color: #de653f;
@@ -258,9 +258,9 @@
 
     .payment-card4 {
         width: 380px;
-        height: 132px;
-        margin-left: 5px;
-        margin-right: 5px;
+        height: 115px;
+        margin-left: 15px;
+        margin-right: 15px;
         padding: 25px;
         text-align: right;
         background-color: #5c6cc0;
@@ -383,9 +383,9 @@
     }
 
     .chart-card {
-        width: 790px;
-        margin-left: 15px;
-        margin-right: 15px;
+        width: 720px;
+        margin-left: 16px;
+        margin-right: 16px;
         padding: 25px;
         font-family: 'Poppins', sans-serif;
     }
