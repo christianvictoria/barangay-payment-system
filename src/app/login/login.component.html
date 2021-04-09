@@ -1,29 +1,24 @@
-
-
-    
 <div class="image">
+  <img src="../../assets/ulo-ng-apo-web.jpeg" alt="" class="src"
+    style="width: 200%; margin-left: -600px; margin-top: -70px ;">
 </div>
+<div class="forms-cont">
+  <div class="form">
+    <img src="../../assets/logo.png" alt="" class="src" style=" width: 50%">
+    <p class="title2">Log in first</p>
 
-<div class="form">
+    <!-- <input type="text" placeholder="Username" class="one" [(ngModel)]="inputLogid"> -->
+    <input type="text" placeholder="Username" class="one">
+    <mat-icon style="position: absolute; font-size: 30px; color: #007cc7; margin-top: 12px; margin-left: -469px;">account_circle</mat-icon>
 
-   
-        <mat-card-title class="mat-title" class="title">Barangay Management System</mat-card-title>
-        <br><br>
-        <p class="title2">Log in first</p>
-        <br>
-        <br>
-   
-        <mat-form-field appearance="outline" class="one">
-            <mat-label class="label">Username:</mat-label>
-            <input matInput placeholder="Placeholder">
-          </mat-form-field>
-          <br>
-          <mat-form-field appearance="outline" class="one">
-            <mat-label class="label">Password:</mat-label>
-            <input matInput placeholder="Placeholder" type="password">   
-          </mat-form-field>
-          <br>
-          <button mat-raised-button color="primary" (click)="login()" class="button">Login</button>
-          <p class="fpassword">Forgot Password? <span class="click">Click here.</span></p>
+    <br><br>
 
+    <!-- <input type="password" placeholder="Password" class="one" [(ngModel)]="inputLogpass"> -->
+    <input type="password" placeholder="Password" class="one">
+    <mat-icon style="position: absolute; font-size: 30px; color: #007cc7; margin-top: 12px; margin-left: -469px;">lock</mat-icon>
+
+    <br><br>
+    <button mat-raised-button color="primary" (click)="login()" class="button">Login</button>
+    <p class="fpassword">Forgot Password? <span class="click">Click here.</span></p>
+  </div>
 </div>

@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
   public barChartLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   public barChartType = 'bar';
   public barChartLegend = true;
-  public barChartData = [{ data: [28, 48, 40, 19, 86, 27, 90, 40, 19, 86, 27, 90], backgroundColor: '#5089bc', label: 'Monthly Expenses and Received Graph'}  
+  public barChartData = [{ data: [2800, 4800, 4000, 1900, 8600, 2700, 9000, 4000, 1900, 8600, 2700, 9000], backgroundColor: '#5089bc', label: 'Monthly Expenses and Received Graph'}  
   ];
   
     logout(){

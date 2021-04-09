@@ -1,40 +1,59 @@
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
-   
-    mat-sidenav-container
-    {
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+    
+    body {
+        overflow: hidden;
+    }
+
+    mat-sidenav-container, mat-sidenav-content {
         height: 100%;
+        background-color: #ffffff;
     }
 
     mat-list {
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Poppins', sans-serif;
     }
 
-    .logo-nav{
-        margin-top: 20px;
+    h3 {
+        text-align: left;
+        font-family: 'Poppins', sans-serif;
         margin-left: 20px;
-        height: 20px;
-        width: 20px;
+        margin-top: 20px;
+        margin-bottom: -5px;
+    }
+
+    .user-profile {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    margin-top:10px;
     }
 
     mat-sidenav
     {
-        background-color:#FFFAFA;
+        background-color: rgb(255, 255, 255);
+        color: #404040;
+        font-family: 'Poppins', sans-serif;
         width: 250px;
+        border-right: 0.75px solid lightgrey;
     }
 
     .main-container
     {
+        height: 100%;
+        font-family: 'Poppins', sans-serif;
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        background-color: #ffffff;
+        background-color: #eef5f9;
     }
 
-    mat-sidenav
-    {
-        padding: 12px;
+
+    mat-sidenav-container, mat-sidenav-content {
+        height: 100%;
+        background-color: #eef5f9;
     }
 
     .spacer
@@ -45,8 +64,7 @@
     mat-toolbar
     {
         background-color: 	#FFFAFA;
-        font-family: 'Montserrat', sans-serif;
-        
+        font-family: 'Poppins', sans-serif;
     }
 
     mat-list
@@ -54,28 +72,40 @@
         margin-top: 150px;
     }
 
+    h3 {
+        text-align: left;
+        font-family: 'Poppins', sans-serif;
+        margin-left: 20px;
+        margin-top: 20px;
+        margin-bottom: -5px;
+        font-weight: bold;
+        color: #9c9c9cad;
+    }
+
     a {
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Poppins', sans-serif;
+        margin: -10px;
     }
 
     mat-sidenav-container mat-list mat-list-item
     {
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-weight: 500;
     }
 
-    .pointer{
+    .pointer {
+        margin-top: 0px;
         cursor: pointer;
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Poppins', sans-serif;
     }
 
-    
+
     .inline-display {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
     }
-    
+
 
     .search-style {
         margin-top: 25px;
@@ -106,15 +136,15 @@
         margin-left: 25px;
         margin-top: 25px;
     }
-      
+    
     .citizens td, .citizens th {
         padding: 8px;
     }
-      
+    
     .citizens tr:nth-child(even) {
         background-color: #e4e4e4;
     }
-      
+    
     .citizens th {
         padding-top: 12px;
         padding-bottom: 12px;
@@ -122,17 +152,15 @@
         background-color: rgba(0, 0, 0, 0.8);
         color: white;
     }
-    
+
     .example-container {
         overflow: auto;
-        margin-left: 35px;
-        margin-right: 35px;
-        margin-top: 20px;
-        margin-bottom: 85px;
+        margin-left: 15px;
+        margin-right: 15px;
     }
 
     th, td, button {
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Poppins', sans-serif;
     }
 
     th {
@@ -142,13 +170,13 @@
         background-color: rgba(0, 0, 0, 0.8);
         color: white;
     }
-    
+
     table {
         width: 100%;
         font-family: "Poppins", sans-serif;
     }
-  
-    
+
+
     .display-end {
         display: flex;
         justify-content: flex-end;
@@ -163,28 +191,122 @@
     .card mat-icon {
         margin-top: 4px;
     }
-    
+
     .card p {
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-size: medium;
         text-align: center;
         font-weight: bold;
     }
 
     .percent {
-        padding-right: 4px;
-        color: rgb(78, 223, 21);
-        font-family: 'Montserrat', sans-serif;
+        font-size: 18px;
+        color: rgb(74, 219, 16);
+        font-family: 'Poppins', sans-serif;
     }
 
-    .gridborder {
-        /* background-color: rgb(241, 241, 241); */
-        border-right: solid 2px rgb(141, 141, 141);
+    .dashboardCard {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        padding-left: 18px;
+        padding-right: 18px;
     }
-      
+
+    .iconsDashboard {
+        float: left;
+        margin-top: -18%;
+        margin-left: 15px;
+    }
+
+    .img-card {
+        margin: 0;
+        padding: 0;
+        opacity: 0.5;
+    }
+
+    .payment-card1 {
+        width: 380px;
+        height: 132px;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 25px;
+        text-align: right;
+        background-color: #d52750;
+    }
+
+    .payment-card2 {
+        width: 380px;
+        height: 132px;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 25px;
+        text-align: right;
+        background-color: #34a066;
+    }
+
+    .payment-card3 {
+        width: 380px;
+        height: 132px;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 25px;
+        text-align: right;
+        background-color: #de653f;
+    }
+
+    .payment-card4 {
+        width: 380px;
+        height: 132px;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 25px;
+        text-align: right;
+        background-color: #5c6cc0;
+    }
+
+    .title {
+        font-size: 28px;
+        text-align: right;
+        color: #ffffff;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .numbers {
+        font-size: 38px;
+        font-weight: bold;
+        text-align: right;
+        color: #ffffff;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .poppins-bold {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        color: #404040;
+    }
+
+    .poppins {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    h1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 28px;
+    }
+
+    h2 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 28px;
+    }
+
+    h3 {
+        font-family: 'Poppins', sans-serif;
+    }
+    
     .matcard h2 {
         font-size: xx-large;
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Poppins', sans-serif;
     }
 
     .chart {
@@ -193,29 +315,47 @@
         margin-left: 50px;
     }
 
-    .sidecard h2 {
-        margin-top: -10px;
-        font-weight: bolder;
-        font-size: x-large;
-        font-family: 'Montserrat', sans-serif;
-    }
-    
-    .sidecard h1 {
-        font-family: 'Montserrat', sans-serif;
+    .sidecard p {
+        margin-right: 10px;
+        margin-bottom: 20px;
     }
 
     .sidecard {
         justify-content: flex-start;
-        width: 100%;
-        margin-left: 155px;
+        margin-left: 50px;
         margin-top: 20px;
+        width: auto;
+        font-family: 'Poppins', sans-serif;
     }
 
-    .sideprop {
-        background-color: rgba(0, 0, 0, 0.8);
+    .sideprop1 {
+        font-family: 'Poppins', sans-serif;
+        padding-top: 30px;
+        font-size: 28px;
+        margin-bottom: 30px;
+        width: 90%;
+        height: 90px;
+        color: #ffffff;
+        text-align: right;
+        background-color: #61a8ff;
+    }
+
+    .sideprop2 {
+        font-family: 'Poppins', sans-serif;
+        padding-top: 30px;
+        font-size: 28px;
         margin-bottom: 20px;
-        width: 70%;
-        color: white;
+        width: 90%;
+        height: 90px;
+        color: #ffffff;
+        text-align: right;
+        background-color: #ff6961;
+    }
+
+    .iconsCases {
+        float: left;
+        margin-top: -7%;
+        margin-left: 15px;
     }
 
     .chartcontent {
@@ -223,11 +363,54 @@
     }
 
     .card h1 {
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Poppins', sans-serif;
     }
 
     .listprop {
         color:rgb(255, 255, 255); 
-        background-color:#3b8bea;
-        border-radius: 5px;
+        background-color:#3B8BEB;
+    }
+
+    mat-card {
+        overflow: auto;
+    } 
+
+    .dashboardSecondCard {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .chart-card {
+        width: 790px;
+        margin-left: 15px;
+        margin-right: 15px;
+        padding: 25px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .titlecases {
+        margin-bottom: 25px; 
+        text-align: center;
+        color: #404040;
+        font-family: 'Poppins', sans-serif;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    mat-card-title {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .contenttitle {
+        font-family: 'Poppins', sans-serif;
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #2d2a25;
+        text-align: left;
+        font-family: 'Poppins', sans-serif;
+        margin-left: 18px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        font-weight: bold;
     }

@@ -1,159 +1,201 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
-mat-sidenav-container
-{
-    height: 100%;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-mat-list {
-    font-family: 'Montserrat', sans-serif;
-}
+    body {
+        overflow: hidden;
+    }
 
-.logo-nav{
-    margin-top: 20px;
-    margin-left: 20px;
-    height: 20px;
-    width: 20px;
-}
+    mat-sidenav-container, mat-sidenav-content {
+        height: 100%;
+        background-color: #eef5f9;
+    }
 
-mat-sidenav
-{
-    background-color:#FFFAFA;
-    width: 250px;
-}
+    mat-list {
+        font-family: 'Poppins', sans-serif;
+    }
 
-.main-container
-{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #ffffff;
-}
+    h3 {
+        text-align: left;
+        font-family: 'Poppins', sans-serif;
+        margin-left: 20px;
+        margin-top: 20px;
+        margin-bottom: -5px;
+        font-weight: bold;
+        color: #9c9c9cad;
+    }
 
-mat-sidenav
-{
-    padding: 12px;
-}
-
-.spacer
-{
-    flex: 1 1 auto;
-}
-
-mat-toolbar
-{
-    background-color: 	#FFFAFA;
-    font-family: 'Montserrat', sans-serif;
-    
-}
-
-mat-list
-{
-    margin-top: 150px;
-}
-
-a {
-    font-family: 'Montserrat', sans-serif;
-}
-
-mat-sidenav-container mat-list mat-list-item
-{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-}
-
-.pointer{
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-}
-
-
-.inline-display {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-
-.search-style {
-    margin-top: 25px;
-}
-
-.addBtn {
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 6px;
-    margin-top: 15px;
-    margin-left: 50px;
-}
-
-.viewBtn {
-    background-color:#2d9cdb;
-    border-radius: 6px;
-}
-    
-.tabs-style {
-    margin-left: 35px;
-    margin-right: 25px;
-}
-
-
-.citizens {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 80%;
-    margin-left: 25px;
-    margin-top: 25px;
-}
-  
-.citizens td, .citizens th {
-    padding: 8px;
-}
-  
-.citizens tr:nth-child(even) {
-    background-color: #e4e4e4;
-}
-  
-.citizens th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-}
-
-.example-container {
-    overflow: auto;
-    margin-left: 35px;
-    margin-right: 35px;
-    margin-top: 20px;
-    margin-bottom: 85px;
-}
-
-th, td, button {
-    font-family: 'Montserrat', sans-serif;
-}
-
-th {
-    font-size: 12pt;
-    font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-}
-
-table {
+    .user-profile {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     width: 100%;
-    font-family: "Poppins", sans-serif;
-}
+    margin-top:10px;
+    }
+
+    mat-sidenav
+    {
+        background-color: rgb(255, 255, 255);
+        color: #404040;
+        font-family: 'Poppins', sans-serif;
+        width: 250px;
+        border-right: 0.75px solid lightgrey;
+    }
+
+    .main-container
+    {
+        height: 100%;
+        font-family: 'Poppins', sans-serif;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #eef5f9;
+    }
+
+    mat-sidenav-container, mat-sidenav-content {
+        height: 100%;
+        background-color: #eef5f9;
+    }
+
+    .spacer
+    {
+        flex: 1 1 auto;
+    }
+
+    mat-toolbar
+    {
+        background-color: 	#FFFAFA;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    mat-list
+    {
+        margin-top: 150px;
+    }
+
+    a {
+        font-family: 'Poppins', sans-serif;
+        margin: -10px;
+    }
+
+    mat-sidenav-container mat-list mat-list-item
+    {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+    }
+
+    .pointer{
+        margin-top: 0px;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+    }
 
 
-.display-end {
-    display: flex;
-    justify-content: flex-end;
-}
+    .inline-display {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
 
-.listprop {
-    color:rgb(255, 255, 255); 
-    background-color:#3b8bea;
-    border-radius: 5px;
-}
+
+    .search-style {
+        margin-top: 25px;
+    }
+
+    .addBtn {
+        background-color: #3B8BEB;
+        border-radius: 6px;
+        margin-top: 15px;
+    }
+
+    .viewBtn {
+        background-color: #3B8BEB;
+        /* background-color:#4da8da; */
+        border-radius: 6px;
+    }
+
+    .dlteBtn {
+        background-color: #dd2c00;
+        border-radius: 6px;
+    }
+
+    .updtBtn {
+        background-color: green;
+        border-radius: 6px;
+    }
+        
+    .tabs-style {
+        margin-left: 35px;
+        margin-right: 25px;
+        margin-top: 10px;
+    }
+
+
+    .citizens {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 80%;
+        margin-left: 25px;
+        margin-top: 25px;
+    }
+
+    .citizens td, .citizens th {
+        padding: 8px;
+    }
+
+    .citizens tr:nth-child(even) {
+        background-color: #e4e4e4;
+    }
+
+    .citizens th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        color: white;
+    }
+
+    .example-container {
+        overflow: auto;
+        margin-left: 35px;
+        margin-right: 35px;
+        margin-top: 20px;
+        margin-bottom: 85px;
+    }
+
+    .example-form-field1 {
+        width: 400px;
+        margin-right: 10px;
+        margin-top: 5px;
+        font-family: 'Poppins', sans-serif;
+        float: right;
+    }
+
+    th, td, button {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    th {
+        font-size: 12pt;
+        font-weight: bold;
+        background-color: rgb(255, 255, 255);
+        color: rgb(151, 151, 151);
+    }
+
+    table {
+        width: 100%;
+        font-family: "Poppins", sans-serif;
+    }
+
+
+    .display-end {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .listprop {
+        /* color:rgb(255, 255, 255); 
+        background-color:#3b8bea;
+        border-radius: 5px; */
+        color:rgb(255, 255, 255); 
+        background-color:#3B8BEB;
+    }

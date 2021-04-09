@@ -15,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list'
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +27,9 @@ import { Nav3Component } from './dashboard/nav3/nav3.component';
 import { Nav4Component } from './dashboard/nav4/nav4.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaymentDashboardComponent } from './dashboard/payment-dashboard/payment-dashboard.component';
+import { PaymentViewComponent } from './dashboard/payment-view/payment-view.component';
+import { ExpenseAddComponent } from './dashboard/expense-add/expense-add.component';
+import { ExpenseViewComponent } from './dashboard/expense-view/expense-view.component';
 
 
 @NgModule({
@@ -38,7 +42,10 @@ import { PaymentDashboardComponent } from './dashboard/payment-dashboard/payment
     Nav3Component,
     Nav4Component,
     LoginComponent,
-    PaymentDashboardComponent
+    PaymentDashboardComponent,
+    PaymentViewComponent,
+    ExpenseAddComponent,
+    ExpenseViewComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +65,8 @@ import { PaymentDashboardComponent } from './dashboard/payment-dashboard/payment
     MatDialogModule,
     MatSidenavModule,
     MatGridListModule,
-    ChartsModule
+    ChartsModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

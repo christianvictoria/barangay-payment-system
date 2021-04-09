@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MatTableDataSource } from '@angular/material/table';
-import { PaymentDashboardComponent } from '../payment-dashboard/payment-dashboard.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { ExpenseViewComponent } from '../expense-view/expense-view.component';
+import { ExpenseAddComponent } from '../expense-add/expense-add.component';
 
 @Component({
   selector: 'app-nav2',
@@ -47,8 +48,12 @@ export class Nav2Component implements OnInit {
   displayedColumns: string[] = ['no', 'name', 'daterecorded', 'paymentfor', 'paymentreceive', 'purpose','actions'];
   dataSource = new MatTableDataSource<PaymentDashboard>(ELEMENT_DATA);
 
+  AddProject(){
+    this.dialog.open(ExpenseAddComponent);
+  }
+
   ViewProject(){
-    this.dialog.open(PaymentDashboardComponent);
+    this.dialog.open(ExpenseViewComponent);
   }
 
 }

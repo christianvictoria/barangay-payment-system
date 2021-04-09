@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { PaymentDashboardComponent } from '../payment-dashboard/payment-dashboard.component';
+import { PaymentViewComponent } from '../payment-view/payment-view.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -48,6 +49,10 @@ export class Nav1Component implements OnInit {
   dataSource = new MatTableDataSource<PaymentDashboard>(ELEMENT_DATA);
 
   ViewProject(){
+    this.dialog.open(PaymentViewComponent);
+  }
+
+  AddProject(){
     this.dialog.open(PaymentDashboardComponent);
   }
 

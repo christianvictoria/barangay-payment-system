@@ -1,177 +1,126 @@
 <mat-sidenav-container class="main-container"> 
     <mat-sidenav #sidebarRef opened mode='side' [(opened)]='isSidebarOpen'> 
-        
-        <div class="logo-nav">
-            <img src="./assets/user.png">
-        
-        </div>
-        
-        <br/>
-        <br/>
+        <img class="user-profile" src="/assets/logo.png">
+        <mat-divider [vertical]="false"></mat-divider>
+        <h3>ADMIN</h3>
         <mat-list class="pointer">
-            <mat-list-item class="listprop" (click)="sidebarRef.toggle()"><mat-icon style="padding-right: 5px; color: rgba(255, 255, 255, 255);">dashboard</mat-icon> Dashboard </mat-list-item>
+            <mat-list-item class="listprop" (click)="sidebarRef.toggle()"><mat-icon style="padding-right: 5px;">dashboard</mat-icon> Dashboard </mat-list-item>
+            <mat-list-item  style="color:#404040" (click)="openNav1()"> <mat-icon style="padding-right: 5px;">library_add</mat-icon>Barangay Payments </mat-list-item>
+            <mat-list-item  style="color:#404040"(click)="openNav2()"><mat-icon style="padding-right: 5px;">payments</mat-icon> Barangay Expenses </mat-list-item><br>
             <mat-divider></mat-divider>
-            <mat-list-item  style="color:black"(click)="openNav1()"> <mat-icon style="padding-right: 5px; color: rgba(0, 0, 0, 0.8);">library_add</mat-icon>Barangay Payments </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item  style="color:black"(click)="openNav2()"><mat-icon style="padding-right: 5px; color: rgba(0, 0, 0, 0.8);">payments</mat-icon> Barangay Expenses </mat-list-item>
-            <!-- <mat-divider></mat-divider>
-            <mat-list-item  style="color:black"(click)="openNav3()"><mat-icon>delete</mat-icon>  Wala pa </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item  style="color:black"(click)="openNav4()"><mat-icon>delete</mat-icon> Wala pa </mat-list-item> -->
         </mat-list>
-
     </mat-sidenav>
 
-    <mat-sidenav-content>
+  <mat-sidenav-content>
 
-        <mat-toolbar  style="color:rgb(255, 255, 255); background-color:#3b8bea" ><button mat-icon-button (click) ="sidebarRef.toggle()"><mat-icon >menu</mat-icon></button>Dashboard
-        <div class="spacer"></div>
-        <!-- <a mat-button><mat-icon>settings_applications</mat-icon>Settings</a> -->
-        <a mat-button (click)="logout()"> <mat-icon>logout</mat-icon>Logout</a>
-        </mat-toolbar>
 
-        <div>
-            <mat-grid-list cols="5" rowHeight="250px">
-                <mat-grid-tile class="gridborder">
-                    <div class="matcard">
-                        <mat-card-title class="card">
-                            <mat-icon>attach_money</mat-icon><h1>Total Expenses</h1><br>
-                        </mat-card-title>
-                        <mat-card-content class="card">
-                            <h2>2,500</h2>
-                        </mat-card-content>
-                        <mat-card-content class="card">
-                            <p class="percent">-4%</p><p>From Last Week</p>
-                        </mat-card-content>
-                    </div>
-                </mat-grid-tile>
+  <mat-toolbar  style="color:rgb(255, 255, 255); background-color:#3B8BEB; padding-left: 30px;"><button mat-icon-button (click) ="sidebarRef.toggle()"><mat-icon style="margin-right: 50px;" >menu</mat-icon></button>Barangay Payment System
+  <div class="spacer"></div>
+  <a mat-button><mat-icon>settings_applications</mat-icon></a>
+  <a mat-button (click)="logout()"> <mat-icon>logout</mat-icon></a>
+  </mat-toolbar>
+  
+  <div class="example-container">
+  <p class="contenttitle">Dashboard</p>
+  <mat-divider [vertical]="false" style="margin-right: 20px; margin-left: 20px;"></mat-divider>
 
-                <mat-grid-tile class="gridborder">
-                    <div class="matcard">
-                        <mat-card-title class="card">
-                            <mat-icon>attach_money</mat-icon><h1>Total Expenses</h1><br>
-                        </mat-card-title>
-                        <mat-card-content class="card">
-                            <h2>2,500</h2>
-                        </mat-card-content>
-                        <mat-card-content class="card">
-                            <p class="percent">-4%</p><p>From Last Week</p>
-                        </mat-card-content>
-                    </div>
-                </mat-grid-tile>
+  <div class="dashboardCard">
+      <mat-card class="payment-card1">
+        <mat-card-content >
+          <p class="title">Total Expenses</p>
+        </mat-card-content><br>
+        <mat-card-content >
+          <p class="numbers">2,500</p>
+          <div class="iconsDashboard">
+            <img src="/assets/expense.png" class="img-card">
+          </div>
+        </mat-card-content><br>
+        <mat-card-content >
+          <p class="percent">-4% From Last Week</p>
+        </mat-card-content>
+      </mat-card>
 
-                <mat-grid-tile class="gridborder">
-                    <div class="matcard">
-                        <mat-card-title class="card">
-                            <mat-icon>attach_money</mat-icon><h1>Total Residents</h1><br>
-                        </mat-card-title>
-                        <mat-card-content class="card">
-                            <h2>22,500</h2>
-                        </mat-card-content>
-                        <mat-card-content class="card">
-                            <p class="percent">-4%</p><p>From Last Week</p>
-                        </mat-card-content>
-                    </div>
-                </mat-grid-tile>
-
-                <mat-grid-tile class="gridborder"> 
-                        <div class="matcard">
-                        <mat-card-title class="card">
-                            <mat-icon>attach_money</mat-icon><h1>Total Males</h1><br>
-                        </mat-card-title>
-                        <mat-card-content class="card">
-                            <h2>2,500</h2>
-                        </mat-card-content>
-                        <mat-card-content class="card">
-                            <p class="percent">-4%</p><p>From Last Week</p>
-                        </mat-card-content>
-                    </div>
-                </mat-grid-tile>
-
-                <mat-grid-tile class="gridborder"> 
-                    <div class="matcard">
-                        <mat-card-title class="card">
-                            <mat-icon>attach_money</mat-icon><h1>Total Males</h1><br>
-                        </mat-card-title>
-                        <mat-card-content class="card">
-                            <h2>2,500</h2>
-                        </mat-card-content>
-                        <mat-card-content class="card">
-                            <p class="percent">-4%</p><p>From Last Week</p>
-                        </mat-card-content>
-                    </div>
-                </mat-grid-tile>
-            </mat-grid-list>
-
-            <div class="chartcontent">
-                <mat-grid-list cols="2" rowHeight="2:1">
-                    <mat-grid-tile>
-                            <div style="display: block" class="chart">
-                            <canvas baseChart
-                                    [datasets]="barChartData"
-                                    [labels]="barChartLabels"
-                                    [options]="barChartOptions"
-                                    [legend]="barChartLegend"
-                                    [chartType]="barChartType">
-                            </canvas>
-                            </div>
-                    </mat-grid-tile>
-                    <mat-grid-tile>
-                        <div class="sidecard">
-                            <mat-card class="sideprop">
-                                <h1>Settled Case</h1>
-                                <h2>2,500</h2>
-                            </mat-card>
-                            <mat-card class="sideprop">
-                                <h1>Scheduled Case</h1>
-                                <h2>2,500</h2>
-                            </mat-card>
-                            <mat-card class="sideprop">
-                                <h1>Scheduled Case</h1>
-                                <h2>2,500</h2>
-                            </mat-card>
-                        </div>
-                    </mat-grid-tile>
-                </mat-grid-list>
+      <mat-card class="payment-card2">
+          <mat-card-content >
+            <p class="title">Total Receive</p>
+          </mat-card-content><br>
+          <mat-card-content >
+            <p class="numbers">2,500</p>
+            <div class="iconsDashboard">
+              <img src="/assets/payment.png" class="img-card">
             </div>
+          </mat-card-content><br>
+          <mat-card-content >
+            <p class="percent">-4% From Last Week</p>
+          </mat-card-content>
+      </mat-card>
 
-            
+      <mat-card class="payment-card3">
+          <mat-card-content >
+            <p class="title">Total Residents</p>
+          </mat-card-content><br>
+          <mat-card-content >
+            <p class="numbers">22,500</p>
+            <div class="iconsDashboard">
+              <img src="/assets/resident.png" class="img-card">
+            </div>
+          </mat-card-content><br>
+          <mat-card-content >
+            <p class="percent">-12% From Last Week</p>
+          </mat-card-content>
+      </mat-card>
 
-            <!-- <mat-card>
-                <div class="matcard">
-                    <mat-card-title class="card">
-                        <mat-icon>attach_money</mat-icon><h1>Total Expenses</h1><br>
-                    </mat-card-title>
-                    <mat-card-content class="card">
-                        <p>2,500</p>
-                    </mat-card-content>
-                    <mat-card-content class="card">
-                        <p class="percent">-4%</p><p>From Last Week</p>
-                    </mat-card-content>
-                </div>
+      <mat-card class="payment-card4">
+          <mat-card-content >
+            <p class="title">Total Activities</p>
+          </mat-card-content><br>
+          <mat-card-content >
+            <p class="numbers">101</p>
+            <div class="iconsDashboard">
+              <img src="/assets/activity.png" class="img-card">
+            </div>
+          </mat-card-content><br>
+          <mat-card-content >
+            <p class="percent">-6% From Last Week</p>
+          </mat-card-content>
+      </mat-card>
+  </div>
 
-                <div class="matcard">
-                    <mat-card-title class="card">
-                        <mat-icon>attach_money</mat-icon><h1>Total Expenses</h1><br>
-                    </mat-card-title>
-                    <mat-card-content class="card">
-                        <p>2,500</p>
-                    </mat-card-content>
-                    <mat-card-content class="card">
-                        <p class="percent">-4%</p><p>From Last Week</p>
-                    </mat-card-content>
-                </div>
-            </mat-card> -->
+  <div class="dashboardSecondCard">
+    <mat-card class="chart-card">
+      <mat-card-title style="margin-bottom: 25px;" class="poppins"></mat-card-title>
+        <div class="chart-wrapper">
+            <canvas baseChart
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType">
+            </canvas>
         </div>
+    </mat-card>
 
-    
-        
-        
-        
-
-
-
-        
-    </mat-sidenav-content>
+    <mat-card class="chart-card">
+      <mat-card-title class="titlecases">Total Cases</mat-card-title>
+      <div class="sidecard">
+        <mat-card class="sideprop1">
+            <p>Settled Case</p>
+            <div class="iconsCases">
+              <img src="/assets/settle.png" class="img-card">
+            </div>
+            <p class="numbers">82</p>
+        </mat-card>
+        <mat-card class="sideprop2">
+            <p>Scheduled Case</p>
+            <div class="iconsCases">
+              <img src="/assets/schedule.png" class="img-card">
+            </div>
+            <p class="numbers">21</p>
+        </mat-card>
+    </div>
+    </mat-card>
+  </div> 
+</div>
+   
+</mat-sidenav-content>
 </mat-sidenav-container>
-     
