@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Nav3Component } from './nav3.component';
+import { ExpenseDeleteComponent } from './expense-delete.component';
 
-describe('Nav3Component', () => {
-  let component: Nav3Component;
-  let fixture: ComponentFixture<Nav3Component>;
+describe('ExpenseDeleteComponent', () => {
+  let component: ExpenseDeleteComponent;
+  let fixture: ComponentFixture<ExpenseDeleteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Nav3Component ]
+      declarations: [ ExpenseDeleteComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Nav3Component);
+    fixture = TestBed.createComponent(ExpenseDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

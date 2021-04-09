@@ -23,13 +23,15 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Nav1Component } from './dashboard/nav1/nav1.component';
 import { Nav2Component } from './dashboard/nav2/nav2.component';
-import { Nav3Component } from './dashboard/nav3/nav3.component';
-import { Nav4Component } from './dashboard/nav4/nav4.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PaymentDashboardComponent } from './dashboard/payment-dashboard/payment-dashboard.component';
+import { PaymentAddComponent } from './dashboard/payment-add/payment-add.component';
 import { PaymentViewComponent } from './dashboard/payment-view/payment-view.component';
 import { ExpenseAddComponent } from './dashboard/expense-add/expense-add.component';
 import { ExpenseViewComponent } from './dashboard/expense-view/expense-view.component';
+import { PaymentUpdateComponent } from './dashboard/payment-update/payment-update.component';
+import { PaymentDeleteComponent } from './dashboard/payment-delete/payment-delete.component';
+import { ExpenseDeleteComponent } from './dashboard/expense-delete/expense-delete.component';
+import { ExpenseUpdateComponent } from './dashboard/expense-update/expense-update.component';
 
 
 @NgModule({
@@ -39,13 +41,15 @@ import { ExpenseViewComponent } from './dashboard/expense-view/expense-view.comp
     DashboardComponent,
     Nav1Component,
     Nav2Component,
-    Nav3Component,
-    Nav4Component,
     LoginComponent,
-    PaymentDashboardComponent,
+    PaymentAddComponent,
     PaymentViewComponent,
     ExpenseAddComponent,
-    ExpenseViewComponent
+    ExpenseViewComponent,
+    PaymentUpdateComponent,
+    PaymentDeleteComponent,
+    ExpenseDeleteComponent,
+    ExpenseUpdateComponent
   ],
   imports: [
     BrowserModule,

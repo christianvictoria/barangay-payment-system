@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Nav4Component } from './nav4.component';
+import { ExpenseUpdateComponent } from './expense-update.component';
 
-describe('Nav4Component', () => {
-  let component: Nav4Component;
-  let fixture: ComponentFixture<Nav4Component>;
+describe('ExpenseUpdateComponent', () => {
+  let component: ExpenseUpdateComponent;
+  let fixture: ComponentFixture<ExpenseUpdateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Nav4Component ]
+      declarations: [ ExpenseUpdateComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Nav4Component);
+    fixture = TestBed.createComponent(ExpenseUpdateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

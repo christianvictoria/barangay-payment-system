@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MatTableDataSource } from '@angular/material/table';
-import { PaymentDashboardComponent } from '../payment-dashboard/payment-dashboard.component';
-import { PaymentViewComponent } from '../payment-view/payment-view.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { PaymentAddComponent } from '../payment-add/payment-add.component';
+import { PaymentViewComponent } from '../payment-view/payment-view.component';
+import { PaymentUpdateComponent } from '../payment-update/payment-update.component';
+import { PaymentDeleteComponent } from '../payment-delete/payment-delete.component';
 
 @Component({
   selector: 'app-nav1',
@@ -53,7 +55,15 @@ export class Nav1Component implements OnInit {
   }
 
   AddProject(){
-    this.dialog.open(PaymentDashboardComponent);
+    this.dialog.open(PaymentAddComponent);
+  }
+
+  UpdateProject(){
+    this.dialog.open(PaymentUpdateComponent);
+  }
+
+  DeleteProject(){
+    this.dialog.open(PaymentDeleteComponent);
   }
 
 }

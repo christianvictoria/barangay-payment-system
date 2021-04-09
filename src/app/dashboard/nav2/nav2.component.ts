@@ -7,6 +7,8 @@ import { ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { ExpenseViewComponent } from '../expense-view/expense-view.component';
 import { ExpenseAddComponent } from '../expense-add/expense-add.component';
+import { ExpenseDeleteComponent } from '../expense-delete/expense-delete.component';
+import { ExpenseUpdateComponent } from '../expense-update/expense-update.component';
 
 @Component({
   selector: 'app-nav2',
@@ -54,6 +56,14 @@ export class Nav2Component implements OnInit {
 
   ViewProject(){
     this.dialog.open(ExpenseViewComponent);
+  }
+
+  UpdateProject(){
+    this.dialog.open(ExpenseUpdateComponent);
+  }
+
+  DeleteProject(){
+    this.dialog.open(ExpenseDeleteComponent);
   }
 
 }
