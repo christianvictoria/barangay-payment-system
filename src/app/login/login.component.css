@@ -1,55 +1,166 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
 
-.form {
-  margin-top: 10%;
-  text-align: center;
-  width: 100%;
-  display: flexbox;
-}
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-}
-.image {
-  position: relative;
-  width: 55%;
-  background-color: black;
-  float: left;
-  height: 100vh;
-  overflow: hidden;
-}
-.forms-cont {
-  background-color: white;
-  width: 45%;
-  float: right;
-  height: 100vh;
-}
+  .form {
+    margin-top: 10%;
+    text-align: center;
+    width: 100%;
+    display: flexbox;
+  }
 
-.title2 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+  }
 
-}
+  .image {
+    position: relative;
+    width: 55%;
+    background-color: black;
+    float: left;
+    height: 100vh;
+    overflow: hidden;
+  }
 
-.button {
-  margin: 5px 0px 10px;
-  padding: 5px 0px;
-  width: 40%;
-  outline: none;
-  color: #fff;
-  border-radius: 25px;
-  background-color: #007cc7;
-}
-.one{
-  background-color: #E8E8E8 !important;
-  border-radius: 30px !important;
-  border-style: none !important;
-  color: gray !important;
-  width: 50%;
-  height: 55px;
-  font-size: 16px;
-  font-weight: bold;
-  padding-left: 50px;
-}
+  .forms-cont {
+    background-color: white;
+    width: 45%;
+    float: right;
+    height: 100vh;
+  }
+
+  .title2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+
+  }
+
+  .button {
+    margin: 5px 0px 10px;
+    padding: 5px 0px;
+    width: 40%;
+    outline: none;
+    color: #fff;
+    border-radius: 25px;
+    background-color: #007cc7;
+  }
+
+  .one {
+    font-family: 'Poppins', sans-serif;
+    background-color: #E8E8E8 !important;
+    border-radius: 30px !important;
+    border-style: none !important;
+    color: gray !important;
+    width: 50%;
+    height: 55px;
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 50px;
+
+  }
+
+  .text {
+    background-color: #404040;
+    border-radius: 30px;
+    height: 45px;
+    width: 50%;
+    border: none;
+    padding: auto;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    padding-left: 50px;
+  }
+
+  .icons1 {
+    margin-left: -350px;
+    font-size: 30px;
+    position: absolute;
+    margin-top: 8px;
+  }
+
+  .image {
+    position: relative;
+    width: 55%;
+    background-color: #404040;
+    float: left;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .forms-cont {
+    background-color: white;
+    width: 45%;
+    float: right;
+    height: 100vh;
+  }
+
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    color: #404040;
+    font-weight: 600;
+  }
+
+  .title2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+  }
+
+  .one {
+    width: 60%;
+    
+  }
+
+  .button {
+    margin: 5px 0px 10px;
+    padding: 5px 0px;
+    width: 40%;
+    outline: none;
+    color: #fff;
+    border-radius: 25px;
+    background-color: #007cc7;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .fpassword {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .click {
+    color: #007cc7;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 0.7;
+    margin-left: 40px;
+    margin-bottom: 5px;
+
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: #E8E8E8;
+    border-radius: 30px !important;
+    border-style: none;
+    color: white;
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: white !important;
+    opacity: 30 !important;
+  }
+
+  button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+  }
+
+  ::placeholder {
+    color: #aeaeae;
+  }
