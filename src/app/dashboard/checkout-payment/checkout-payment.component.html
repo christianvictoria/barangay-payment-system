@@ -9,26 +9,18 @@
 <br>
     <div class="modalFields">
         <mat-list role="list">
-            <mat-list-item class="fieldNamesno"role="listitem">Payment Number</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Name</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Contact Number</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Address</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Payment For</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Subtotal</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Tax</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Total</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Cash</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Change</mat-list-item>
+            <mat-list-item class="fieldNamesno" role="listitem">Payment Number</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">Name</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">Payment For</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">Subtotal</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">Tax</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">Total</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">Cash</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">Change</mat-list-item>
         </mat-list>
 
 
         <div class="inputs">
-            <mat-form-field appearance="none">
-            <input class="paymentInfo" matInput>
-            </mat-form-field>
-            <mat-form-field appearance="none">
-            <input class="paymentInfo" matInput>
-            </mat-form-field>
             <mat-form-field appearance="none">
             <input class="paymentInfo" matInput>
             </mat-form-field>
@@ -61,5 +53,5 @@
 
 <mat-dialog-actions align="end">
   <button class="modalBtn" mat-raised-button mat-dialog-close>Cancel</button>
-  <button class="modalBtn1" mat-raised-button mat-dialog-close>Confirm</button>
+  <button (click)="generatePDF()" class="modalBtn1" mat-raised-button>Confirm</button>
 </mat-dialog-actions>
