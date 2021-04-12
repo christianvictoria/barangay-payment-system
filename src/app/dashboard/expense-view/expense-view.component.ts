@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ExpenseUpdateComponent } from '../expense-update/expense-update.component';
 
 @Component({
   selector: 'app-expense-view',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpenseViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
-
+  
+  UpdateProject(){
+    this.dialog.open(ExpenseUpdateComponent);
+  }
 }

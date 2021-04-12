@@ -14,13 +14,10 @@
     <br><br>
 
     <!-- <input type="password" placeholder="Password" class="one" [(ngModel)]="inputLogpass"> -->
-    <input type="password" placeholder="Password" class="one">
+    <input type="password" placeholder="Password" class="one" [type]="hide ? 'password' : 'text'">
     <mat-icon style="position: absolute; font-size: 30px; color: #007cc7; margin-top: 13px; margin-left: -556px;">lock</mat-icon>
-    <!-- <i class="material-icons" matSuffix (click)="hide = !hide" style="cursor: pointer; color: #007cc7;">
-      {{hide ? 'visibility':'visibility_off'}}
-    </i> -->
     <i cmatSuffix style="cursor: pointer; color: #007cc7;">
-    <mat-icon style="position: absolute; font-size: 30px; color: #007cc7; margin-top: 13px; margin-left: -45px;">remove_red_eye</mat-icon>
+    <mat-icon style="position: absolute; font-size: 30px; color: #007cc7; margin-top: 13px; margin-left: -45px;" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </i>
     
     <br><br>

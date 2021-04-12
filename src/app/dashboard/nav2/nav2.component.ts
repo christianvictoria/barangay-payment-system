@@ -9,6 +9,7 @@ import { ExpenseViewComponent } from '../expense-view/expense-view.component';
 import { ExpenseAddComponent } from '../expense-add/expense-add.component';
 import { ExpenseDeleteComponent } from '../expense-delete/expense-delete.component';
 import { ExpenseUpdateComponent } from '../expense-update/expense-update.component';
+import { PendingExpenseComponent } from '../pending-expense/pending-expense.component';
 
 @Component({
   selector: 'app-nav2',
@@ -54,6 +55,10 @@ export class Nav2Component implements OnInit {
     this.dialog.open(ExpenseAddComponent);
   }
 
+  CheckOutProject(){
+    this.dialog.open(PendingExpenseComponent);
+  }
+
   ViewProject(){
     this.dialog.open(ExpenseViewComponent);
   }
@@ -81,6 +86,6 @@ export class Nav2Component implements OnInit {
     {no: 1, name: 'John Ezekiel', daterecorded: '02/21/2021', paymentfor: 'Feeding Program', paymentreceive: 20000.00, purpose: 'For Children'},
     {no: 2, name: 'Tracey Solis', daterecorded: '02/28/2021', paymentfor: 'Feeding Program', paymentreceive: 20000.00, purpose: 'For Children'},
     {no: 3, name: 'Jim Caeasar', daterecorded: '03/01/2021', paymentfor: 'Feeding Program', paymentreceive: 20000.00, purpose: 'For Children'},
-    {no: 3, name: 'Juan Dela Cruz', daterecorded: '06/23/2021', paymentfor: 'Feeding Program', paymentreceive: 20000.00, purpose: 'For Children'}
+    {no: 4, name: 'Juan Dela Cruz', daterecorded: '06/23/2021', paymentfor: 'Feeding Program', paymentreceive: 20000.00, purpose: 'For Children'}
   ];
   

@@ -1,83 +1,83 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
-mat-dialog-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: bold;
-  font-size: 30px;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+    mat-dialog-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: bold;
+      font-size: 30px;
+    }
 
-h1 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: bolder;
-}
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: bolder;
+    }
 
-p {
-  padding-top: 15px;
-}
+    p {
+      padding-top: 15px;
+    }
 
-mat-dialog-button {
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-}
+    mat-dialog-button {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+    }
 
-.modalBtn {
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-}
+    .modalBtn {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+    }
 
-.modalFields {
-  display: flex;
-  margin-top: 10px;
-}
+    .modalFields {
+      display: flex;
+      margin-top: 10px;
+    }
 
-.inputs {
-  width: 300px;
-  border-top-width: 0;
-  margin-left: 15px;
-  margin-right: 15px;
-  font-family: 'Poppins', sans-serif;
-}
+    .inputs {
+      width: 300px;
+      border-top-width: 0;
+      margin-left: 15px;
+      margin-right: 15px;
+      font-family: 'Poppins', sans-serif;
+    }
 
-mat-form-field {
-  height: 70px;
-  width: 300px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 10px;
-}
+    mat-form-field {
+      height: 70px;
+      width: 300px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 10px;
+    }
 
-mat-option{
-  font-weight: 300px;
-  font-family: 'Poppins', sans-serif;
-}
+    mat-option{
+      font-weight: 300px;
+      font-family: 'Poppins', sans-serif;
+    }
 
-.fieldNames {
-  margin-bottom: 23px;
-  margin-top: 18px;
-  font-family: 'Poppins', sans-serif;
-}
+    .fieldNames {
+      margin-bottom: 23px;
+      margin-top: 18px;
+      font-family: 'Poppins', sans-serif;
+    }
 
-.fieldNamesno {
-  margin-top: -10px;
-  font-family: 'Poppins', sans-serif;
-} 
+    .fieldNamesno {
+      margin-top: -10px;
+      font-family: 'Poppins', sans-serif;
+    } 
 
-.paymentInfo {
-  font-size: 16px;
-}
+    .paymentInfo {
+      font-size: 16px;
+    }
 
-.addProjBtn {
-  font-family: 'Poppins', sans-serif;
-  background-color: rgba(0, 0, 0, 0.8);
-  font-size: 16px;
-}
+    .addProjBtn {
+      font-family: 'Poppins', sans-serif;
+      background-color: rgba(0, 0, 0, 0.8);
+      font-size: 16px;
+    }
 
-.left {
-  justify-content: flex-start;
-}
+    .left {
+      justify-content: flex-start;
+    }
 
-.right {
-  justify-content: flex-end;
-}
-    
+    .right {
+      justify-content: flex-end;
+    }
+
     mat-dialog-title {
         font-family: 'Poppins', sans-serif;
         font-weight: bold;
@@ -92,8 +92,15 @@ mat-option{
     .modalBtn {
         font-family: 'Poppins', sans-serif;
         font-size: 16px;
-        background-color: #dd2c00;
-        color: white;
+        background-color: white;
+        color: black;
+    }
+
+    .modalBtn1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      background-color: #3B8BEB;
+      color: white;
     }
 
     .modalFields {
@@ -149,3 +156,22 @@ mat-option{
         margin-top: -10px;
         font-family: 'Poppins', sans-serif;
     }
+
+    h2 {
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      margin-left: 10px;
+    }
+
+    .header {
+      display: flex;
+    }
+
+    mat-icon {
+      color: #3B8BEB;
+      margin-top: 4px;
+    }
+
+    input {
+      font-family: 'Poppins', sans-serif;
+    } 

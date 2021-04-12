@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PaymentUpdateComponent } from '../payment-update/payment-update.component';
 
 @Component({
   selector: 'app-payment-view',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
+  UpdateProject(){
+    this.dialog.open(PaymentUpdateComponent);
+  }
 }

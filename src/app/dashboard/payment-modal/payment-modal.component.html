@@ -1,6 +1,6 @@
 <div class="header">
     <mat-icon>add_box</mat-icon>
-    <h2 mat-dialog-title>Delete Expense Record</h2>
+    <h2 mat-dialog-title>Payment Details</h2>
 </div>
 
 <mat-divider [vertical]="false"></mat-divider>
@@ -9,54 +9,54 @@
 <br>
     <div class="modalFields">
         <mat-list role="list">
-            <mat-list-item class="fieldNamesno"role="listitem">Expense Number</mat-list-item>
+            <mat-list-item class="fieldNamesno"role="listitem">Payment Number</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">First Name</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Last Name</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Middle Name</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Contact Number</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Barangay Destination</mat-list-item>
+            <mat-list-item class="fieldNames"role="listitem">Address</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Gender</mat-list-item>
         </mat-list>
 
 
         <div class="inputs">
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="none">
             <input class="paymentInfo" matInput>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="none">
             <input class="paymentInfo" matInput>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="none">
             <input class="paymentInfo" matInput >
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="none">
             <input class="paymentInfo" matInput >
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="none">
             <input class="paymentInfo" matInput >
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="none">
             <input class="paymentInfo" matInput >
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="none">
             <input class="paymentInfo" matInput >
             </mat-form-field>
         </div>
 
         <mat-list role="list">
-            <mat-list-item class="fieldNamesno"role="listitem">Expense For</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Budget Receive</mat-list-item>
+            <mat-list-item class="fieldNamesno"role="listitem">Payment For</mat-list-item>
+            <mat-list-item class="fieldNames"role="listitem">Payment Fee</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Purpose</mat-list-item>
         </mat-list>
 
         <div class="inputs2">
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="none">
             <input class="paymentInfo" matInput >
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="none">
             <input class="paymentInfo" matInput >
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="none">
             <textarea class="paymentInfo" matInput rows="5"></textarea>
             </mat-form-field>
         </div>
@@ -68,5 +68,5 @@
 
 <mat-dialog-actions align="end">
   <button class="modalBtn" mat-raised-button mat-dialog-close>Cancel</button>
-  <button class="modalBtn1" mat-raised-button mat-dialog-close>Delete</button>
+  <button (click)="CheckOutProject()" class="modalBtn1" mat-raised-button mat-dialog-close>Proceed to Checkout</button>
 </mat-dialog-actions>

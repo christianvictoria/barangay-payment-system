@@ -1,0 +1,56 @@
+<div class="header">
+    <mat-icon>add_box</mat-icon>
+    <h2 mat-dialog-title>Pending Expenses</h2>
+</div>
+
+<mat-divider [vertical]="false"></mat-divider>
+<mat-dialog-content class="mat-typography">
+
+<br>
+
+    <div fxLayout="row" class="tabs-style">
+        <mat-form-field class="example-form-field1">
+            <mat-label>Search</mat-label>
+            <input matInput type="text">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                <mat-icon class="searchi !important">search</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+
+    <div class="example-container mat-elevation-z8">
+        
+        <table mat-table [dataSource]="dataSource">
+        
+            <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="paymentfor">
+            <th mat-header-cell *matHeaderCellDef> Expense For </th>
+            <td mat-cell *matCellDef="let element"> {{element.paymentfor}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="paymentreceive">
+            <th mat-header-cell *matHeaderCellDef> Budget Fee </th>
+            <td mat-cell *matCellDef="let element"> {{element.paymentreceive}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="purpose">
+            <th mat-header-cell *matHeaderCellDef> Purpose </th>
+            <td mat-cell *matCellDef="let element"> {{element.purpose}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="CheckOutProject(row)"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+        </div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button class="modalBtn" mat-raised-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

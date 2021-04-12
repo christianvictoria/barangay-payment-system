@@ -9,6 +9,7 @@ import { PaymentAddComponent } from '../payment-add/payment-add.component';
 import { PaymentViewComponent } from '../payment-view/payment-view.component';
 import { PaymentUpdateComponent } from '../payment-update/payment-update.component';
 import { PaymentDeleteComponent } from '../payment-delete/payment-delete.component';
+import { PendingPaymentComponent } from '../pending-payment/pending-payment.component';
 
 @Component({
   selector: 'app-nav1',
@@ -54,8 +55,8 @@ export class Nav1Component implements OnInit {
     this.dialog.open(PaymentViewComponent);
   }
 
-  AddProject(){
-    this.dialog.open(PaymentAddComponent);
+  CheckOutProject(){
+    this.dialog.open(PendingPaymentComponent);
   }
 
   UpdateProject(){
