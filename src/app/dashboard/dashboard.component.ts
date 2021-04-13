@@ -6,6 +6,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 
+// Service
+import { DashboardService } from '../services/dashboard/dashboard.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,7 +17,15 @@ import { MatPaginator } from '@angular/material/paginator';
 
 export class DashboardComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, public router: Router ) { }
+  checkups: any = "";
+  documents: any = "";
+  expenses: any = "";
+  pending: any = "";
+  constructor(
+    public dialog: MatDialog, 
+    public router: Router, 
+    private dashboardService: DashboardService
+  ) { }
 
   isSidebarOpen=true;
 
@@ -26,6 +37,39 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setInterval(() => this.getCheckUpPayments(), 5000);
+    setInterval(() => this.getDocumentPayments(), 5000);
+    setInterval(() => this.getPendingPayments(), 5000);
+    setInterval(() => this.getExpenses(), 5000);
+  }
+
+
+
+  getCheckUpPayments = async (): Promise<void> => {
+    const samplePaymentMethod: string = "checkup";
+    const samplePaymentIsDeleted: number = 0;
+    const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}/${samplePaymentIsDeleted}`, null);
+    this.checkups = response.payload.length;
+  }
+
+  getDocumentPayments = async (): Promise<void> => {
+    const samplePaymentMethod: string = "transaction";
+    const samplePaymentIsDeleted: number = 0;
+    const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}/${samplePaymentIsDeleted}`, null);
+    this.documents = response.payload.length;
+  }  
+
+  getPendingPayments = async (): Promise<void> => {
+    const samplePaymentIsDeleted: string = "1";
+    const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentIsDeleted}`, null);
+    this.pending = response.payload.length;
+    console.log(this.pending);
+  }
+
+  getExpenses = async (): Promise<void> => {
+    const sampleExpensesIsDeleted: number = 0;
+    const response = await this.dashboardService.sendDashboardRequest(`expenses/${sampleExpensesIsDeleted}`, null);
+    this.expenses = response.payload.length;
   }
 
     public barChartOptions = {

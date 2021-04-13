@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Inject } from '@angular/core';
 
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import pdfMake from "pdfmake/build/pdfmake";  
 import pdfFonts from "pdfmake/build/vfs_fonts";  
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -12,9 +13,10 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class CheckoutPaymentComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
+    console.log("checkout: ", this.data);
   }
 
   generatePDF(){

@@ -26,62 +26,50 @@
 
   <div class="dashboardCard">
       <mat-card class="payment-card1">
-        <mat-card-content ><br>
-          <p class="numbers">2,500</p>
+        <mat-card-content >
+          <p class="numbers" *ngIf="checkups">{{ checkups }}</p>
         </mat-card-content>
         <mat-card-content >
-          <p class="title">Total Expenses</p>
+          <p class="title">Total Checkup Payments</p>
           <div class="iconsDashboard">
             <img src="/assets/expense.png" class="img-card">
           </div>
         </mat-card-content>
-        <mat-card-content >
-          <p class="percent">-4% From Last Week</p>
-        </mat-card-content>
       </mat-card>
 
       <mat-card class="payment-card2">
-          <mat-card-content ><br>
-            <p class="numbers">2,500</p>
+          <mat-card-content >
+            <p class="numbers" *ngIf="documents">{{ documents }}</p>
           </mat-card-content>
           <mat-card-content >
-            <p class="title">Total Receive</p>
+            <p class="title">Total Document Payments</p>
             <div class="iconsDashboard">
               <img src="/assets/payment.png" class="img-card">
             </div>
           </mat-card-content>
-          <mat-card-content >
-            <p class="percent">-4% From Last Week</p>
-          </mat-card-content>
       </mat-card>
 
       <mat-card class="payment-card3">
-          <mat-card-content ><br>
-            <p class="numbers">22,500</p>
+          <mat-card-content >            
+            <p class="numbers" *ngIf="expenses">{{ expenses }}</p>
           </mat-card-content>
           <mat-card-content >
-            <p class="title">Total Residents</p>
+            <p class="title">Total Expenses</p>
             <div class="iconsDashboard">
               <img src="/assets/resident.png" class="img-card">
             </div>
           </mat-card-content>
-          <mat-card-content >
-            <p class="percent">-12% From Last Week</p>
-          </mat-card-content>
       </mat-card>
 
       <mat-card class="payment-card4">
-          <mat-card-content ><br>
-            <p class="numbers">101</p>
+          <mat-card-content >
+            <p class="numbers" *ngIf="pending">{{ pending }}</p>
           </mat-card-content>
           <mat-card-content >
-            <p class="title">Total Activities</p>
+            <p class="title">Pending Payments</p>
             <div class="iconsDashboard">
               <img src="/assets/activity.png" class="img-card">
             </div>
-          </mat-card-content>
-          <mat-card-content >
-            <p class="percent">-6% From Last Week</p>
           </mat-card-content>
       </mat-card>
   </div>

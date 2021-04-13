@@ -20,6 +20,7 @@ import { ChartsModule } from 'ng2-charts';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { pdfMakeModule } from "pdfmake/build/pdfmake";  
 import { pdfFontsModule } from "pdfmake/build/vfs_fonts";  
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -67,6 +68,7 @@ import { CheckoutExpenseComponent } from './dashboard/checkout-expense/checkout-
     CheckoutExpenseComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     MatFormFieldModule,

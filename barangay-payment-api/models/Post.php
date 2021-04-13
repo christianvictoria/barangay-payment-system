@@ -64,10 +64,13 @@
 		}
 
 		public function select_payments($table, $payment, $filter_data) {
+			if ($payment == null) return $this->select($table, "pt_isPayed=".$filter_data." AND pt_isDeleted=".$filter_data);
+			
 			if (isset($payment) && $payment == "checkup") {
 				$this->sql = "SELECT 
 								$table.pt_id,
 								$table.checkup_id,
+								tbl_clinic_checkups.medOrder_id,
 								tbl_profiling_residents.res_lname,
 								tbl_profiling_residents.res_fname,
 								tbl_profiling_residents.res_mname,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Inject } from '@angular/core';
 
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CheckoutPaymentComponent } from '../checkout-payment/checkout-payment.component';
 
 @Component({
@@ -10,13 +11,14 @@ import { CheckoutPaymentComponent } from '../checkout-payment/checkout-payment.c
 })
 export class PaymentModalComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
+  	console.log("payment: ", this.data);
   }
 
   CheckOutProject(){
-    this.dialog.open(CheckoutPaymentComponent);
+    this.dialog.open(CheckoutPaymentComponent, { data: this.data });
   }
 
 }

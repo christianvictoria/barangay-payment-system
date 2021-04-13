@@ -56,7 +56,7 @@ export class Nav1Component implements OnInit {
   }
 
   CheckOutProject(){
-    this.dialog.open(PendingPaymentComponent);
+    this.dialog.open(PendingPaymentComponent, { data: {"name": "Christian"} });
   }
 
   UpdateProject(){

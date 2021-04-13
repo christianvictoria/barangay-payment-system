@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Inject } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { PaymentAddComponent } from '../payment-add/payment-add.component';
@@ -14,16 +15,17 @@ import { PaymentModalComponent } from '../payment-modal/payment-modal.component'
 })
 export class PendingPaymentComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
+    console.log(this.data);
   }
   
   displayedColumns: string[] = ['name', 'paymentfor', 'paymentreceive', 'purpose'];
   dataSource = new MatTableDataSource<PaymentDashboard>(ELEMENT_DATA);
 
   CheckOutProject(){
-    this.dialog.open(PaymentModalComponent);
+    this.dialog.open(PaymentModalComponent, { data: this.data });
   }
 }
 
