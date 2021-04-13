@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
   }  
 
   getPendingPayments = async (): Promise<void> => {
-    const samplePaymentIsDeleted: string = "1";
+    const samplePaymentIsDeleted: number = 0;
     const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentIsDeleted}`, null);
     this.pending = response.payload.length;
     console.log(this.pending);
