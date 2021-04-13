@@ -6,6 +6,10 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";  
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
+import Swal from 'sweetalert2';
+
+
+
 @Component({
   selector: 'app-checkout-payment',
   templateUrl: './checkout-payment.component.html',
@@ -17,6 +21,28 @@ export class CheckoutPaymentComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("checkout: ", this.data);
+  }
+  
+
+  Confirmation() {
+    Swal.fire({
+      title:'Notice',
+      text:`Confirm Payment?`,
+      icon:'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#dd2c00',
+      cancelButtonColor: '',
+      confirmButtonText:'Confirm'
+    }).then(result => {
+      if (result.value){
+        console.log('Delete');
+        Swal.fire('Notice', 'Payment Successful', 'success');
+        this.generatePDF();
+      } 
+      else if (result.isDenied) {
+        Swal.fire('Oops...', 'Something went wrong', 'error');
+      }
+    })
   }
 
   generatePDF(){
