@@ -83,7 +83,7 @@
 								LEFT JOIN tbl_clinic_checkups
 								ON $table.checkup_id = tbl_clinic_checkups.checkup_id
 								LEFT JOIN tbl_profiling_residents
-								ON tbl_clinic_checkups.res_id = tbl_profiling_residents.res_id
+								ON tbl_clinic_checkups.patient_id = tbl_profiling_residents.res_id
 								WHERE $table.trans_id is NULL ";
 			} else if (isset($payment) && $payment == "transaction") {
 				$this->sql = "SELECT 
