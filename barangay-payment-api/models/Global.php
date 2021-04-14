@@ -10,7 +10,7 @@
 			$sql = "SELECT * FROM $table ";
 
 			if ($filter_data != null) {
-				$sql .= "WHERE user_id = '$filter_data'";
+				$sql .= "WHERE $filter_data";
 			}
 			$data = array(); $errmsg = ""; $code = 0;
 			try {

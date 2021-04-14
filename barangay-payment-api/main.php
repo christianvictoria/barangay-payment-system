@@ -16,6 +16,16 @@
 	switch($_SERVER['REQUEST_METHOD']) {
 		case 'POST':
 			switch ($req[0]) {
+
+
+				case 'residents':
+					if (count($req) > 1) {
+						echo json_encode($gm->select("tbl_profiling_".$req[0], "res_id=".$req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($gm->select("tbl_profiling_".$req[0], null), JSON_PRETTY_PRINT);
+					}
+				break;
+
 				// Request and params 
 				// payments/(type of payment)/(row id)
 				case 'payments':
@@ -37,25 +47,25 @@
 
 				// newPayment/(type of payment)
 				case 'newPayment':
-					$d = json_decode(file_get_contents("php://input"));
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($post->new_payment_expenses("tbl_payment_payments", $d, $req[1]));
 					break;
 
 				// updatePayment/(condition)/(type of payment to be return)
 				case 'updatePayment':
-					$d = json_decode(file_get_contents("php://input"));
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($post->update_payment_expenses("tbl_payment_payments", $d, "pt_id=".$req[1], $req[2]));
 					break;
 
 				// newPayment/null
 				case 'newExpenses':
-					$d = json_decode(file_get_contents("php://input"));
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($post->new_payment_expenses("tbl_payment_expenses", $d, null));
 					break;
 
 				// updateExpenses/(condition)/null
 				case 'updateExpenses':
-					$d = json_decode(file_get_contents("php://input"));
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($post->update_payment_expenses("tbl_payment_expenses", $d, "exp_id=".$req[1], null));
 					break;
 				

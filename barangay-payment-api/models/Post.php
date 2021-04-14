@@ -128,7 +128,7 @@
 			return $this->sendPayload($data, "success", $errmsg, $code);
 		}
 
-		public function new_payment_expenses($table, $data, $payment) {
+		public function new_payment_expenses($table, $data) {
 			$fields = []; $values = [];
 			foreach ($data as $key => $value) {
 				array_push($fields, $key);
@@ -149,7 +149,6 @@
 
 				$sql = $this->pdo->prepare($sqlstr);
 				$sql->execute($values);
-				if ($payment == "checkup" || $payment == "transaction") return $this->select_payments($table, $payment, "0");
 				return $this->select_expenses($table, "0");
 
 			} catch(\PDOException $e) {

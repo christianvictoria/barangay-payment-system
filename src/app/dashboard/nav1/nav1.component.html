@@ -5,7 +5,7 @@
         <h3>ADMIN</h3>
         <mat-list class="pointer">
             <mat-list-item (click)="openDashboard()"><mat-icon class="iconsidenav">dashboard</mat-icon> Dashboard </mat-list-item>
-            <mat-list-item class="listprop" (click)="sidebarRef.toggle()"> <mat-icon class="iconsideselected">library_add</mat-icon>Barangay Payments </mat-list-item>
+            <mat-list-item class="listprop"> <mat-icon class="iconsideselected">library_add</mat-icon>Barangay Payments </mat-list-item>
             <mat-list-item (click)="openNav2()"><mat-icon class="iconsidenav">payments</mat-icon> Barangay Expenses </mat-list-item><br>
             <mat-divider></mat-divider>
         </mat-list>
@@ -86,6 +86,8 @@
          </table>
          <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
          </div>
+
+         
  </mat-sidenav-content>
 </mat-sidenav-container>
  

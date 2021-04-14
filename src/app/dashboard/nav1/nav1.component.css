@@ -238,3 +238,28 @@ input {
     font-size: 22px; 
     margin-right: 1px;
 }
+
+mat-tab {
+    width: 100%;
+    margin-right: 35px !important;
+    margin-left: 35px !important;
+}
+
+
+mat-tab-group {
+    width: 95.6%;
+    margin-top: 50px;
+    margin-left: 35px !important;
+}
+
+
+::ng-deep .mat-tab-label .mat-tab-label-content {
+    margin-top: 10px !important;
+    margin-bottom: 25px !important; 
+    text-align: center !important;
+    color: #404040 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 12pt !important;
+    font-weight: bold;
+    width: 100% !important;
+}

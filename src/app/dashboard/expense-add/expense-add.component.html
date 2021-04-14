@@ -13,36 +13,21 @@
             <mat-list-item class="fieldNames"role="listitem">First Name</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Last Name</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Middle Name</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Contact Number</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Barangay Destination</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Gender</mat-list-item>
         </mat-list>
 
 
-        <div class="inputs">
+        <div class="inputs" *ngFor="let item of official">
             <mat-form-field appearance="outline">
-            <input class="paymentInfo" matInput>
+                <input class="paymentInfo" matInput [value]="item.res_id" disabled>
             </mat-form-field>
             <mat-form-field appearance="outline">
-            <input class="paymentInfo" matInput>
+                <input class="paymentInfo" matInput [value]="item.res_fname" disabled>
             </mat-form-field>
             <mat-form-field appearance="outline">
-            <input class="paymentInfo" matInput >
+                <input class="paymentInfo" matInput [value]="item.res_lname" disabled>
             </mat-form-field>
             <mat-form-field appearance="outline">
-            <input class="paymentInfo" matInput >
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-            <input class="paymentInfo" matInput >
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-            <input class="paymentInfo" matInput >
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-select class="paymentInfo">
-                <mat-option class="paitentInfo" value="one">Male</mat-option>
-                <mat-option class="paitentInfo" value="two">Female</mat-option>
-              </mat-select>
+                <input class="paymentInfo" matInput [value]="item.res_mname" disabled>
             </mat-form-field>
         </div>
 
@@ -54,13 +39,13 @@
 
         <div class="inputs2">
             <mat-form-field appearance="outline">
-            <input class="paymentInfo" matInput >
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_for">
             </mat-form-field>
             <mat-form-field appearance="outline">
-            <input class="paymentInfo" matInput >
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_money_release">
             </mat-form-field>
             <mat-form-field appearance="outline">
-            <textarea class="paymentInfo" matInput rows="5"></textarea>
+                <textarea class="paymentInfo" matInput rows="5" [(ngModel)]="expensesPayload.exp_desc"></textarea>
             </mat-form-field>
         </div>
 
@@ -71,5 +56,5 @@
 
 <mat-dialog-actions align="end">
   <button class="modalBtn" mat-raised-button mat-dialog-close>Cancel</button>
-  <button class="modalBtn1" mat-raised-button mat-dialog-close>Add</button>
+  <button class="modalBtn1" mat-raised-button mat-dialog-close (click)="newExpenses()">Add</button>
 </mat-dialog-actions>
