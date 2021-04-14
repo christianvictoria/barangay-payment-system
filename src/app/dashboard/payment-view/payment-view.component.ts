@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentUpdateComponent } from '../payment-update/payment-update.component';
+import { PaymentsService } from 'src/app/payments.service';
 
 @Component({
   selector: 'app-payment-view',
@@ -9,9 +10,10 @@ import { PaymentUpdateComponent } from '../payment-update/payment-update.compone
 })
 export class PaymentViewComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private ds: PaymentsService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    console.log(this.ds.SharedData);
   }
 
   UpdateProject(){

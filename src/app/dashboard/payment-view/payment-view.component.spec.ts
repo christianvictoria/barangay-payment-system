@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PaymentViewComponent } from './payment-view.component';
 
+
 describe('PaymentViewComponent', () => {
   let component: PaymentViewComponent;
   let fixture: ComponentFixture<PaymentViewComponent>;

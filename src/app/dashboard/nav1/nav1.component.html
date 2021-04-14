@@ -36,40 +36,47 @@
      <div class="example-container mat-elevation-z8">
          <table mat-table [dataSource]="dataSource">
  
-             <ng-container matColumnDef="no">
+             <ng-container matColumnDef="pt_id">
              <th mat-header-cell *matHeaderCellDef> Payment No. </th>
-             <td mat-cell *matCellDef="let element"> {{element.no}} </td>
+             <td mat-cell *matCellDef="let element"> {{element.pt_id}} </td>
              </ng-container>
          
-             <ng-container matColumnDef="name">
+             <ng-container matColumnDef="residents">
              <th mat-header-cell *matHeaderCellDef> Name </th>
-             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+             <td mat-cell *matCellDef="let element"> {{element.res_lname}}, {{element.res_fname}} {{element.res_mname}} </td>
              </ng-container>
          
-             <ng-container matColumnDef="daterecorded">
+             <ng-container matColumnDef="pt_date">
              <th mat-header-cell *matHeaderCellDef> Date Recorded </th>
-             <td mat-cell *matCellDef="let element"> {{element.daterecorded}} </td>
+             <td mat-cell *matCellDef="let element"> {{element.pt_date}} </td>
              </ng-container>
          
-             <ng-container matColumnDef="paymentfor">
+             <ng-container matColumnDef="pt_desc">
              <th mat-header-cell *matHeaderCellDef> Payment For </th>
-             <td mat-cell *matCellDef="let element"> {{element.paymentfor}} </td>
+             <td mat-cell *matCellDef="let element"> {{element.pt_desc}} </td>
              </ng-container>
      
-             <ng-container matColumnDef="paymentreceive">
+             <ng-container matColumnDef="pt_money_recieved">
              <th mat-header-cell *matHeaderCellDef> Payment Receive </th>
-             <td mat-cell *matCellDef="let element"> {{element.paymentreceive}} </td>
+             <td mat-cell *matCellDef="let element"> {{element.pt_money_recieved}} </td>
              </ng-container>
 
-             <ng-container matColumnDef="purpose">
-             <th mat-header-cell *matHeaderCellDef> Purpose </th>
-             <td mat-cell *matCellDef="let element"> {{element.purpose}} </td>
-             </ng-container>
+             <ng-container matColumnDef="pt_isPayed">
+             <th mat-header-cell *matHeaderCellDef> Status </th>
+             <ng-container *matCellDef="let element">
+                <ng-container *ngIf="element.pt_isPayed === 1">
+                    <td mat-cell style="color: green;"> Paid </td>
+                </ng-container>
+                <ng-container *ngIf="element.pt_isPayed === 0">
+                    <td mat-cell style="color: red"> Unpaid </td>
+                </ng-container>
+            </ng-container>
+            </ng-container>
              
              <ng-container matColumnDef="actions">
              <th mat-header-cell *matHeaderCellDef> Action </th>
                  <td mat-cell *matCellDef="let element">
-                 <button class="viewBtn" (click)="ViewProject()" mat-raised-button color="primary">View</button>
+                 <button class="viewBtn" (click)="ViewProject(element?.no)" mat-raised-button color="primary">View</button>
                  <button class="dlteBtn" (click)="DeleteProject()" mat-raised-button color="primary">Delete</button>
                  </td>
              </ng-container>

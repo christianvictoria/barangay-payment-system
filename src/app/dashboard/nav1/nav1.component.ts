@@ -10,6 +10,7 @@ import { PaymentViewComponent } from '../payment-view/payment-view.component';
 import { PaymentUpdateComponent } from '../payment-update/payment-update.component';
 import { PaymentDeleteComponent } from '../payment-delete/payment-delete.component';
 import { PendingPaymentComponent } from '../pending-payment/pending-payment.component';
+import { PaymentsService } from 'src/app/payments.service';
 
 @Component({
   selector: 'app-nav1',
@@ -18,9 +19,32 @@ import { PendingPaymentComponent } from '../pending-payment/pending-payment.comp
 })
 export class Nav1Component implements OnInit {
 
-  constructor(public dialog: MatDialog, public router: Router ) { }
-
+  constructor(private ds: PaymentsService, public dialog: MatDialog, public router: Router ) { }
+  a: any;
+  pulledData: any[] = [];
   isSidebarOpen=true;
+  ptID:any;
+  checkupID:any;
+  transID:any;
+  ptDesc:any;
+  ptMoney:any;
+  ptDate:any;
+  ptPayed:any;
+  ptDeleted:any;
+
+  ngOnInit(): void {
+    this.getData();
+    
+  }
+
+
+  getData(): void {
+    this.ds.sendAPIRequest("payments/", null).subscribe(data => {
+      this.pulledData = data.payload
+      this.dataSource = new MatTableDataSource(this.pulledData)
+      console.log(data.payload)
+    })
+  }
 
   openSidebar() {
     this.isSidebarOpen = true;
@@ -29,9 +53,7 @@ export class Nav1Component implements OnInit {
     this.isSidebarOpen = false;
   }
 
-  ngOnInit(): void {
-  }
-
+ 
   logout(){
     this.router.navigate(["/"]);
   }
@@ -48,11 +70,14 @@ export class Nav1Component implements OnInit {
     this.router.navigate(["/nav4"]);
   }
 
-  displayedColumns: string[] = ['no', 'name', 'daterecorded', 'paymentfor', 'paymentreceive', 'purpose','actions'];
-  dataSource = new MatTableDataSource<PaymentDashboard>(ELEMENT_DATA);
+  displayedColumns: string[] = ['pt_id', 'residents', 'pt_date', 'pt_desc', 'pt_money_recieved', 'pt_isPayed','actions'];
+  dataSource = new MatTableDataSource(this.pulledData)
 
-  ViewProject(){
+  ViewProject(d){
     this.dialog.open(PaymentViewComponent);
+    this.ds.SharedData = d;
+    
+   
   }
 
   CheckOutProject(){
@@ -78,10 +103,5 @@ export class Nav1Component implements OnInit {
     purpose: string;
   }
 
-  const ELEMENT_DATA: PaymentDashboard[] = [
-    {no: 1, name: 'John Ezekiel', daterecorded: '02/21/2021', paymentfor: 'Barangay Clearance', paymentreceive: 25.00, purpose: 'School Purpose'},
-    {no: 2, name: 'Tracey Solis', daterecorded: '02/25/2021', paymentfor: 'Cedula', paymentreceive: 25.00, purpose: 'Work Purpose'},
-    {no: 3, name: 'Jim Caeasar', daterecorded: '02/25/2021', paymentfor: 'Barangay Clearance', paymentreceive: 25.00, purpose: 'Loan Purpose'},
-    {no: 4, name: 'Juan Dela Cruz', daterecorded: '02/25/2021', paymentfor: 'Barangay Clearance', paymentreceive: 25.00, purpose: 'Travel Purpose'}
-  ];
+ 
   
