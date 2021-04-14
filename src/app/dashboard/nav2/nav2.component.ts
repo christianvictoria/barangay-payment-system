@@ -12,6 +12,9 @@ import { ExpenseAddComponent } from '../expense-add/expense-add.component';
 import { ExpenseUpdateComponent } from '../expense-update/expense-update.component';
 import { PendingExpenseComponent } from '../pending-expense/pending-expense.component';
 
+// Service
+import { DashboardService } from 'src/app/services/dashboard/dashboard.service';
+
 import pdfMake from "pdfmake/build/pdfmake";  
 import pdfFonts from "pdfmake/build/vfs_fonts";  
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -25,7 +28,12 @@ import Swal from 'sweetalert2';
 })
 export class Nav2Component implements OnInit {
 
-  constructor(public dialog: MatDialog, public router: Router ) { }
+  expenses: any[] = [];
+  constructor(
+    public dialog: MatDialog, 
+    public router: Router,
+    private dashboardService: DashboardService
+  ) { }
 
   isSidebarOpen=true;
 
@@ -37,40 +45,34 @@ export class Nav2Component implements OnInit {
   }
 
   ngOnInit(): void {
+    setInterval(() => this.getExpenses(), 3000);
   }
 
-  openDashboard(){
-    this.router.navigate(["/dashboard"]);
-  }
-  openNav1(){
-    this.router.navigate(["/nav1"]);
-  }
-  openNav3(){
-    this.router.navigate(["/nav3"]);
-  }
-  openNav4(){
-    this.router.navigate(["/nav4"]);
-  }
-  logout(){
-    this.router.navigate(["/"]);
+  getExpenses = async (): Promise<void> => {
+    const sampleExpensesIsDeleted: number = 0;
+    const response = await this.dashboardService.sendDashboardRequest(`expenses/${sampleExpensesIsDeleted}`, null);
+    this.expenses = response.payload;
+    console.log(this.expenses);
   }
   
-  displayedColumns: string[] = ['no', 'name', 'daterecorded', 'paymentfor', 'paymentreceive', 'purpose','actions'];
-  dataSource = new MatTableDataSource<PaymentDashboard>(ELEMENT_DATA);
 
   AddProject(){
     this.dialog.open(ExpenseAddComponent);
   }
 
-  CheckOutProject(){
-    this.dialog.open(PendingExpenseComponent);
+  CheckOutProject(endpoint){
+    this.dialog.open(PendingExpenseComponent, { data: endpoint });
   }
 
-  ViewProject(){
-    this.dialog.open(ExpenseViewComponent);
+  ViewProject(data){
+    this.dialog.open(ExpenseViewComponent, { data: data });
   }
 
   UpdateProject(){
+    this.dialog.open(ExpenseUpdateComponent);
+  } 
+
+  DeleteProject(id){
     this.dialog.open(ExpenseUpdateComponent);
   }
 
@@ -92,6 +94,22 @@ export class Nav2Component implements OnInit {
           Swal.fire('Oops...', 'Something went wrong', 'error');
         }
       })
+  }
+
+  openDashboard(){
+    this.router.navigate(["/dashboard"]);
+  }
+  openNav1(){
+    this.router.navigate(["/nav1"]);
+  }
+  openNav3(){
+    this.router.navigate(["/nav3"]);
+  }
+  openNav4(){
+    this.router.navigate(["/nav4"]);
+  }
+  logout(){
+    this.router.navigate(["/"]);
   }
 
   
@@ -243,19 +261,3 @@ export class Nav2Component implements OnInit {
 
 }
 
-  export interface PaymentDashboard {
-    no: number;
-    name: string;
-    daterecorded: string;
-    paymentfor: string;
-    paymentreceive:number;
-    purpose: string;
-  }
-
-  const ELEMENT_DATA: PaymentDashboard[] = [
-    {no: 1, name: 'John Ezekiel', daterecorded: '02/21/2021', paymentfor: 'Feeding Program', paymentreceive: 20000.00, purpose: 'For Children'},
-    {no: 2, name: 'Tracey Solis', daterecorded: '02/28/2021', paymentfor: 'Feeding Program', paymentreceive: 20000.00, purpose: 'For Children'},
-    {no: 3, name: 'Jim Caeasar', daterecorded: '03/01/2021', paymentfor: 'Feeding Program', paymentreceive: 20000.00, purpose: 'For Children'},
-    {no: 4, name: 'Juan Dela Cruz', daterecorded: '06/23/2021', paymentfor: 'Feeding Program', paymentreceive: 20000.00, purpose: 'For Children'}
-  ];
-  

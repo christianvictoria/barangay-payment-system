@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { ExpenseModalComponent } from '../expense-modal/expense-modal.component';
+import { ExpenseAddComponent } from '../expense-add/expense-add.component';
+
+// Service 
+import { DashboardService } from 'src/app/services/dashboard/dashboard.service';
 
 @Component({
   selector: 'app-pending-expense',
@@ -13,28 +17,27 @@ import { ExpenseModalComponent } from '../expense-modal/expense-modal.component'
 })
 export class PendingExpenseComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  residents: any[] = [];
+  constructor(
+    public dialog: MatDialog, 
+    @Inject(MAT_DIALOG_DATA) public data,
+    private dashboardService: DashboardService
+  ) { }
 
   ngOnInit(): void {
+    this.getResidents();
+  }
+
+  getResidents = async (): Promise<void> => {
+    const response = await this.dashboardService.sendDashboardRequest(`${this.data}/`, null);
+    this.residents = response.payload;
   }
   
-  displayedColumns: string[] = ['name', 'paymentfor', 'paymentreceive', 'purpose'];
-  dataSource = new MatTableDataSource<PaymentDashboard>(ELEMENT_DATA);
+  AddProject(id){
+    this.dialog.open(ExpenseAddComponent, { data: id });
+  }
 
   CheckOutProject(){
     this.dialog.open(ExpenseModalComponent);
   }
 }
-
-export interface PaymentDashboard {
-  name: string;
-  paymentfor: string;
-  paymentreceive:number;
-  purpose: string;
-}
-
-const ELEMENT_DATA: PaymentDashboard[] = [
-  {name: 'Christian Alip', paymentfor: 'Clean Up Drive', paymentreceive: 15000.00, purpose: 'For Equipments'},
-  {name: 'Tracey Solis', paymentfor: 'Feeding Program', paymentreceive: 20000.00, purpose: 'For Children'},
-  {name: 'Mark Jerico Fabro', paymentfor: 'Clean Up Drive', paymentreceive: 25000.00, purpose: 'For Equipments'}
-];
