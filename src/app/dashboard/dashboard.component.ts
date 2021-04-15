@@ -37,10 +37,14 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setInterval(() => this.getCheckUpPayments(), 5000);
+ /*   setInterval(() => this.getCheckUpPayments(), 5000);
     setInterval(() => this.getDocumentPayments(), 5000);
     setInterval(() => this.getPendingPayments(), 5000);
-    setInterval(() => this.getExpenses(), 5000);
+    setInterval(() => this.getExpenses(), 5000);*/
+    this.getCheckUpPayments()
+    this.getDocumentPayments()
+    this.getPendingPayments()
+    this.getExpenses()
   }
 
 
@@ -80,7 +84,7 @@ export class DashboardComponent implements OnInit {
   getExpenses = async (): Promise<void> => {
     try {
       const sampleExpensesIsDeleted: number = 0;
-      const response = await this.dashboardService.sendDashboardRequest(`expenses/${sampleExpensesIsDeleted}`, null);
+      const response = await this.dashboardService.sendDashboardRequest(`expenses/`, null);
       this.expenses = response.payload.length;
     } catch(error) {
       console.log(error);

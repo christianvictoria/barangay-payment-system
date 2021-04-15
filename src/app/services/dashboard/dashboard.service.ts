@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DashboardService {
 
-  BASE_URL = 'http://localhost/barangay-payment/barangay-payment-api/';
+  BASE_URL = 'http://localhost/barangay-payment-system/barangay-payment-api/';
   constructor(private http: HttpClient) { }
 
   public sendDashboardRequest = async (endpoint, data): Promise<any> => {

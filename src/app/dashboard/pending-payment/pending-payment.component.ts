@@ -7,6 +7,7 @@ import { ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { PaymentAddComponent } from '../payment-add/payment-add.component';
 import { PaymentModalComponent } from '../payment-modal/payment-modal.component';
+import { PaymentsService } from 'src/app/payments.service';
 
 @Component({
   selector: 'app-pending-payment',
@@ -15,17 +16,27 @@ import { PaymentModalComponent } from '../payment-modal/payment-modal.component'
 })
 export class PendingPaymentComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data) { }
+  pulledUnpaid:any;
+  dataSourceUnpaid:any;
+  constructor(private ds: PaymentsService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
     console.log(this.data);
+    this.pullUnpaid();
   }
   
-  displayedColumns: string[] = ['name', 'paymentfor', 'paymentreceive', 'purpose'];
-  dataSource = new MatTableDataSource<PaymentDashboard>(ELEMENT_DATA);
-
+  displayedColumns: string[] = ['name', 'desc', 'paymentreceive', 'date'];
+  
   CheckOutProject(){
     this.dialog.open(PaymentModalComponent, { data: this.data });
+  }
+
+  pullUnpaid(): void {
+    this.ds.sendAPIRequest("payments/0", null).subscribe(data => {
+      this.pulledUnpaid = data.payload
+      this.dataSourceUnpaid = new MatTableDataSource(this.pulledUnpaid)
+      console.log(this.pulledUnpaid)
+    })
   }
 }
 
@@ -37,8 +48,3 @@ export interface PaymentDashboard {
   purpose: string;
 }
 
-const ELEMENT_DATA: PaymentDashboard[] = [
-  {name: 'Mark Jerico Fabro', paymentfor: 'Cedula', paymentreceive: 25.00, purpose: 'Work Purpose'},
-  {name: 'Christian Alip', paymentfor: 'Barangay Clearance', paymentreceive: 25.00, purpose: 'Travel Purpose'},
-  {name: 'Tracey Solis', paymentfor: 'Cedula', paymentreceive: 25.00, purpose: 'Work Purpose'}
-];
