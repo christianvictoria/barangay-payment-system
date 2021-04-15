@@ -71,7 +71,7 @@
 								ON $table.checkup_id = tbl_clinic_checkups.checkup_id
 								LEFT JOIN tbl_profiling_residents
 								ON tbl_clinic_checkups.patient_id = tbl_profiling_residents.res_id
-								WHERE $table.trans_id is NULL ";
+								WHERE $table.trans_id is NULL AND $table.pt_isDeleted = 0 ";
 			} else if (isset($payment) && $payment == "transaction") {
 				$this->sql = "SELECT 
 								$table.pt_id,
@@ -93,11 +93,11 @@
 								ON tbl_docuissuance_doctransaction.res_id = tbl_profiling_residents.res_id
 								LEFT JOIN tbl_docuissuance_documents
 								ON tbl_docuissuance_doctransaction.docu_id = tbl_docuissuance_documents.docu_id
-								WHERE $table.checkup_id is NULL ";
+								WHERE $table.checkup_id is NULL AND $table.pt_isDeleted = 0 ";
 			}
 
 			if ($filter_data != null) {
-				$this->sql .= "AND $table.pt_isDeleted = $filter_data ORDER BY $table.pt_id";
+				$this->sql .= "AND $table.pt_id = $filter_data ORDER BY $table.pt_id";
 			}
 			
 

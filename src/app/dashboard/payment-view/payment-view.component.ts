@@ -28,6 +28,24 @@ export class PaymentViewComponent implements OnInit {
     })
   }
 
+  updateData = async (id: any): Promise<void> => {
+    try {
+      const data: any = {};
+      data.pt_desc = this.pulledData.pt_desc;
+      data.pt_money_recieved = this.pulledData.pt_money_recieved;
+      const response = await this.ds.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
+      if (response.status.remarks == "success") {
+        console.log("success")
+      }
+    } catch(error) {
+      console.log(error);
+    }
+  } 
+
+  
+
+  
+
   UpdateProject(){
     this.dialog.open(PaymentUpdateComponent);
   }

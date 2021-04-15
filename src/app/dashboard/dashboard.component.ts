@@ -52,8 +52,7 @@ export class DashboardComponent implements OnInit {
   getCheckUpPayments = async (): Promise<void> => {
     try {
       const samplePaymentMethod: string = "checkup";
-      const samplePaymentIsDeleted: number = 0;
-      const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}/${samplePaymentIsDeleted}`, null);
+      const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}/`, null);
       this.checkups = response.payload.length;
     } catch(error) {
       console.log(error);
@@ -63,8 +62,7 @@ export class DashboardComponent implements OnInit {
   getDocumentPayments = async (): Promise<void> => {
     try {
       const samplePaymentMethod: string = "transaction";
-      const samplePaymentIsDeleted: number = 0;
-      const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}/${samplePaymentIsDeleted}`, null);
+      const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}/`, null);
       this.documents = response.payload.length;
     } catch(error) {
       console.log(error);
