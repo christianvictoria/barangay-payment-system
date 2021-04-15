@@ -123,6 +123,15 @@ mat-sidenav-container mat-list mat-list-item
     background-color: #dd2c00;
     /* background-color: red; */
     border-radius: 6px;
+    margin-right: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.payBtn {
+    background-color: #27d336;
+    /* background-color: red; */
+    border-radius: 6px;
+    
     font-family: 'Poppins', sans-serif;
 }
 

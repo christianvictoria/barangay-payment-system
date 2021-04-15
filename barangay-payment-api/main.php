@@ -35,6 +35,9 @@
 					else if ($req[1] == "checkup") {
 						echo json_encode($post->select_payments("tbl_payment_".$req[0], $req[1], null), JSON_PRETTY_PRINT);
 					} 
+					else if ($req[1] == "transaction") {
+						echo json_encode($post->select_payments("tbl_payment_".$req[0], $req[1], null), JSON_PRETTY_PRINT);
+					} 
 					 else {
 						echo json_encode($post->select_payments("tbl_payment_".$req[0], null, $req[1]), JSON_PRETTY_PRINT);
 					}

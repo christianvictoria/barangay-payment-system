@@ -84,6 +84,31 @@ export class Nav1Component implements OnInit {
 
   displayedColumns: string[] = ['pt_id', 'residents', 'pt_date', 'pt_desc', 'pt_money_recieved', 'pt_isPayed','actions'];
   
+  removeData = async (id: any): Promise<void> => {
+    try {
+      const data: any = {};
+      data.pt_isDeleted = 1;
+      const response = await this.ds.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
+      if (response.status.remarks == "success") {
+        this.getData();
+      }
+    } catch(error) {
+      console.log(error);
+    }
+  } 
+
+  payData = async (id: any): Promise<void> => {
+    try {
+      let data: any = {};
+        data.pt_isPayed = 1;
+      const response = await this.ds.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
+      if (response.status.remarks == "success") {
+        this.getData();
+      }
+    } catch(error) {
+      console.log(error);
+    }
+  } 
 
   ViewProject(id){
     this.dialog.open(PaymentViewComponent, {data:id});
