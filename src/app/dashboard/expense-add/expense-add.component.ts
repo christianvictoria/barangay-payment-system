@@ -22,20 +22,8 @@ export class ExpenseAddComponent implements OnInit {
     this.expensesPayload = new Expenses(); 
   }
 
-  async ngOnInit(): Promise<void> {
-  	await this.selectedOfficial();
+  ngOnInit(): void {
 
-  }
-
-  selectedOfficial = async (): Promise<void> => {
-    try {
-      const response = await this.dashboardService.sendDashboardRequest(`residents/${this.data}`, null);
-      this.official = response.payload;
-      console.log(this.official);
-      this.expensesPayload.res_id = this.official[0].res_id;
-    } catch(error) {
-      console.log(error);
-    }
   }
 
   newExpenses = async (): Promise<void> => {

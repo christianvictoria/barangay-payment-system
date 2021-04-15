@@ -9,7 +9,7 @@
 <br>
     <div class="modalFields">
         <mat-list role="list">
-            <mat-list-item class="fieldNamesno"role="listitem">Expense Number</mat-list-item>
+            <!-- <mat-list-item class="fieldNamesno"role="listitem">Expense Number</mat-list-item> -->
             <mat-list-item class="fieldNames"role="listitem">First Name</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Last Name</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Middle Name</mat-list-item>
@@ -17,17 +17,17 @@
 
 
         <div class="inputs">
+           <!--  <mat-form-field appearance="outline">
+                <input class="paymentInfo" matInput *ngIf="expensesId" value="{{ expensesId }}" disabled>
+            </mat-form-field> -->
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput value="{{ payload?.exp_id }}" disabled>
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_fname" disabled>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput value="{{ payload?.res_fname }}" disabled>
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_lname" disabled>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput value="{{ payload?.res_lname }}" disabled>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput value="{{ payload?.res_mname }}" disabled>
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_mname" disabled>
             </mat-form-field>
         </div>
 
@@ -39,13 +39,13 @@
 
         <div class="inputs2">
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput value="{{ payload?.exp_for }}">
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_for">
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput value="{{ payload?.exp_money_release }}">
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_money_release">
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <textarea class="paymentInfo" matInput rows="5" value="{{ payload?.exp_desc }}"></textarea>
+                <textarea class="paymentInfo" matInput rows="5" [(ngModel)]="expensesPayload.exp_desc"></textarea>
             </mat-form-field>
         </div>
 

@@ -50,34 +50,28 @@ export class Nav2Component implements OnInit {
   }
 
   ngOnInit(): void {
-    // setInterval(() => this.getExpenses(), 3000);
+    // setInterval(() => this.getExpenses(), 5000);
     this.getExpenses();
   }
-
+  dataSource: any;
   getExpenses = async (): Promise<void> => {
     const response = await this.dashboardService.sendDashboardRequest(`expenses/`, null);
     this.expenses = response.payload;
+    this.dataSource = new MatTableDataSource<ExpensesData>(this.expenses);
     console.log(this.expenses);
   }
   
+  displayedColumns: string[] = ['Expense No.', 'Given To', 'For', 'Budget Fee', 'Date', 'actions'];
 
-  AddProject(){
+  addExpenses = () => {
     this.dialog.open(ExpenseAddComponent);
   }
 
-  CheckOutProject(endpoint){
-    this.dialog.open(PendingExpenseComponent, { data: endpoint });
-  }
-
-  viewExpenses(id){
+  viewExpenses = (id) => {
     this.dialog.open(ExpenseViewComponent, { data: id });
   }
 
-  UpdateProject(){
-    this.dialog.open(ExpenseUpdateComponent);
-  } 
-
-  DeleteProject(id){
+  removeRecord = (id) => {
     this.dialog.open(ExpenseUpdateComponent);
   }
 
@@ -262,7 +256,17 @@ export class Nav2Component implements OnInit {
 
     pdfMake.createPdf(docDefinition).open();
   }
+}
 
-
+export interface ExpensesData {
+  exp_id: number;
+  res_lname: string;
+  res_fname: string;
+  res_mname: string;
+  exp_for: string;
+  exp_desc: string;
+  exp_money_release: string;
+  exp_isDeleted: number;
+  exp_date: any;
 }
 

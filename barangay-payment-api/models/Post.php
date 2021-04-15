@@ -30,21 +30,7 @@
 		}
 
 		public function select_expenses($table, $filter_data) {
-			$this->sql = "SELECT 
-								$table.exp_id,
-								$table.res_id,
-								tbl_profiling_residents.res_lname,
-								tbl_profiling_residents.res_fname,
-								tbl_profiling_residents.res_mname,
-								$table.exp_desc,
-								$table.exp_for,
-								$table.exp_money_release,
-								$table.exp_date,
-								$table.exp_isDeleted
-								FROM $table
-								LEFT JOIN tbl_profiling_residents
-								ON $table.res_id = tbl_profiling_residents.res_id 
-								WHERE exp_isDeleted = 0 ";
+			$this->sql = "SELECT * FROM $table WHERE exp_isDeleted = 0 ";
 
 			if ($filter_data != null) {
 				$this->sql .= " AND exp_id = $filter_data ORDER BY exp_id";
@@ -129,7 +115,7 @@
 			return $this->sendPayload($data, "success", $errmsg, $code);
 		}
 
-		public function new_payment_expenses($table, $data) {
+		public function new_payment_expenses($table, $data, $payment) {
 			$fields = []; $values = [];
 			foreach ($data as $key => $value) {
 				array_push($fields, $key);
@@ -151,7 +137,7 @@
 				$sql = $this->pdo->prepare($sqlstr);
 				$sql->execute($values);
 				if ($payment == "checkup" || $payment == "transaction") return $this->select_payments($table, $payment, "0");
-				return $this->select_expenses($table, "0");
+				return $this->select_expenses($table, null);
 
 			} catch(\PDOException $e) {
 				$errmsg = $e->getMessage(); $code = 403;
@@ -181,7 +167,7 @@
 				$sql = $this->pdo->prepare($sqlstr);
 				$sql->execute($values);
 				if ($payment == "checkup" || $payment == "transaction") return $this->select_payments($table, $payment, "0");
-				return $this->select_expenses($table, "0");
+				return $this->select_expenses($table, null);
 
 			} catch(\PDOException $e) {
 				$errmsg = $e->getMessage(); $code = 403;
