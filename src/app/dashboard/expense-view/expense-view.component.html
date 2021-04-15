@@ -10,24 +10,21 @@
     <div class="modalFields">
         <mat-list role="list">
             <!-- <mat-list-item class="fieldNamesno"role="listitem">Expense Number</mat-list-item> -->
-            <mat-list-item class="fieldNames"role="listitem">First Name</mat-list-item>
+            <mat-list-item class="fieldNamesno"role="listitem">First Name</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Last Name</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Middle Name</mat-list-item>
         </mat-list>
 
 
         <div class="inputs">
-           <!--  <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput *ngIf="expensesId" value="{{ expensesId }}" disabled>
-            </mat-form-field> -->
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_fname" disabled>
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_fname">
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_lname" disabled>
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_lname">
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_mname" disabled>
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_mname">
             </mat-form-field>
         </div>
 

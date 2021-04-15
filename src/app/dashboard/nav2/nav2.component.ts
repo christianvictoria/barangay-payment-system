@@ -84,6 +84,10 @@ export class Nav2Component implements OnInit {
     }
   }
 
+  filterExpenses = async (): Promise<void> => {
+
+  }
+
   Confirmation() {
       Swal.fire({
         title:'Are you sure?',
@@ -269,9 +273,9 @@ export class Nav2Component implements OnInit {
 
 export interface ExpensesData {
   exp_id: number;
-  res_lname: string;
-  res_fname: string;
-  res_mname: string;
+  exp_lname: string;
+  exp_fname: string;
+  exp_mname: string;
   exp_for: string;
   exp_desc: string;
   exp_money_release: string;
