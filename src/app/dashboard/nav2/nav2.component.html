@@ -49,7 +49,7 @@
                         <td> {{item.exp_for}} </td>
                         <td> {{item.exp_money_release}} </td>
                         <td>
-                            <button class="viewBtn" (click)="ViewProject(item)" mat-raised-button color="primary">View</button>
+                            <button class="viewBtn" (click)="viewExpenses(item.exp_id)" mat-raised-button color="primary">View</button>
                             <button class="dlteBtn" (click)="DeleteProject(item.exp_id)" mat-raised-button color="primary">Delete</button>
                         </td>
                     </tr>

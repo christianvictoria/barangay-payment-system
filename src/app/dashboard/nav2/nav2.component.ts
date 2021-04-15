@@ -15,6 +15,8 @@ import { PendingExpenseComponent } from '../pending-expense/pending-expense.comp
 // Service
 import { DashboardService } from 'src/app/services/dashboard/dashboard.service';
 
+import { Expenses } from 'src/app/models/expenses';
+
 import pdfMake from "pdfmake/build/pdfmake";  
 import pdfFonts from "pdfmake/build/vfs_fonts";  
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -29,11 +31,14 @@ import Swal from 'sweetalert2';
 export class Nav2Component implements OnInit {
 
   expenses: any[] = [];
+  expensesPayload: Expenses;
   constructor(
     public dialog: MatDialog, 
     public router: Router,
     private dashboardService: DashboardService
-  ) { }
+  ) { 
+    this.expensesPayload = new Expenses();
+  }
 
   isSidebarOpen=true;
 
@@ -45,12 +50,12 @@ export class Nav2Component implements OnInit {
   }
 
   ngOnInit(): void {
-    setInterval(() => this.getExpenses(), 3000);
+    // setInterval(() => this.getExpenses(), 3000);
+    this.getExpenses();
   }
 
   getExpenses = async (): Promise<void> => {
-    const sampleExpensesIsDeleted: number = 0;
-    const response = await this.dashboardService.sendDashboardRequest(`expenses/${sampleExpensesIsDeleted}`, null);
+    const response = await this.dashboardService.sendDashboardRequest(`expenses/`, null);
     this.expenses = response.payload;
     console.log(this.expenses);
   }
@@ -64,8 +69,8 @@ export class Nav2Component implements OnInit {
     this.dialog.open(PendingExpenseComponent, { data: endpoint });
   }
 
-  ViewProject(data){
-    this.dialog.open(ExpenseViewComponent, { data: data });
+  viewExpenses(id){
+    this.dialog.open(ExpenseViewComponent, { data: id });
   }
 
   UpdateProject(){

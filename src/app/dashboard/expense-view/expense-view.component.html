@@ -18,16 +18,16 @@
 
         <div class="inputs">
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [value]="data.exp_id" disabled>
+                <input class="paymentInfo" matInput value="{{ payload?.exp_id }}" disabled>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [value]="data.res_fname" disabled>
+                <input class="paymentInfo" matInput value="{{ payload?.res_fname }}" disabled>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [value]="data.res_lname" disabled>
+                <input class="paymentInfo" matInput value="{{ payload?.res_lname }}" disabled>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [value]="data.res_mname" disabled>
+                <input class="paymentInfo" matInput value="{{ payload?.res_mname }}" disabled>
             </mat-form-field>
         </div>
 
@@ -39,13 +39,13 @@
 
         <div class="inputs2">
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [value]="data.exp_for">
+                <input class="paymentInfo" matInput value="{{ payload?.exp_for }}">
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [value]="data.exp_money_release">
+                <input class="paymentInfo" matInput value="{{ payload?.exp_money_release }}">
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <textarea class="paymentInfo" matInput rows="5" [value]="data.exp_desc"></textarea>
+                <textarea class="paymentInfo" matInput rows="5" value="{{ payload?.exp_desc }}"></textarea>
             </mat-form-field>
         </div>
 
@@ -56,5 +56,5 @@
 
 <mat-dialog-actions align="end">
   <button class="modalBtn" mat-raised-button mat-dialog-close>Cancel</button>
-  <button (click)="UpdateProject()" class="modalBtn1" mat-raised-button>Edit</button>
+  <button (click)="updateExpenses()" class="modalBtn1" mat-raised-button mat-dialog-clos>Edit</button>
 </mat-dialog-actions>

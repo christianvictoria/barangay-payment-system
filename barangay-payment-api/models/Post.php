@@ -43,10 +43,11 @@
 								$table.exp_isDeleted
 								FROM $table
 								LEFT JOIN tbl_profiling_residents
-								ON $table.res_id = tbl_profiling_residents.res_id ";
+								ON $table.res_id = tbl_profiling_residents.res_id 
+								WHERE exp_isDeleted = 0 ";
 
 			if ($filter_data != null) {
-				$this->sql .= " WHERE exp_isDeleted = $filter_data ORDER BY exp_id";
+				$this->sql .= " AND exp_id = $filter_data ORDER BY exp_id";
 			}
 
 			$data = array(); $errmsg = ""; $code = 0;
@@ -149,6 +150,7 @@
 
 				$sql = $this->pdo->prepare($sqlstr);
 				$sql->execute($values);
+				if ($payment == "checkup" || $payment == "transaction") return $this->select_payments($table, $payment, "0");
 				return $this->select_expenses($table, "0");
 
 			} catch(\PDOException $e) {
