@@ -66,7 +66,7 @@
 				// updateExpenses/(condition)/null
 				case 'updateExpenses':
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
-					echo json_encode($post->update_payment_expenses("tbl_payment_expenses", $d, "exp_id=".$req[1], null));
+					echo json_encode($post->update_payment_expenses("tbl_payment_expenses", $d, "exp_id=".($req[1]), null));
 					break;
 				
 				default:

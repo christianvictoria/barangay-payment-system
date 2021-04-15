@@ -46,30 +46,45 @@ export class DashboardComponent implements OnInit {
 
 
   getCheckUpPayments = async (): Promise<void> => {
-    const samplePaymentMethod: string = "checkup";
-    const samplePaymentIsDeleted: number = 0;
-    const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}/${samplePaymentIsDeleted}`, null);
-    this.checkups = response.payload.length;
+    try {
+      const samplePaymentMethod: string = "checkup";
+      const samplePaymentIsDeleted: number = 0;
+      const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}/${samplePaymentIsDeleted}`, null);
+      this.checkups = response.payload.length;
+    } catch(error) {
+      console.log(error);
+    }
   }
 
   getDocumentPayments = async (): Promise<void> => {
-    const samplePaymentMethod: string = "transaction";
-    const samplePaymentIsDeleted: number = 0;
-    const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}/${samplePaymentIsDeleted}`, null);
-    this.documents = response.payload.length;
+    try {
+      const samplePaymentMethod: string = "transaction";
+      const samplePaymentIsDeleted: number = 0;
+      const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}/${samplePaymentIsDeleted}`, null);
+      this.documents = response.payload.length;
+    } catch(error) {
+      console.log(error);
+    }
   }  
 
   getPendingPayments = async (): Promise<void> => {
-    const samplePaymentIsDeleted: number = 0;
-    const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentIsDeleted}`, null);
-    this.pending = response.payload.length;
-    console.log(this.pending);
+    try {
+      const samplePaymentIsDeleted: number = 0;
+      const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentIsDeleted}`, null);
+      this.pending = response.payload.length;
+    } catch(error) {
+      console.log(error);
+    }
   }
 
   getExpenses = async (): Promise<void> => {
-    const sampleExpensesIsDeleted: number = 0;
-    const response = await this.dashboardService.sendDashboardRequest(`expenses/${sampleExpensesIsDeleted}`, null);
-    this.expenses = response.payload.length;
+    try {
+      const sampleExpensesIsDeleted: number = 0;
+      const response = await this.dashboardService.sendDashboardRequest(`expenses/${sampleExpensesIsDeleted}`, null);
+      this.expenses = response.payload.length;
+    } catch(error) {
+      console.log(error);
+    }
   }
 
     public barChartOptions = {

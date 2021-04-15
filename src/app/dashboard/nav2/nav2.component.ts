@@ -15,7 +15,6 @@ import { PendingExpenseComponent } from '../pending-expense/pending-expense.comp
 // Service
 import { DashboardService } from 'src/app/services/dashboard/dashboard.service';
 
-import { Expenses } from 'src/app/models/expenses';
 
 import pdfMake from "pdfmake/build/pdfmake";  
 import pdfFonts from "pdfmake/build/vfs_fonts";  
@@ -31,14 +30,11 @@ import Swal from 'sweetalert2';
 export class Nav2Component implements OnInit {
 
   expenses: any[] = [];
-  expensesPayload: Expenses;
   constructor(
     public dialog: MatDialog, 
     public router: Router,
     private dashboardService: DashboardService
-  ) { 
-    this.expensesPayload = new Expenses();
-  }
+  ) {}
 
   isSidebarOpen=true;
 
@@ -55,10 +51,14 @@ export class Nav2Component implements OnInit {
   }
   dataSource: any;
   getExpenses = async (): Promise<void> => {
-    const response = await this.dashboardService.sendDashboardRequest(`expenses/`, null);
-    this.expenses = response.payload;
-    this.dataSource = new MatTableDataSource<ExpensesData>(this.expenses);
-    console.log(this.expenses);
+    try {
+      const response = await this.dashboardService.sendDashboardRequest(`expenses/`, null);
+      this.expenses = response.payload;
+      this.dataSource = new MatTableDataSource<ExpensesData>(this.expenses);
+      console.log(this.expenses);
+    } catch(error) {
+      console.log(error);
+    }
   }
   
   displayedColumns: string[] = ['Expense No.', 'Given To', 'For', 'Budget Fee', 'Date', 'actions'];
@@ -71,8 +71,17 @@ export class Nav2Component implements OnInit {
     this.dialog.open(ExpenseViewComponent, { data: id });
   }
 
-  removeRecord = (id) => {
-    this.dialog.open(ExpenseUpdateComponent);
+  removeRecord = async (id: any): Promise<void> => {
+    try {
+      const data: any = {};
+      data.exp_isDeleted = 1;
+      const response = await this.dashboardService.sendDashboardRequest("updateExpenses/" + id, data);
+      if (response.status.remarks == "success") {
+        this.getExpenses();
+      }
+    } catch(error) {
+      console.log(error);
+    }
   }
 
   Confirmation() {
