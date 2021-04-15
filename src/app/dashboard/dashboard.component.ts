@@ -37,10 +37,14 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setInterval(() => this.getCheckUpPayments(), 5000);
+ /*   setInterval(() => this.getCheckUpPayments(), 5000);
     setInterval(() => this.getDocumentPayments(), 5000);
     setInterval(() => this.getPendingPayments(), 5000);
-    setInterval(() => this.getExpenses(), 5000);
+    setInterval(() => this.getExpenses(), 5000);*/
+    this.getCheckUpPayments()
+    this.getDocumentPayments()
+    this.getPendingPayments()
+    this.getExpenses()
   }
 
 

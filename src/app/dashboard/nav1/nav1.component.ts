@@ -29,7 +29,10 @@ export class Nav1Component implements OnInit {
   constructor(private ds: PaymentsService, public dialog: MatDialog, public router: Router ) { }
   a: any;
   pulledData: any[] = [];
+  pulledUnpaid: any[] = [];
   isSidebarOpen=true;
+  dataSourceUnpaid: any;
+  dataSource: any;
   ptID:any;
   checkupID:any;
   transID:any;
@@ -41,17 +44,19 @@ export class Nav1Component implements OnInit {
 
   ngOnInit(): void {
     this.getData();
-    
+
   }
 
 
   getData(): void {
-    this.ds.sendAPIRequest("payments/", null).subscribe(data => {
+    this.ds.sendAPIRequest("payments/checkup/", null).subscribe(data => {
       this.pulledData = data.payload
       this.dataSource = new MatTableDataSource(this.pulledData)
       console.log(data.payload)
     })
   }
+
+  
 
   openSidebar() {
     this.isSidebarOpen = true;
@@ -78,12 +83,12 @@ export class Nav1Component implements OnInit {
   }
 
   displayedColumns: string[] = ['pt_id', 'residents', 'pt_date', 'pt_desc', 'pt_money_recieved', 'pt_isPayed','actions'];
-  dataSource = new MatTableDataSource(this.pulledData)
+  
 
-  ViewProject(d){
-    this.dialog.open(PaymentViewComponent);
-    this.ds.SharedData = d;
-    
+  ViewProject(id){
+    this.dialog.open(PaymentViewComponent, {data:id});
+    //this.ds.SharedData = d;
+   // console.log(id)
    
   }
 

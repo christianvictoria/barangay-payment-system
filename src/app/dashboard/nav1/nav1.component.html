@@ -76,7 +76,7 @@
              <ng-container matColumnDef="actions">
              <th mat-header-cell *matHeaderCellDef> Action </th>
                  <td mat-cell *matCellDef="let element">
-                 <button class="viewBtn" (click)="ViewProject(element?.no)" mat-raised-button color="primary">View</button>
+                 <button class="viewBtn" (click)="ViewProject(element?.pt_id)" mat-raised-button color="primary">View</button>
                  <button class="dlteBtn" (click)="DeleteProject()" mat-raised-button color="primary">Delete</button>
                  </td>
              </ng-container>

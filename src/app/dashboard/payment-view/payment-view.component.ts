@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, Inject} from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PaymentUpdateComponent } from '../payment-update/payment-update.component';
 import { PaymentsService } from 'src/app/payments.service';
+
 
 @Component({
   selector: 'app-payment-view',
@@ -10,10 +11,21 @@ import { PaymentsService } from 'src/app/payments.service';
 })
 export class PaymentViewComponent implements OnInit {
 
-  constructor(private ds: PaymentsService, public dialog: MatDialog) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data, private ds: PaymentsService, public dialog: MatDialog) { }
+
+  pulledData: any = {};
 
   ngOnInit(): void {
-    console.log(this.ds.SharedData);
+    //   console.log(this.ds.SharedData);
+    console.log(this.data);
+    this.getData();
+  }
+
+  getData(): void {
+    this.ds.sendAPIRequest("payments/checkup/" + this.data, null).subscribe(data => {
+      this.pulledData = data.payload[0]
+      console.log(data.payload)
+    })
   }
 
   UpdateProject(){
