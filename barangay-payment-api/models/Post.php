@@ -62,6 +62,7 @@
 								tbl_profiling_residents.res_fname,
 								tbl_profiling_residents.res_mname,
 								$table.pt_desc,
+								tbl_clinic_checkups.fld_amount,
 								$table.pt_money_recieved,
 								$table.pt_date,
 								$table.pt_isPayed,

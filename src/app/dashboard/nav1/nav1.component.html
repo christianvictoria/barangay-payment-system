@@ -21,7 +21,7 @@
     </mat-toolbar>
 
     <div fxLayout="row" class="tabs-style">
-        <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()"><mat-icon class="paymentaddBtn" aria-hidden="false" aria-label="Example home icon">add</mat-icon>Add New Payment</button>
+        <button style="visibility: hidden; pointer-events: none;" class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()"><mat-icon class="paymentaddBtn" aria-hidden="false" aria-label="Example home icon">add</mat-icon>Add New Payment</button>
 
         <mat-form-field class="example-form-field1">
             <mat-label>Search</mat-label>
@@ -37,7 +37,7 @@
          <table mat-table [dataSource]="dataSource">
  
              <ng-container matColumnDef="pt_id">
-             <th mat-header-cell *matHeaderCellDef> Payment No. </th>
+             <th mat-header-cell *matHeaderCellDef> No. </th>
              <td mat-cell *matCellDef="let element"> {{element.pt_id}} </td>
              </ng-container>
          
@@ -46,39 +46,47 @@
              <td mat-cell *matCellDef="let element"> {{element.res_lname}}, {{element.res_fname}} {{element.res_mname}} </td>
              </ng-container>
          
-             <ng-container matColumnDef="pt_date">
-             <th mat-header-cell *matHeaderCellDef> Date Recorded </th>
-             <td mat-cell *matCellDef="let element"> {{element.pt_date}} </td>
-             </ng-container>
-         
              <ng-container matColumnDef="pt_desc">
              <th mat-header-cell *matHeaderCellDef> Payment For </th>
              <td mat-cell *matCellDef="let element"> {{element.pt_desc}} </td>
              </ng-container>
      
-             <ng-container matColumnDef="pt_money_recieved">
-             <th mat-header-cell *matHeaderCellDef> Payment Receive </th>
-             <td mat-cell *matCellDef="let element"> {{element.pt_money_recieved}} </td>
+             <ng-container matColumnDef="amount">
+             <th mat-header-cell *matHeaderCellDef> Amount </th>
+             <td mat-cell *matCellDef="let element"> {{element.fld_amount}} </td>
              </ng-container>
+     
+             <!-- <ng-container matColumnDef="pt_money_recieved">
+             <th mat-header-cell *matHeaderCellDef> Payment Recieved </th>
+             <td mat-cell *matCellDef="let element"> {{element.pt_money_recieved}} </td>
+             </ng-container> -->
 
              <ng-container matColumnDef="pt_isPayed">
-             <th mat-header-cell *matHeaderCellDef> Status </th>
+             <th mat-header-cell *matHeaderCellDef> Payment Recieved </th>
              <ng-container *matCellDef="let element">
                 <ng-container *ngIf="element.pt_isPayed === 1">
-                    <td mat-cell style="color: green;"> Paid </td>
+                    <!-- <td mat-cell style="color: green;"> Paid </td> -->
+                    <td mat-cell> {{element.pt_money_recieved}} </td>
                 </ng-container>
                 <ng-container *ngIf="element.pt_isPayed === 0">
                     <td mat-cell style="color: red"> Unpaid </td>
                 </ng-container>
             </ng-container>
             </ng-container>
+         
+             <ng-container matColumnDef="pt_date">
+             <th mat-header-cell *matHeaderCellDef> Date </th>
+             <td mat-cell *matCellDef="let element"> {{element.pt_date}} </td>
+             </ng-container>
              
              <ng-container matColumnDef="actions">
              <th mat-header-cell *matHeaderCellDef> Action </th>
                  <td mat-cell *matCellDef="let element">
                  <button class="viewBtn" (click)="ViewProject(element?.pt_id)" mat-raised-button color="primary">View</button>
                  <button class="dlteBtn" (click)="removeData(element?.pt_id)" mat-raised-button color="primary">Delete</button>
-                 <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Done</button>
+                 <ng-container *ngIf="element?.pt_isPayed === 0">
+                    <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Done</button>
+                 </ng-container>
                  </td>
              </ng-container>
      

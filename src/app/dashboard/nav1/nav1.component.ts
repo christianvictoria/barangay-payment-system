@@ -51,7 +51,9 @@ export class Nav1Component implements OnInit {
   getData(): void {
     this.ds.sendAPIRequest("payments/checkup/", null).subscribe(data => {
       this.pulledData = data.payload
-      this.dataSource = new MatTableDataSource(this.pulledData)
+      // Sort by pt_isPayed
+      this.pulledData.sort((a, b) => a.pt_isPayed - b.pt_isPayed);
+      this.dataSource = new MatTableDataSource(this.pulledData);
       console.log(data.payload)
     })
   }
@@ -82,7 +84,7 @@ export class Nav1Component implements OnInit {
     this.router.navigate(["/nav4"]);
   }
 
-  displayedColumns: string[] = ['pt_id', 'residents', 'pt_date', 'pt_desc', 'pt_money_recieved', 'pt_isPayed','actions'];
+  displayedColumns: string[] = ['pt_id', 'residents', 'pt_desc','amount', 'pt_isPayed', 'pt_date', 'actions'];
   
   removeData = async (id: any): Promise<void> => {
     try {

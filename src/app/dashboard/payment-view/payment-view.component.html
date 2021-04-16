@@ -33,19 +33,26 @@
 
         <mat-list role="list">
             <mat-list-item class="fieldNamesno"role="listitem">Payment For</mat-list-item>
+            <mat-list-item class="fieldNames"role="listitem">Amount</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Payment Receive</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Date</mat-list-item>
         </mat-list>
 
         <div class="inputs2">
             <mat-form-field appearance="outline">
-            <input class="paymentInfo" matInput  [(ngModel)]="pulledData.pt_desc" >
+                <input class="paymentInfo" matInput  [(ngModel)]="pulledData.pt_desc" >
             </mat-form-field>
             <mat-form-field appearance="outline">
-            <input class="paymentInfo" matInput  [(ngModel)]="pulledData.pt_money_recieved" >
+                <input class="paymentInfo" matInput  [(ngModel)]="pulledData.fld_amount" disabled>
+            </mat-form-field>
+            <mat-form-field appearance="outline" *ngIf="pulledData.pt_isPayed === 1">
+                <input class="paymentInfo" matInput   [(ngModel)]="pulledData.pt_money_recieved" disabled>
+            </mat-form-field>
+            <mat-form-field appearance="outline" *ngIf="pulledData.pt_isPayed === 0">
+                <input class="paymentInfo" matInput  value="Unpaid" disabled>
             </mat-form-field>
             <mat-form-field appearance="none">
-            <textarea class="paymentInfo" matInput [(ngModel)]="pulledData.pt_date" disabled rows="5"></textarea>
+                <textarea class="paymentInfo" matInput [(ngModel)]="pulledData.pt_date" disabled rows="5"></textarea>
             </mat-form-field>
         </div>
 
@@ -56,5 +63,5 @@
 
 <mat-dialog-actions align="end">
   <button class="modalBtn" mat-raised-button mat-dialog-close>Cancel</button>
-  <button (click)="updateData(pulledData.pt_id)" class="modalBtn1" mat-raised-button>Edit</button>
+  <button (click)="updateData(pulledData.pt_id)" class="modalBtn1" mat-raised-button mat-dialog-close>Edit</button>
 </mat-dialog-actions>
