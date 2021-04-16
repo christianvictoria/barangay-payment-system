@@ -51,7 +51,7 @@
 		}
 
 		public function select_payments($table, $payment, $filter_data) {
-			if ($payment == null) return $this->select($table, "pt_isPayed=".$filter_data." AND pt_isDeleted=".$filter_data);
+			if ($payment == null) return $this->select($table, "checkup_id is not NULL AND pt_isPayed=".$filter_data." AND pt_isDeleted=".$filter_data);
 			
 			if (isset($payment) && $payment == "checkup") {
 				$this->sql = "SELECT 
