@@ -84,7 +84,7 @@ export class Nav1Component implements OnInit {
     this.router.navigate(["/nav4"]);
   }
 
-  displayedColumns: string[] = ['pt_id', 'residents', 'pt_desc','amount', 'pt_isPayed', 'pt_date', 'actions'];
+  displayedColumns: string[] = ['print', 'pt_id', 'residents', 'pt_desc','amount', 'pt_isPayed', 'pt_date', 'actions'];
   
   removeData = async (id: any): Promise<void> => {
     try {
@@ -140,14 +140,13 @@ export class Nav1Component implements OnInit {
         if (result.value){
           console.log('Delete');
           Swal.fire('Successfully', 'Deleted', 'success');
+          
         } 
         else if (result.isDenied) {
           Swal.fire('Oops...', 'Something went wrong', 'error');
         }
       })
   }
-
-  
 
   PrintReceipt(){
     var docDefinition = {

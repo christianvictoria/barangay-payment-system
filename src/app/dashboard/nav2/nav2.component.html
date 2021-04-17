@@ -21,19 +21,28 @@
     </mat-toolbar>
 
     <div fxLayout="row" class="tabs-style">
-        <button class="addBtn" mat-raised-button color="primary" (click)="addExpenses()"><mat-icon class="paymentaddBtn" aria-hidden="false" aria-label="Example home icon">add</mat-icon>Add New Expense</button>
+        <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()"><mat-icon class="paymentaddBtn" aria-hidden="false" aria-label="Example home icon">add</mat-icon>Add New Expense</button>
 
         <mat-form-field class="example-form-field1">
             <mat-label>Search</mat-label>
-            <input matInput type="text" (keyup)="filterExpenses()">
+            <input matInput type="text">
             <button mat-button matSuffix mat-icon-button aria-label="Clear">
                 <mat-icon style="font-size: 20px; color: #404040;">search</mat-icon>
             </button>
         </mat-form-field>
     </div>
 
-<div class="example-container mat-elevation-z8">
+    <div class="example-container mat-elevation-z8">
          <table mat-table [dataSource]="dataSource">
+                        
+            <ng-container matColumnDef="print">
+                <th mat-header-cell *matHeaderCellDef> Receipt </th>
+                    <td mat-cell *matCellDef="let element">
+                    <button (click)="PrintReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
+                        <mat-icon style="font-size: 20px; color: #404040;">print</mat-icon>
+                    </button>
+                    </td>
+            </ng-container>
  
              <ng-container matColumnDef="Expense No.">
              <th mat-header-cell *matHeaderCellDef> No.</th>

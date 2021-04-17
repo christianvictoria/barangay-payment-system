@@ -39,20 +39,20 @@
         </mat-list>
 
         <div class="inputs2">
-            <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput  [(ngModel)]="pulledData.pt_desc" >
+            <mat-form-field appearance="none">
+                <input class="paymentInfo" matInput  [(ngModel)]="pulledData.pt_desc" disabled>
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="none">
                 <input class="paymentInfo" matInput  [(ngModel)]="pulledData.fld_amount" disabled>
             </mat-form-field>
-            <mat-form-field appearance="outline" *ngIf="pulledData.pt_isPayed === 1">
+            <mat-form-field appearance="none" *ngIf="pulledData.pt_isPayed === 1">
                 <input class="paymentInfo" matInput   [(ngModel)]="pulledData.pt_money_recieved" disabled>
             </mat-form-field>
-            <mat-form-field appearance="outline" *ngIf="pulledData.pt_isPayed === 0">
+            <mat-form-field appearance="none" *ngIf="pulledData.pt_isPayed === 0">
                 <input class="paymentInfo" matInput  value="Unpaid" disabled>
             </mat-form-field>
             <mat-form-field appearance="none">
-                <textarea class="paymentInfo" matInput [(ngModel)]="pulledData.pt_date" disabled rows="5"></textarea>
+                <textarea class="paymentInfo" matInput [(ngModel)]="pulledData.pt_date" disabled rows="1"></textarea>
             </mat-form-field>
         </div>
 

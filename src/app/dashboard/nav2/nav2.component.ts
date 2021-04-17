@@ -61,10 +61,14 @@ export class Nav2Component implements OnInit {
     }
   }
   
-  displayedColumns: string[] = ['Expense No.', 'Given To', 'For', 'Budget Fee', 'Date', 'actions'];
+  displayedColumns: string[] = ['print', 'Expense No.', 'Given To', 'For', 'Budget Fee', 'Date', 'actions'];
 
   addExpenses = () => {
     this.dialog.open(ExpenseAddComponent);
+  }
+
+  CheckOutProject(){
+    this.dialog.open(PendingExpenseComponent);
   }
 
   viewExpenses = (id) => {
@@ -125,7 +129,7 @@ export class Nav2Component implements OnInit {
   }
 
   
-  generatePDF(){
+  PrintReceipt(){
     var docDefinition = {
       content: [
       {

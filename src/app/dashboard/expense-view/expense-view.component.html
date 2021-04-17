@@ -17,14 +17,14 @@
 
 
         <div class="inputs">
-            <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_fname">
+            <mat-form-field appearance="none">
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_fname" disabled>
             </mat-form-field>
-            <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_lname">
+            <mat-form-field appearance="none">
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_lname" disabled>
             </mat-form-field>
-            <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_mname">
+            <mat-form-field appearance="none">
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_mname" disabled>
             </mat-form-field>
         </div>
 
@@ -35,14 +35,14 @@
         </mat-list>
 
         <div class="inputs2">
-            <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_for">
+            <mat-form-field appearance="none">
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_for" disabled>
             </mat-form-field>
-            <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_money_release">
+            <mat-form-field appearance="none">
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_money_release" disabled>
             </mat-form-field>
-            <mat-form-field appearance="outline">
-                <textarea class="paymentInfo" matInput rows="5" [(ngModel)]="expensesPayload.exp_desc"></textarea>
+            <mat-form-field appearance="none">
+                <textarea class="paymentInfo" matInput rows="3" [(ngModel)]="expensesPayload.exp_desc" disabled></textarea>
             </mat-form-field>
         </div>
 
