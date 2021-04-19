@@ -21,11 +21,11 @@
     </mat-toolbar>
 
     <div fxLayout="row" class="tabs-style">
-        <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()"><mat-icon class="paymentaddBtn" aria-hidden="false" aria-label="Example home icon">add</mat-icon>Add New Expense</button>
+        <button class="addBtn" mat-raised-button color="primary" (click)="addExpensesModal()"><mat-icon class="paymentaddBtn" aria-hidden="false" aria-label="Example home icon">add</mat-icon>Add New Expense</button>
 
         <mat-form-field class="example-form-field1">
             <mat-label>Search</mat-label>
-            <input matInput type="text">
+            <input matInput type="text" [(ngModel)]="searchInput" (keyup)="filterExpenses()">
             <button mat-button matSuffix mat-icon-button aria-label="Clear">
                 <mat-icon style="font-size: 20px; color: #404040;">search</mat-icon>
             </button>
@@ -73,7 +73,8 @@
              <th mat-header-cell *matHeaderCellDef> Action </th>
                  <td mat-cell *matCellDef="let element">
                  <button class="viewBtn" (click)="viewExpenses(element?.exp_id)" mat-raised-button color="primary">View</button>
-                 <button class="dlteBtn" (click)="removeRecord(element?.exp_id)" mat-raised-button color="primary">Delete</button>
+                 <button class="editBtn" (click)="updateExpense(element?.exp_id)" mat-raised-button color="primary">Edit</button>
+               <!--   <button class="dlteBtn" (click)="removeRecord(element?.exp_id)" mat-raised-button color="primary">Archive</button> -->
                  </td>
              </ng-container>
      

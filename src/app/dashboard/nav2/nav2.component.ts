@@ -15,6 +15,7 @@ import { PendingExpenseComponent } from '../pending-expense/pending-expense.comp
 // Service
 import { DashboardService } from 'src/app/services/dashboard/dashboard.service';
 
+import { Subscription } from 'rxjs';
 
 import pdfMake from "pdfmake/build/pdfmake";  
 import pdfFonts from "pdfmake/build/vfs_fonts";  
@@ -29,89 +30,85 @@ import Swal from 'sweetalert2';
 })
 export class Nav2Component implements OnInit {
 
+  displayedColumns: string[] = ['print', 'Expense No.', 'Given To', 'For', 'Budget Fee', 'Date', 'actions'];
+  dataSource: any;
   expenses: any[] = [];
+  message: any;
+  isSidebarOpen=true;
+  private subs: Subscription;
+  
   constructor(
     public dialog: MatDialog, 
     public router: Router,
     private dashboardService: DashboardService
-  ) {}
-
-  isSidebarOpen=true;
-
+  ) {   
+    this.subs = this.dashboardService.getUpdate().subscribe(message => {
+      this.message = message;
+      this.ngOnInit();
+    });
+  }
+  ngOnInit(): void {
+    this.getExpenses();
+  }
+  ngOnDestroy() {
+    this.subs.unsubscribe();
+  }
+  getExpenses = async (): Promise<void> => {
+    try {
+      const response = await this.dashboardService.sendDashboardRequest(`expenses/`, null);
+      this.expenses = response.payload;
+      this.dataSource = new MatTableDataSource<ExpensesData>(this.expenses);
+    } catch(error) {
+      console.log(error);
+    }
+  }
+  addExpensesModal = () => {
+    this.dialog.open(ExpenseAddComponent);
+  }
+  viewExpenses = (id: number): void => {
+    this.dialog.open(ExpenseViewComponent, { data: id });
+  }
+  updateExpense = (id: number): void => {
+    this.dialog.open(ExpenseUpdateComponent, { data: id });
+  }
+  // removeRecord = async (id: number): Promise<void> => {
+  //    const warning = await Swal.fire({
+  //                   title:'Archive',
+  //                   text:`Are you sure you want to archive this expense?`,
+  //                   icon:'warning',
+  //                   showCancelButton: true,
+  //                   confirmButtonColor: '#3B8BEB',
+  //                   cancelButtonColor: '#DD2C00',
+  //                   confirmButtonText:'Archive'
+  //                 });
+  //   if (warning.isConfirmed) {
+  //     await Swal.fire('Success!', 'Expense is archived', 'success');
+  //     try {
+  //       const data: any = {};
+  //       data.exp_isDeleted = 1;
+  //       const response = await this.dashboardService.sendDashboardRequest(`updateExpenses/${id}`, data);
+  //       if (response.status.remarks == "success") this.getExpenses();
+  //     } catch(error) {
+  //       await Swal.fire('Oops...', 'Something went wrong', 'error');
+  //     }
+  //   }
+  // }
+  searchInput: string;
+  filterExpenses = async (): Promise<void> => {
+    const response = await this.dashboardService.sendDashboardRequest(`filterExpenses/${this.searchInput}`, null);
+    if (response.status.remarks == "success") {
+      this.expenses = response.payload;
+      this.dataSource = new MatTableDataSource<ExpensesData>(this.expenses);
+    } else {
+       alert("Something Went Wrong");
+    }
+  }
   openSidebar() {
     this.isSidebarOpen = true;
   }
   closeSidebar() {
     this.isSidebarOpen = false;
   }
-
-  ngOnInit(): void {
-    // setInterval(() => this.getExpenses(), 5000);
-    this.getExpenses();
-  }
-  dataSource: any;
-  getExpenses = async (): Promise<void> => {
-    try {
-      const response = await this.dashboardService.sendDashboardRequest(`expenses/`, null);
-      this.expenses = response.payload;
-      this.dataSource = new MatTableDataSource<ExpensesData>(this.expenses);
-      console.log(this.expenses);
-    } catch(error) {
-      console.log(error);
-    }
-  }
-  
-  displayedColumns: string[] = ['print', 'Expense No.', 'Given To', 'For', 'Budget Fee', 'Date', 'actions'];
-
-  addExpenses = () => {
-    this.dialog.open(ExpenseAddComponent);
-  }
-
-  CheckOutProject(){
-    this.dialog.open(PendingExpenseComponent);
-  }
-
-  viewExpenses = (id) => {
-    this.dialog.open(ExpenseViewComponent, { data: id });
-  }
-
-  removeRecord = async (id: any): Promise<void> => {
-    try {
-      const data: any = {};
-      data.exp_isDeleted = 1;
-      const response = await this.dashboardService.sendDashboardRequest("updateExpenses/" + id, data);
-      if (response.status.remarks == "success") {
-        this.getExpenses();
-      }
-    } catch(error) {
-      console.log(error);
-    }
-  }
-
-  filterExpenses = async (): Promise<void> => {
-
-  }
-
-  Confirmation() {
-      Swal.fire({
-        title:'Are you sure?',
-        text:`You won't be able to revert this!`,
-        icon:'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#dd2c00',
-        cancelButtonColor: '',
-        confirmButtonText:'Confirm'
-      }).then(result => {
-        if (result.value){
-          console.log('Delete');
-          Swal.fire('Successfully', 'Deleted', 'success');
-        } 
-        else if (result.isDenied) {
-          Swal.fire('Oops...', 'Something went wrong', 'error');
-        }
-      })
-  }
-
   openDashboard(){
     this.router.navigate(["/dashboard"]);
   }
@@ -127,8 +124,6 @@ export class Nav2Component implements OnInit {
   logout(){
     this.router.navigate(["/"]);
   }
-
-  
   PrintReceipt(){
     var docDefinition = {
       content: [

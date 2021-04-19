@@ -29,6 +29,31 @@
 			return $this->sendPayload($data, "success", $errmsg, $code);
 		}
 
+		public function filter_expenses($table, $filter_data) {
+			$this->sql = "SELECT * FROM $table WHERE exp_isDeleted <> 1";
+
+			if ($filter_data != null) {
+				$this->sql .= " AND CONCAT(exp_lname, ', ', exp_fname, ' ', exp_mname) LIKE '%$filter_data%'
+								OR exp_for LIKE '%$filter_data%'
+								AND exp_isDeleted = 0
+								OR exp_id LIKE '%$filter_data%'
+								AND exp_isDeleted = 0";
+			}
+
+			$data = array(); $errmsg = ""; $code = 0;
+			try {
+				if ($res = $this->pdo->query($this->sql)->fetchAll()) {
+					foreach ($res as $rec) {
+						array_push($data, $rec);
+						$res = null; $code = 200;
+					}
+				}
+			} catch(\PDOException $e) {
+				$errmsg = $e->getMessage(); $code = 401;
+			}
+			return $this->sendPayload($data, "success", $errmsg, $code);
+		}
+
 		public function select_expenses($table, $filter_data) {
 			$this->sql = "SELECT * FROM $table WHERE exp_isDeleted = 0 ";
 
