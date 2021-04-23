@@ -33,7 +33,7 @@
 			$this->sql = "SELECT * FROM $table WHERE exp_isDeleted <> 1";
 
 			if ($filter_data != null) {
-				$this->sql .= " AND CONCAT(exp_lname, ', ', exp_fname, ' ', exp_mname) LIKE '%$filter_data%'
+				$this->sql .= " AND CONCAT(person_lname, ', ', person_fname, ' ', person_mname) LIKE '%$filter_data%'
 								OR exp_for LIKE '%$filter_data%'
 								AND exp_isDeleted = 0
 								OR exp_id LIKE '%$filter_data%'
