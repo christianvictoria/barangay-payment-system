@@ -42,10 +42,6 @@ export class PaymentViewComponent implements OnInit {
     }
   } 
 
-  
-
-  
-
   UpdateProject(){
     this.dialog.open(PaymentUpdateComponent);
   }

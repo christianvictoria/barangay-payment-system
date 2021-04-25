@@ -9,19 +9,16 @@
 <br>
     <div class="modalFields">
         <mat-list role="list">
-            <mat-list-item class="fieldNamesno"role="listitem">Expense Number</mat-list-item>
+            <mat-list-item class="fieldNamesno"role="listitem">Payment Number</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">First Name</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Last Name</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Middle Name</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Contact Number</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Barangay Destination</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Gender</mat-list-item>
         </mat-list>
 
 
         <div class="inputs">
             <mat-form-field appearance="outline">
-            <input class="paymentInfo" matInput>
+            <input class="paymentInfo" matInput disabled>
             </mat-form-field>
             <mat-form-field appearance="outline">
             <input class="paymentInfo" matInput>
@@ -31,25 +28,14 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
             <input class="paymentInfo" matInput >
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-            <input class="paymentInfo" matInput >
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-            <input class="paymentInfo" matInput >
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-select class="paymentInfo">
-                <mat-option class="paitentInfo" value="one">Male</mat-option>
-                <mat-option class="paitentInfo" value="two">Female</mat-option>
-              </mat-select>
             </mat-form-field>
         </div>
 
         <mat-list role="list">
-            <mat-list-item class="fieldNamesno"role="listitem">Expense For</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Expense Receive</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Purpose</mat-list-item>
+            <mat-list-item class="fieldNamesno"role="listitem">Payment For</mat-list-item>
+            <mat-list-item class="fieldNames"role="listitem">Amount</mat-list-item>
+            <mat-list-item class="fieldNames"role="listitem">Payment Receive</mat-list-item>
+            <mat-list-item class="fieldNames"role="listitem">Date</mat-list-item>
         </mat-list>
 
         <div class="inputs2">
@@ -60,7 +46,10 @@
             <input class="paymentInfo" matInput >
             </mat-form-field>
             <mat-form-field appearance="outline">
-            <textarea class="paymentInfo" matInput rows="5"></textarea>
+            <input class="paymentInfo" matInput >
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <input class="paymentInfo" matInput >
             </mat-form-field>
         </div>
 

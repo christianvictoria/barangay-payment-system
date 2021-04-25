@@ -38,7 +38,8 @@
                 <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_for">
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_money_release">
+            <span matPrefix>Php &nbsp;</span>
+                <input matInput type="number" class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_money_release" placeholder="0" maxlength="8">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <textarea class="paymentInfo" matInput rows="2" [(ngModel)]="expensesPayload.exp_desc"></textarea>

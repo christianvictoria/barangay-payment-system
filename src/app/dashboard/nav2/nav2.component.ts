@@ -115,11 +115,8 @@ export class Nav2Component implements OnInit {
   openNav1(){
     this.router.navigate(["/nav1"]);
   }
-  openNav3(){
-    this.router.navigate(["/nav3"]);
-  }
-  openNav4(){
-    this.router.navigate(["/nav4"]);
+  openPendingTrans(){
+    this.router.navigate(["/PendingTransactions"]);
   }
   logout(){
     this.router.navigate(["/"]);

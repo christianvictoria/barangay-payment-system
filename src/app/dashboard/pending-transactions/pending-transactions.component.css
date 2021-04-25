@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+    overflow: hidden;
+}
+
+mat-sidenav-container, mat-sidenav-content {
+    height: 100%;
+    background-color: #eef5f9;
+}
+
+mat-list {
+    font-family: 'Poppins', sans-serif;
+}
+
+h3 {
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: -5px;
+    font-weight: bold;
+    color: #9c9c9cad;
+}
+
+.user-profile {
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 100%;
+margin-top:10px;
+}
+
+mat-sidenav
+{
+    background-color: rgb(255, 255, 255);
+    color: #404040;
+    font-family: 'Poppins', sans-serif;
+    width: 250px;
+    border-right: 0.75px solid lightgrey;
+}
+
+.main-container
+{
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #eef5f9;
+}
+
+mat-sidenav-container, mat-sidenav-content {
+    height: 100%;
+    background-color: #eef5f9;
+}
+
+.spacer
+{
+    flex: 1 1 auto;
+}
+
+mat-toolbar
+{
+    background-color: 	#FFFAFA;
+    font-family: 'Poppins', sans-serif;
+    color:rgb(255, 255, 255); 
+    background-color:#3B8BEB; 
+    padding-left: 30px;
+}
+
+mat-list
+{
+    margin-top: 150px;
+}
+
+a {
+    font-family: 'Poppins', sans-serif;
+    margin: -10px;
+}
+
+mat-sidenav-container mat-list mat-list-item
+{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.pointer{
+    margin-top: 0px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.inline-display {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+
+.search-style {
+    margin-top: 25px;
+}
+
+.addBtn {
+    background-color: #3B8BEB;
+    border-radius: 6px;
+    margin-top: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.viewBtn {
+    background-color: #3B8BEB;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    margin-right: 10px;
+}
+
+.dlteBtn {
+    background-color: #dd2c00;
+    /* background-color: red; */
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.updtBtn {
+    background-color: #4bb543;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    margin-right: 10px;
+}
+
+.payBtn {
+    background-color: #4bb543;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 10px;
+}
+    
+.tabs-style {
+    margin-left: 35px;
+    margin-right: 25px;
+    margin-top: 10px;
+}
+
+    
+.pending-style {
+    margin-right: 25px;
+    margin-top: 10px;
+}
+
+
+.citizens {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin-left: 25px;
+    margin-top: 25px;
+}
+
+.citizens td, .citizens th {
+    padding: 8px;
+}
+
+.citizens tr:nth-child(even) {
+    background-color: #e4e4e4;
+}
+
+.citizens th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    color: white;
+}
+
+.example-container {
+    overflow: auto;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 20px;
+    margin-bottom: 85px;
+}
+
+.example-form-field1 {
+    width: 400px;
+    margin-right: 10px;
+    margin-top: 5px;
+    font-family: 'Poppins', sans-serif;
+    float: right;
+}
+
+th, td, button {
+    font-family: 'Poppins', sans-serif;
+}
+
+th {
+    font-size: 12pt;
+    font-weight: bold;
+    background-color: rgb(255, 255, 255);
+    color: rgb(151, 151, 151);
+}
+
+table {
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+}
+
+
+.display-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.listprop {
+    /* color:rgb(255, 255, 255); 
+    background-color:#3b8bea;
+    border-radius: 5px; */
+    color:rgb(255, 255, 255); 
+    background-color:#3B8BEB;
+}
+
+.unselected {
+    color:#404040;
+}
+
+.iconsidenav {
+    padding-right: 5px;
+    color:#404040;
+}
+
+.iconsideselected {
+    padding-right: 5px;
+}
+
+.menuicon {
+    margin-right: 50px;
+}
+
+mat-label {
+    font-size: 16px;
+}
+
+input {
+    font-size: 16px;
+}
+
+.paymentaddBtn {
+    font-size: 22px; 
+    margin-right: 1px;
+}
+
+mat-tab {
+    width: 100%;
+    margin-right: 35px !important;
+    margin-left: 35px !important;
+}
+
+
+mat-tab-group {
+    width: 95.6%;
+    margin-top: 30px;
+    margin-left: 35px !important;
+}
+
+
+::ng-deep .mat-tab-label .mat-tab-label-content {
+    margin-top: 10px !important;
+    margin-bottom: 25px !important; 
+    text-align: center !important;
+    color: #404040 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 12pt !important;
+    font-weight: bold;
+    width: 100% !important;
+}

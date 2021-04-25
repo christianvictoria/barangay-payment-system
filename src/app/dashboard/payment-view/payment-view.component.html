@@ -52,7 +52,7 @@
                 <input class="paymentInfo" matInput  value="Unpaid" disabled>
             </mat-form-field>
             <mat-form-field appearance="none">
-                <textarea class="paymentInfo" matInput [(ngModel)]="pulledData.pt_date" disabled rows="1"></textarea>
+                <input class="paymentInfo" matInput [(ngModel)]="pulledData.pt_date" disabled>
             </mat-form-field>
         </div>
 
@@ -63,5 +63,5 @@
 
 <mat-dialog-actions align="end">
   <button class="modalBtn" mat-raised-button mat-dialog-close>Cancel</button>
-  <button (click)="updateData(pulledData.pt_id)" class="modalBtn1" mat-raised-button mat-dialog-close>Edit</button>
+  <button (click)="UpdateProject()" class="modalBtn1" mat-raised-button>Edit</button>
 </mat-dialog-actions>

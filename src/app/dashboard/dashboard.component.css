@@ -359,6 +359,11 @@
         margin-left: 15px;
     }
 
+    .iconsideselected {
+        padding-right: 5px;
+        color:#404040;
+    }
+
     .chartcontent {
         margin-top: 100px;
     }

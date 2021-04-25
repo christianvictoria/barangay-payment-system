@@ -6,7 +6,8 @@
         <mat-list class="pointer">
             <mat-list-item (click)="openDashboard()"><mat-icon class="iconsidenav">dashboard</mat-icon> Dashboard </mat-list-item>
             <mat-list-item class="listprop"> <mat-icon class="iconsideselected">library_add</mat-icon>Barangay Payments </mat-list-item>
-            <mat-list-item (click)="openNav2()"><mat-icon class="iconsidenav">payments</mat-icon> Barangay Expenses </mat-list-item><br>
+            <mat-list-item (click)="openNav2()"><mat-icon class="iconsidenav">payments</mat-icon> Barangay Expenses </mat-list-item>
+            <mat-list-item (click)="openPendingTrans()"> <mat-icon class="iconsidenav">library_add</mat-icon>Pending Transactions </mat-list-item><br>
             <mat-divider></mat-divider>
         </mat-list>
     </mat-sidenav>
@@ -24,7 +25,7 @@
         <mat-tab label="Clinic Payments">
 
         <div fxLayout="row" class="pending-style">
-            <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()">
+            <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()" style="visibility: hidden; pointer-events: none;">
                 <mat-icon class="paymentaddBtn" aria-hidden="false" aria-label="Example home icon">add</mat-icon>Pending Payments
             </button>
 
@@ -115,7 +116,7 @@
         <mat-tab label="Document Payments">
 
             <div fxLayout="row" class="pending-style">
-                <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()">
+                <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()" style="visibility: hidden; pointer-events: none;">
                     <mat-icon class="paymentaddBtn" aria-hidden="false" aria-label="Example home icon">add</mat-icon>Pending Payments
                 </button>
     
@@ -206,7 +207,7 @@
         <mat-tab label="Other Payments">
 
             <div fxLayout="row" class="pending-style">
-                <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()">
+                <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()" style="visibility: hidden; pointer-events: none;">
                     <mat-icon class="paymentaddBtn" aria-hidden="false" aria-label="Example home icon">add</mat-icon>Pending Payments
                 </button>
     
@@ -299,7 +300,7 @@
         <mat-tab label="Other Payments">
 
             <div fxLayout="row" class="pending-style">
-                <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()">
+                <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()" style="visibility: hidden; pointer-events: none;">
                     <mat-icon class="paymentaddBtn" aria-hidden="false" aria-label="Example home icon">add</mat-icon>Pending Payments
                 </button>
     

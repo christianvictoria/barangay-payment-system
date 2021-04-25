@@ -107,13 +107,9 @@ export class DashboardComponent implements OnInit {
     openNav2(){
       this.router.navigate(["/nav2"]);
     }
-    openNav3(){
-      this.router.navigate(["/nav3"]);
+    openPendingTrans(){
+      this.router.navigate(["/PendingTransactions"]);
     }
-    openNav4(){
-      this.router.navigate(["/nav4"]);
-    }
-    
 }
 
 

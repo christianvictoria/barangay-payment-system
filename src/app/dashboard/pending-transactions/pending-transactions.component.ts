@@ -7,10 +7,8 @@ import { ViewChild} from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs'
 
 import { MatPaginator } from '@angular/material/paginator';
-import { PaymentAddComponent } from '../payment-add/payment-add.component';
-import { PaymentViewComponent } from '../payment-view/payment-view.component';
-import { PaymentUpdateComponent } from '../payment-update/payment-update.component';
-import { PendingPaymentComponent } from '../pending-payment/pending-payment.component';
+import { PaymentModalComponent } from '../payment-modal/payment-modal.component';
+import { ExpenseModalComponent } from '../expense-modal/expense-modal.component';
 import { PaymentsService } from 'src/app/payments.service';
 
 import pdfMake from "pdfmake/build/pdfmake";  
@@ -20,12 +18,11 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-nav1',
-  templateUrl: './nav1.component.html',
-  styleUrls: ['./nav1.component.css']
+  selector: 'app-pending-transactions',
+  templateUrl: './pending-transactions.component.html',
+  styleUrls: ['./pending-transactions.component.css']
 })
-export class Nav1Component implements OnInit {
-
+export class PendingTransactionsComponent implements OnInit {
   constructor(private ds: PaymentsService, public dialog: MatDialog, public router: Router ) { }
   a: any;
   pulledData: any[] = [];
@@ -47,7 +44,6 @@ export class Nav1Component implements OnInit {
 
   }
 
-
   getData(): void {
     this.ds.sendAPIRequest("payments/checkup/", null).subscribe(data => {
       this.pulledData = data.payload
@@ -58,7 +54,6 @@ export class Nav1Component implements OnInit {
     })
   }
 
-  
 
   openSidebar() {
     this.isSidebarOpen = true;
@@ -73,6 +68,9 @@ export class Nav1Component implements OnInit {
   }
   openDashboard(){
     this.router.navigate(["/dashboard"]);
+  }
+  openNav1(){
+    this.router.navigate(["/nav1"]);
   }
   openNav2(){
     this.router.navigate(["/nav2"]);
@@ -109,19 +107,8 @@ export class Nav1Component implements OnInit {
     }
   } 
 
-  ViewProject(id){
-    this.dialog.open(PaymentViewComponent, {data:id});
-    //this.ds.SharedData = d;
-   // console.log(id)
-   
-  }
-
-  CheckOutProject(){
-    this.dialog.open(PendingPaymentComponent, { data: {"name": "Christian"} });
-  }
-
-  UpdateProject(){
-    this.dialog.open(PaymentUpdateComponent);
+  PendingPaymentModal(){
+    this.dialog.open(PaymentModalComponent);
   }
 
   Confirmation() {
