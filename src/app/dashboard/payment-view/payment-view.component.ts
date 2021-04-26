@@ -23,8 +23,8 @@ export class PaymentViewComponent implements OnInit {
 
   getData(): void {
     this.ds.sendAPIRequest("payments/checkup/" + this.data, null).subscribe(data => {
-      this.pulledData = data.payload[0]
-      console.log(data.payload)
+      this.pulledData = data.payload[0];
+      console.log(data.payload);
     })
   }
 

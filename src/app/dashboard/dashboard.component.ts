@@ -45,9 +45,19 @@ export class DashboardComponent implements OnInit {
     this.getDocumentPayments()
     this.getPendingPayments()
     this.getExpenses()
+    this.getOrderPayments()
   }
 
-
+  
+  getOrderPayments = async (): Promise<void> => {
+    try {
+      const samplePaymentMethod: string = "order";
+      const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}`, null);
+      console.table(response.payload);
+    } catch(error) {
+      console.log(error);
+    }
+  }
 
   getCheckUpPayments = async (): Promise<void> => {
     try {

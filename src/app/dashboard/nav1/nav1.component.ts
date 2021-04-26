@@ -90,6 +90,7 @@ export class Nav1Component implements OnInit {
       const response = await this.ds.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
       if (response.status.remarks == "success") {
         this.getData();
+        console.log();
       }
     } catch(error) {
       console.log(error);

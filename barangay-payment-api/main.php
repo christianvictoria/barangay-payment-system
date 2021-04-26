@@ -16,8 +16,6 @@
 	switch($_SERVER['REQUEST_METHOD']) {
 		case 'POST':
 			switch ($req[0]) {
-
-
 				case 'residents':
 					if (count($req) > 1) {
 						echo json_encode($gm->select("tbl_profiling_".$req[0], "res_id=".$req[1]), JSON_PRETTY_PRINT);
@@ -29,13 +27,11 @@
 				// Request and params 
 				// payments/(type of payment)/(row id)
 				case 'payments':
+					$paymentMethod = array("checkup", "transaction", "order");
 					if (count($req) > 2) {
 						echo json_encode($post->select_payments("tbl_payment_".$req[0], $req[1], $req[2]), JSON_PRETTY_PRINT);
 					}
-					else if ($req[1] == "checkup") {
-						echo json_encode($post->select_payments("tbl_payment_".$req[0], $req[1], null), JSON_PRETTY_PRINT);
-					} 
-					else if ($req[1] == "transaction") {
+					else if (in_array($req[1], $paymentMethod)) {
 						echo json_encode($post->select_payments("tbl_payment_".$req[0], $req[1], null), JSON_PRETTY_PRINT);
 					} 
 					 else {
