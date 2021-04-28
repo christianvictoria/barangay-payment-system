@@ -62,8 +62,8 @@ export class DashboardComponent implements OnInit {
   getCheckUpPayments = async (): Promise<void> => {
     try {
       const samplePaymentMethod: string = "checkup";
-      const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}/`, null);
-      this.checkups = response.payload.length;
+      const response = await this.dashboardService.sendDashboardRequest(`paid/${samplePaymentMethod}/1`, null);
+      (response.payload.length < 1) ? this.checkups = "0" : this.checkups = response.payload.length;
     } catch(error) {
       console.log(error);
     }
@@ -72,8 +72,8 @@ export class DashboardComponent implements OnInit {
   getDocumentPayments = async (): Promise<void> => {
     try {
       const samplePaymentMethod: string = "transaction";
-      const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}/`, null);
-      this.documents = response.payload.length;
+      const response = await this.dashboardService.sendDashboardRequest(`paid/${samplePaymentMethod}/1`, null);
+      (response.payload.length < 1) ? this.documents = "0" : this.documents = response.payload.length;
     } catch(error) {
       console.log(error);
     }
@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit {
   getPendingPayments = async (): Promise<void> => {
     try {
       const samplePaymentIsDeleted: number = 0;
-      const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentIsDeleted}`, null);
+      const response = await this.dashboardService.sendDashboardRequest(`pending/${samplePaymentIsDeleted}`, null);
       this.pending = response.payload.length;
     } catch(error) {
       console.log(error);

@@ -76,8 +76,6 @@
 		}
 
 		public function select_payments($table, $payment, $filter_data) {
-			if ($payment == null) return $this->select($table, "checkup_id is not NULL AND pt_isPayed= 0 AND pt_isDeleted= 0");
-			
 			if (isset($payment) && $payment == "checkup") {
 				$this->sql = "SELECT 
 								$table.pt_id,
@@ -147,9 +145,7 @@
 								AND $table.pt_isDeleted = 0 ";
 			}
 
-			if ($filter_data != null) {
-				$this->sql .= "AND $table.pt_id = $filter_data ORDER BY $table.pt_id";
-			}
+			if ($filter_data != null) $this->sql .= "AND $filter_data";
 			
 
 			$data = array(); $errmsg = ""; $code = 0;

@@ -27,12 +27,11 @@ import Swal from 'sweetalert2';
 export class Nav1Component implements OnInit {
 
   constructor(private ds: PaymentsService, public dialog: MatDialog, public router: Router ) { }
+  displayedColumns: string[] = ['print', 'pt_id', 'residents', 'pt_desc','amount', 'pt_isPayed', 'pt_date', 'actions'];
+  displayedColumns2: string[] = ['print', 'pt_id', 'name', 'pt_desc','quantity', 'amount', 'pt_isPayed', 'pt_date', 'actions'];
   a: any;
-  pulledData: any[] = [];
-  pulledUnpaid: any[] = [];
   isSidebarOpen=true;
   dataSourceUnpaid: any;
-  dataSource: any;
   ptID:any;
   checkupID:any;
   transID:any;
@@ -43,21 +42,65 @@ export class Nav1Component implements OnInit {
   ptDeleted:any;
 
   ngOnInit(): void {
-    this.getData();
+    this.pending();
+    this.paid();
 
   }
 
+  paymentMethod: string = "checkup";
+  payment = (method: string): void => {
+    this.paymentMethod = method;
+    this.pending();
+    this.paid();
+  }
 
-  getData(): void {
-    this.ds.sendAPIRequest("payments/checkup/", null).subscribe(data => {
-      this.pulledData = data.payload
-      // Sort by pt_isPayed
-      this.pulledData.sort((a, b) => a.pt_isPayed - b.pt_isPayed);
-      this.dataSource = new MatTableDataSource(this.pulledData);
+  pendingDataSource: any;
+  pendingData: any[] = [];
+  pending = (): void => {
+    this.ds.sendAPIRequest(`pending/${this.paymentMethod}/0`, null).subscribe(data => {
+      this.pendingData = data.payload
+      this.pendingDataSource = new MatTableDataSource(this.pendingData);
       console.log(data.payload)
     })
   }
 
+  paidDataSource: any;
+  paidData: any[] = [];
+  paid = (): void => {
+    this.ds.sendAPIRequest(`paid/${this.paymentMethod}/1`, null).subscribe(data => {
+      this.paidData = data.payload
+      this.paidDataSource = new MatTableDataSource(this.paidData);
+      console.log(data.payload)
+    })
+  }
+  
+  removeData = async (id: any): Promise<void> => {
+    try {
+      const data: any = {};
+      data.pt_isDeleted = 1;
+      const response = await this.ds.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
+      if (response.status.remarks == "success") {
+        this.pending();
+        this.paid();
+      }
+    } catch(error) {
+      console.log(error);
+    }
+  } 
+
+  payData = async (id: any): Promise<void> => {
+    try {
+      let data: any = {};
+        data.pt_isPayed = 1;
+      const response = await this.ds.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
+      if (response.status.remarks == "success") {
+        this.pending();
+        this.paid();
+      }
+    } catch(error) {
+      console.log(error);
+    }
+  } 
   
 
   openSidebar() {
@@ -80,35 +123,6 @@ export class Nav1Component implements OnInit {
   openPendingTrans(){
     this.router.navigate(["/PendingTransactions"]);
   }
-
-  displayedColumns: string[] = ['print', 'pt_id', 'residents', 'pt_desc','amount', 'pt_isPayed', 'pt_date', 'actions'];
-  
-  removeData = async (id: any): Promise<void> => {
-    try {
-      const data: any = {};
-      data.pt_isDeleted = 1;
-      const response = await this.ds.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
-      if (response.status.remarks == "success") {
-        this.getData();
-        console.log();
-      }
-    } catch(error) {
-      console.log(error);
-    }
-  } 
-
-  payData = async (id: any): Promise<void> => {
-    try {
-      let data: any = {};
-        data.pt_isPayed = 1;
-      const response = await this.ds.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
-      if (response.status.remarks == "success") {
-        this.getData();
-      }
-    } catch(error) {
-      console.log(error);
-    }
-  } 
 
   ViewProject(id){
     this.dialog.open(PaymentViewComponent, {data:id});
