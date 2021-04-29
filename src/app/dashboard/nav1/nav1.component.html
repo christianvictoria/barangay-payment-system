@@ -6,8 +6,7 @@
         <mat-list class="pointer">
             <mat-list-item (click)="openDashboard()"><mat-icon class="iconsidenav">dashboard</mat-icon> Dashboard </mat-list-item>
             <mat-list-item class="listprop"> <mat-icon class="iconsideselected">library_add</mat-icon>Barangay Payments </mat-list-item>
-            <mat-list-item (click)="openNav2()"><mat-icon class="iconsidenav">payments</mat-icon> Barangay Expenses </mat-list-item>
-            <mat-list-item (click)="openPendingTrans()"> <mat-icon class="iconsidenav">library_add</mat-icon>Pending Transactions </mat-list-item><br>
+            <mat-list-item (click)="openNav2()"><mat-icon class="iconsidenav">payments</mat-icon> Barangay Expenses </mat-list-item><br>
             <mat-divider></mat-divider>
         </mat-list>
     </mat-sidenav>
@@ -33,10 +32,17 @@
             <ng-template mat-tab-label>
                 <span (click)="payment('checkup')">Pending Checkup Payments</span>
             </ng-template>
+
             <div fxLayout="row" class="pending-style">
-                <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()" style="visibility: hidden; pointer-events: none;">
-                    <mat-icon class="paymentaddBtn" aria-hidden="false" aria-label="Example home icon">add</mat-icon>Pending Payments
-                </button>
+                
+                <mat-form-field  class="dropdown" floatLabel="never">
+                    <mat-label>Choose</mat-label>
+                    <mat-select>
+                        <mat-option value="one">Pending</mat-option>
+                        <mat-option value="two">Paid</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
                 <mat-form-field class="example-form-field1">
                     <mat-label>Search</mat-label>
                     <input matInput type="text">
@@ -45,6 +51,7 @@
                     </button>
                 </mat-form-field>
             </div>
+
             <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="pendingDataSource">
                     <ng-container matColumnDef="print">
@@ -113,9 +120,15 @@
             </ng-template>
 
             <div fxLayout="row" class="pending-style">
-                <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()" style="visibility: hidden; pointer-events: none;">
-                    <mat-icon class="paymentaddBtn" aria-hidden="false" aria-label="Example home icon">add</mat-icon>Pending Payments
-                </button>
+                
+                <mat-form-field  class="dropdown" floatLabel="never">
+                    <mat-label>Choose</mat-label>
+                    <mat-select>
+                        <mat-option value="one">Pending</mat-option>
+                        <mat-option value="two">Paid</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
     
                 <mat-form-field class="example-form-field1">
                     <mat-label>Search</mat-label>
@@ -207,9 +220,15 @@
             </ng-template>
 
             <div fxLayout="row" class="pending-style">
-                <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()" style="visibility: hidden; pointer-events: none;">
-                    <mat-icon class="paymentaddBtn" aria-hidden="false" aria-label="Example home icon">add</mat-icon>Pending Payments
-                </button>
+                
+                <mat-form-field  class="dropdown" floatLabel="never">
+                    <mat-label>Choose</mat-label>
+                    <mat-select>
+                        <mat-option value="one">Pending</mat-option>
+                        <mat-option value="two">Paid</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
     
                 <mat-form-field class="example-form-field1">
                     <mat-label>Search</mat-label>
@@ -303,9 +322,15 @@
             </ng-template>
 
             <div fxLayout="row" class="pending-style">
-                <button class="addBtn" mat-raised-button color="primary" (click)="CheckOutProject()" style="visibility: hidden; pointer-events: none;">
-                    <mat-icon class="paymentaddBtn" aria-hidden="false" aria-label="Example home icon">add</mat-icon>Pending Payments
-                </button>
+                
+                <mat-form-field  class="dropdown" floatLabel="never">
+                    <mat-label>Choose</mat-label>
+                    <mat-select>
+                        <mat-option value="one">Pending</mat-option>
+                        <mat-option value="two">Paid</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
     
                 <mat-form-field class="example-form-field1">
                     <mat-label>Search</mat-label>

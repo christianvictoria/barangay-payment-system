@@ -112,6 +112,17 @@
         font-family: 'Poppins', sans-serif;
     }
 
+    .dropdown {
+        font-family: 'Poppins', sans-serif;
+        width: 150px;
+        font-size: 16px;
+        height: 40px;
+        background: transparent;
+        color: #404040;
+        margin-bottom: 5px;
+        margin-left: 2px;
+    }    
+
     .viewBtn {
         background-color: #3B8BEB;
         border-radius: 6px;
@@ -186,7 +197,7 @@
 
     .example-form-field1 {
         width: 400px;
-        margin-right: 10px;
+        margin-right: -22px;
         margin-top: 5px;
         font-family: 'Poppins', sans-serif;
         float: right;
@@ -242,6 +253,7 @@
     mat-label {
         font-size: 16px;
     }
+
 
     input {
         font-size: 16px;

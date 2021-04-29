@@ -120,9 +120,6 @@ export class Nav1Component implements OnInit {
   openNav2(){
     this.router.navigate(["/nav2"]);
   }
-  openPendingTrans(){
-    this.router.navigate(["/PendingTransactions"]);
-  }
 
   ViewProject(id){
     this.dialog.open(PaymentViewComponent, {data:id});

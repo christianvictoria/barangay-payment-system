@@ -41,7 +41,6 @@ import { PendingPaymentComponent } from './dashboard/pending-payment/pending-pay
 import { PendingExpenseComponent } from './dashboard/pending-expense/pending-expense.component';
 import { CheckoutPaymentComponent } from './dashboard/checkout-payment/checkout-payment.component';
 import { CheckoutExpenseComponent } from './dashboard/checkout-expense/checkout-expense.component';
-import { PendingTransactionsComponent } from './dashboard/pending-transactions/pending-transactions.component';
 
 @NgModule({
   declarations: [
@@ -62,8 +61,7 @@ import { PendingTransactionsComponent } from './dashboard/pending-transactions/p
     PendingPaymentComponent,
     PendingExpenseComponent,
     CheckoutPaymentComponent,
-    CheckoutExpenseComponent,
-    PendingTransactionsComponent
+    CheckoutExpenseComponent
   ],
   imports: [
     HttpClientModule,

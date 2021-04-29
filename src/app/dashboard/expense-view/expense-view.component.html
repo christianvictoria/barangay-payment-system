@@ -40,6 +40,8 @@
             </mat-form-field>
             <mat-form-field appearance="none">
                 <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_money_release" disabled>
+                <span matPrefix>Php&nbsp;</span>
+                <span matSuffix>.00</span>
             </mat-form-field>
             <mat-form-field appearance="none">
                 <textarea class="paymentInfo" matInput rows="5" [(ngModel)]="expensesPayload.exp_desc" disabled></textarea>
