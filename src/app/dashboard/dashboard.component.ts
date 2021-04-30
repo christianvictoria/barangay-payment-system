@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
 
   checkups: any = "";
   documents: any = "";
+  orders: any = "";
   expenses: any = "";
   pending: any = "";
   constructor(
@@ -37,10 +38,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
- /*   setInterval(() => this.getCheckUpPayments(), 5000);
-    setInterval(() => this.getDocumentPayments(), 5000);
-    setInterval(() => this.getPendingPayments(), 5000);
-    setInterval(() => this.getExpenses(), 5000);*/
     this.getCheckUpPayments()
     this.getDocumentPayments()
     this.getPendingPayments()
@@ -53,7 +50,7 @@ export class DashboardComponent implements OnInit {
     try {
       const samplePaymentMethod: string = "order";
       const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}`, null);
-      console.table(response.payload);
+      (response.payload.length < 1) ? this.orders = "0" : this.orders = response.payload.length;
     } catch(error) {
       console.log(error);
     }

@@ -26,59 +26,47 @@ import Swal from 'sweetalert2';
 })
 export class Nav1Component implements OnInit {
 
-  constructor(private ds: PaymentsService, public dialog: MatDialog, public router: Router ) { }
+  constructor(private paymentService: PaymentsService, public dialog: MatDialog, public router: Router ) { }
   displayedColumns: string[] = ['print', 'pt_id', 'residents', 'pt_desc','amount', 'pt_isPayed', 'pt_date', 'actions'];
   displayedColumns2: string[] = ['print', 'pt_id', 'name', 'pt_desc','quantity', 'amount', 'pt_isPayed', 'pt_date', 'actions'];
-  a: any;
   isSidebarOpen=true;
-  dataSourceUnpaid: any;
-  ptID:any;
-  checkupID:any;
-  transID:any;
-  ptDesc:any;
-  ptMoney:any;
-  ptDate:any;
-  ptPayed:any;
-  ptDeleted:any;
 
-  ngOnInit(): void {
-    this.pending();
-    this.paid();
-
+  async ngOnInit(): Promise<void> {
+    await this.pending();
+    await this.paid();
   }
 
   paymentMethod: string = "checkup";
   payment = (method: string): void => {
     this.paymentMethod = method;
-    this.pending();
-    this.paid();
+    this.ngOnInit();
   }
 
   pendingDataSource: any;
-  pendingData: any[] = [];
-  pending = (): void => {
-    this.ds.sendAPIRequest(`pending/${this.paymentMethod}/0`, null).subscribe(data => {
-      this.pendingData = data.payload
-      this.pendingDataSource = new MatTableDataSource(this.pendingData);
-      console.log(data.payload)
-    })
+  pending = async (): Promise<void> => {
+    try {
+      const response = await this.paymentService.sendDashboardRequest(`pending/${this.paymentMethod}/0`, null);
+      this.pendingDataSource = new MatTableDataSource(response.payload);
+    } catch(error) {
+      console.log(error);
+    }
   }
 
   paidDataSource: any;
-  paidData: any[] = [];
-  paid = (): void => {
-    this.ds.sendAPIRequest(`paid/${this.paymentMethod}/1`, null).subscribe(data => {
-      this.paidData = data.payload
-      this.paidDataSource = new MatTableDataSource(this.paidData);
-      console.log(data.payload)
-    })
+  paid = async (): Promise<void> => {
+    try {
+      const response = await this.paymentService.sendDashboardRequest(`paid/${this.paymentMethod}/1`, null);
+      this.paidDataSource = new MatTableDataSource(response.payload);
+    } catch (error) {
+      console.log(error);
+    }
   }
   
   removeData = async (id: any): Promise<void> => {
     try {
       const data: any = {};
       data.pt_isDeleted = 1;
-      const response = await this.ds.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
+      const response = await this.paymentService.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
       if (response.status.remarks == "success") {
         this.pending();
         this.paid();
@@ -92,8 +80,9 @@ export class Nav1Component implements OnInit {
     try {
       let data: any = {};
         data.pt_isPayed = 1;
-      const response = await this.ds.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
+      const response = await this.paymentService.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
       if (response.status.remarks == "success") {
+        await Swal.fire('Success!', 'New payment has been recorded', 'success');
         this.pending();
         this.paid();
       }
@@ -126,7 +115,7 @@ export class Nav1Component implements OnInit {
 
   ViewProject(id){
     this.dialog.open(PaymentViewComponent, {data:id});
-    //this.ds.SharedData = d;
+    //this.paymentService.SharedData = d;
    // console.log(id)
    
   }
@@ -137,27 +126,6 @@ export class Nav1Component implements OnInit {
 
   UpdateProject(){
     this.dialog.open(PaymentUpdateComponent);
-  }
-
-  Confirmation() {
-      Swal.fire({
-        title:'Are you sure?',
-        text:`You won't be able to revert this!`,
-        icon:'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#dd2c00',
-        cancelButtonColor: '',
-        confirmButtonText:'Confirm'
-      }).then(result => {
-        if (result.value){
-          console.log('Delete');
-          Swal.fire('Successfully', 'Deleted', 'success');
-          
-        } 
-        else if (result.isDenied) {
-          Swal.fire('Oops...', 'Something went wrong', 'error');
-        }
-      })
   }
 
   PrintReceipt(){
