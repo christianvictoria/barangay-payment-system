@@ -30,16 +30,16 @@
     <mat-tab-group class="tabs-group" mat-stretch-tabs  animationDuration="500ms">
         <mat-tab>
             <ng-template mat-tab-label>
-                <span (click)="payment('checkup')">Pending Checkup Payments</span>
+                <span>Checkup Payments</span>
             </ng-template>
 
             <div fxLayout="row" class="pending-style">
                 
                 <mat-form-field  class="dropdown" floatLabel="never">
-                    <mat-label>Choose</mat-label>
-                    <mat-select>
-                        <mat-option value="one">Pending</mat-option>
-                        <mat-option value="two">Paid</mat-option>
+                    <mat-label>Pending</mat-label>
+                    <mat-select #choosedValue1 (valueChange)="selectCheckup(choosedValue1.value)">
+                        <mat-option value="pending">Pending</mat-option>
+                        <mat-option value="paid">Paid</mat-option>
                     </mat-select>
                 </mat-form-field>
 
@@ -53,7 +53,7 @@
             </div>
 
             <div class="example-container mat-elevation-z8">
-                <table mat-table [dataSource]="pendingDataSource">
+                <table mat-table [dataSource]="checkupsDataSource">
                     <ng-container matColumnDef="print">
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>
                             <td mat-cell *matCellDef="let element">
@@ -116,16 +116,16 @@
 
         <mat-tab>
             <ng-template mat-tab-label>
-                <span (click)="payment('checkup')">Paid Checkup Payments</span>
+                <span>Document Payments</span>
             </ng-template>
 
             <div fxLayout="row" class="pending-style">
                 
                 <mat-form-field  class="dropdown" floatLabel="never">
-                    <mat-label>Choose</mat-label>
-                    <mat-select>
-                        <mat-option value="one">Pending</mat-option>
-                        <mat-option value="two">Paid</mat-option>
+                    <mat-label>Pending</mat-label>
+                    <mat-select #choosedValue2 (valueChange)="selectDocu(choosedValue2.value)">
+                        <mat-option value="pending">Pending</mat-option>
+                        <mat-option value="paid">Paid</mat-option>
                     </mat-select>
                 </mat-form-field>
 
@@ -141,107 +141,7 @@
     
     
             <div class="example-container mat-elevation-z8">
-                <table mat-table [dataSource]="paidDataSource">
-                            
-                    <ng-container matColumnDef="print">
-                        <th mat-header-cell *matHeaderCellDef> Receipt </th>
-                            <td mat-cell *matCellDef="let element">
-                            <button (click)="PrintReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
-                                <mat-icon style="font-size: 20px; color: #404040;">print</mat-icon>
-                            </button>
-                            </td>
-                    </ng-container>
-        
-                    <ng-container matColumnDef="pt_id">
-                    <th mat-header-cell *matHeaderCellDef> No. </th>
-                    <td mat-cell *matCellDef="let element"> {{element.pt_id}} </td>
-                    </ng-container>
-                
-                    <ng-container matColumnDef="residents">
-                    <th mat-header-cell *matHeaderCellDef> Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.res_lname}}, {{element.res_fname}} {{element.res_mname}} </td>
-                    </ng-container>
-                
-                    <ng-container matColumnDef="pt_desc">
-                    <th mat-header-cell *matHeaderCellDef> Payment For </th>
-                    <td mat-cell *matCellDef="let element"> {{element.pt_desc}} </td>
-                    </ng-container>
-            
-                    <ng-container matColumnDef="amount">
-                    <th mat-header-cell *matHeaderCellDef> Amount </th>
-                    <td mat-cell *matCellDef="let element"> {{element.fld_amount}} </td>
-                    </ng-container>
-            
-                    <!-- <ng-container matColumnDef="pt_money_recieved">
-                    <th mat-header-cell *matHeaderCellDef> Payment Recieved </th>
-                    <td mat-cell *matCellDef="let element"> {{element.pt_money_recieved}} </td>
-                    </ng-container> -->
-    
-                    <ng-container matColumnDef="pt_isPayed">
-                    <th mat-header-cell *matHeaderCellDef> Payment Recieved </th>
-                    <ng-container *matCellDef="let element">
-                        <ng-container *ngIf="element.pt_isPayed === 1">
-                            <!-- <td mat-cell style="color: green;"> Paid </td> -->
-                            <td mat-cell> {{element.pt_money_recieved}} </td>
-                        </ng-container>
-                        <ng-container *ngIf="element.pt_isPayed === 0">
-                            <td mat-cell style="color: red"> Unpaid </td>
-                        </ng-container>
-                    </ng-container>
-                    </ng-container>
-                
-                    <ng-container matColumnDef="pt_date">
-                    <th mat-header-cell *matHeaderCellDef> Date </th>
-                    <td mat-cell *matCellDef="let element"> {{element.pt_date}} </td>
-                    </ng-container>
-                    
-                    <ng-container matColumnDef="actions">
-                    <th mat-header-cell *matHeaderCellDef> Action </th>
-                        <td mat-cell *matCellDef="let element">
-                        <button class="viewBtn" (click)="ViewProject(element?.pt_id)" mat-raised-button color="primary">View</button>
-                        <button class="dlteBtn" (click)="removeData(element?.pt_id)" mat-raised-button color="primary">Archive</button>
-                        <ng-container *ngIf="element?.pt_isPayed === 0">
-                        <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Done</button>
-                        </ng-container>
-                        </td>
-                    </ng-container>
-            
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                </table>
-                <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
-                </div>
-            
-        </mat-tab>
-
-        <mat-tab>
-            <ng-template mat-tab-label>
-                <span (click)="payment('transaction')">Document Payments</span>
-            </ng-template>
-
-            <div fxLayout="row" class="pending-style">
-                
-                <mat-form-field  class="dropdown" floatLabel="never">
-                    <mat-label>Choose</mat-label>
-                    <mat-select>
-                        <mat-option value="one">Pending</mat-option>
-                        <mat-option value="two">Paid</mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-    
-                <mat-form-field class="example-form-field1">
-                    <mat-label>Search</mat-label>
-                    <input matInput type="text">
-                    <button mat-button matSuffix mat-icon-button aria-label="Clear">
-                        <mat-icon style="font-size: 20px; color: #404040;">search</mat-icon>
-                    </button>
-                </mat-form-field>
-            </div>
-    
-    
-            <div class="example-container mat-elevation-z8">
-                <table mat-table [dataSource]="pendingDataSource">
+                <table mat-table [dataSource]="documentsDataSource">
                             
                     <ng-container matColumnDef="print">
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>
@@ -271,11 +171,6 @@
                     <th mat-header-cell *matHeaderCellDef> Amount </th>
                     <td mat-cell *matCellDef="let element"> {{element.docu_prc}} </td>
                     </ng-container>
-            
-                    <!-- <ng-container matColumnDef="pt_money_recieved">
-                    <th mat-header-cell *matHeaderCellDef> Payment Recieved </th>
-                    <td mat-cell *matCellDef="let element"> {{element.pt_money_recieved}} </td>
-                    </ng-container> -->
     
                     <ng-container matColumnDef="pt_isPayed">
                     <th mat-header-cell *matHeaderCellDef> Payment Recieved </th>
@@ -318,16 +213,16 @@
 
         <mat-tab>
             <ng-template mat-tab-label>
-                <span (click)="payment('order')">Order Payments</span>
+                <span>Order Payments</span>
             </ng-template>
 
             <div fxLayout="row" class="pending-style">
                 
                 <mat-form-field  class="dropdown" floatLabel="never">
-                    <mat-label>Choose</mat-label>
-                    <mat-select>
-                        <mat-option value="one">Pending</mat-option>
-                        <mat-option value="two">Paid</mat-option>
+                    <mat-label>Pending</mat-label>
+                    <mat-select #choosedValue3 (valueChange)="selectOrder(choosedValue3.value)">
+                        <mat-option value="pending">Pending</mat-option>
+                        <mat-option value="paid">Paid</mat-option>
                     </mat-select>
                 </mat-form-field>
 
@@ -343,7 +238,7 @@
     
     
             <div class="example-container mat-elevation-z8">
-                <table mat-table [dataSource]="pendingDataSource">
+                <table mat-table [dataSource]="ordersDataSource">
                             
                     <ng-container matColumnDef="print">
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>

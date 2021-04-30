@@ -31,32 +31,50 @@ export class Nav1Component implements OnInit {
   displayedColumns2: string[] = ['print', 'pt_id', 'name', 'pt_desc','quantity', 'amount', 'pt_isPayed', 'pt_date', 'actions'];
   isSidebarOpen=true;
 
-  async ngOnInit(): Promise<void> {
-    await this.pending();
-    await this.paid();
+  ngOnInit() {
+    this.checkups();
+    this.documents();
+    this.orders();
   }
 
-  paymentMethod: string = "checkup";
-  payment = (method: string): void => {
-    this.paymentMethod = method;
-    this.ngOnInit();
-  }
+  isCheckupPending: string = "pending";
+  isDocuPending: string = "pending";
+  isOrderPending: string = "pending";
+  selectCheckup = (value): void => { this.isCheckupPending = value; this.checkups(); }
+  selectDocu = (value): void => { this.isDocuPending = value; this.documents(); }
+  selectOrder = (value): void => { this.isOrderPending = value; this.orders(); }
 
-  pendingDataSource: any;
-  pending = async (): Promise<void> => {
+  checkupsDataSource: any;
+  checkups = async (): Promise<void> => {
     try {
-      const response = await this.paymentService.sendDashboardRequest(`pending/${this.paymentMethod}/0`, null);
-      this.pendingDataSource = new MatTableDataSource(response.payload);
+      let number: number = 0;
+      (this.isCheckupPending === "pending") ? number = 0 : number = 1;
+      const response = await this.paymentService.sendDashboardRequest(`${this.isCheckupPending}/checkup/${number}`, null);
+      this.checkupsDataSource = new MatTableDataSource(response.payload);
     } catch(error) {
       console.log(error);
     }
   }
 
-  paidDataSource: any;
-  paid = async (): Promise<void> => {
+  documentsDataSource: any;
+  documents = async (): Promise<void> => {
     try {
-      const response = await this.paymentService.sendDashboardRequest(`paid/${this.paymentMethod}/1`, null);
-      this.paidDataSource = new MatTableDataSource(response.payload);
+      let number: number = 0;
+      (this.isDocuPending === "pending") ? number = 0 : number = 1;
+      const response = await this.paymentService.sendDashboardRequest(`${this.isDocuPending}/transaction/${number}`, null);
+      this.documentsDataSource = new MatTableDataSource(response.payload);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  ordersDataSource: any;
+  orders = async (): Promise<void> => {
+    try {
+      let number: number = 0;
+      (this.isOrderPending === "pending") ? number = 0 : number = 1;
+      const response = await this.paymentService.sendDashboardRequest(`${this.isOrderPending}/order/${number}`, null);
+      this.ordersDataSource = new MatTableDataSource(response.payload);
     } catch (error) {
       console.log(error);
     }
@@ -68,8 +86,7 @@ export class Nav1Component implements OnInit {
       data.pt_isDeleted = 1;
       const response = await this.paymentService.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
       if (response.status.remarks == "success") {
-        this.pending();
-        this.paid();
+        this.ngOnInit();
       }
     } catch(error) {
       console.log(error);
@@ -83,8 +100,7 @@ export class Nav1Component implements OnInit {
       const response = await this.paymentService.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
       if (response.status.remarks == "success") {
         await Swal.fire('Success!', 'New payment has been recorded', 'success');
-        this.pending();
-        this.paid();
+        this.ngOnInit();
       }
     } catch(error) {
       console.log(error);
