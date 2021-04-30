@@ -114,9 +114,6 @@ export class DashboardComponent implements OnInit {
     openNav2(){
       this.router.navigate(["/nav2"]);
     }
-    openPendingTrans(){
-      this.router.navigate(["/PendingTransactions"]);
-    }
 }
 
 
