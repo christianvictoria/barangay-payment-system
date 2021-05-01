@@ -9,41 +9,62 @@
 <br>
     <div class="modalFields">
         <mat-list role="list">
-            <mat-list-item class="fieldNamesno"role="listitem">Payment Number</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">First Name</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Last Name</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Middle Name</mat-list-item>
+            <mat-list-item class="fieldNamesno" role="listitem">Payment Number</mat-list-item>
+            <ng-container *ngIf="pulledData.res_fname">
+                <mat-list-item class="fieldNames" role="listitem">First Name</mat-list-item>
+                <mat-list-item class="fieldNames" role="listitem">Last Name</mat-list-item>
+                <mat-list-item class="fieldNames" role="listitem">Middle Name</mat-list-item>
+            </ng-container>
+            <mat-list-item class="fieldNames" role="listitem" *ngIf="pulledData.med_name">Medicine Name</mat-list-item>
         </mat-list>
 
 
         <div class="inputs">
             <mat-form-field appearance="none">
-            <input class="paymentInfo" matInput [(ngModel)]="pulledData.pt_id" disabled>
+                <input class="paymentInfo" matInput [(ngModel)]="pulledData.pt_id" disabled>
             </mat-form-field>
-            <mat-form-field appearance="none">
-            <input class="paymentInfo" matInput [(ngModel)]="pulledData.res_fname" disabled>
-            </mat-form-field>
-            <mat-form-field appearance="none">
-            <input class="paymentInfo" matInput  [(ngModel)]="pulledData.res_lname" disabled>
-            </mat-form-field>
-            <mat-form-field appearance="none">
-            <input class="paymentInfo" matInput  [(ngModel)]="pulledData.res_mname" disabled >
+            <ng-container *ngIf="pulledData.res_lname">
+                <mat-form-field appearance="none">
+                    <input class="paymentInfo" matInput [(ngModel)]="pulledData.res_fname" disabled>
+                </mat-form-field>
+                <mat-form-field appearance="none">
+                    <input class="paymentInfo" matInput  [(ngModel)]="pulledData.res_lname" disabled>
+                </mat-form-field>
+                <mat-form-field appearance="none">
+                    <input class="paymentInfo" matInput  [(ngModel)]="pulledData.res_mname" disabled >
+                </mat-form-field>
+            </ng-container>
+            <mat-form-field appearance="none" *ngIf="pulledData.med_name">
+                <input class="paymentInfo" matInput  [(ngModel)]="pulledData.med_name" disabled >
             </mat-form-field>
         </div>
 
         <mat-list role="list">
-            <mat-list-item class="fieldNamesno"role="listitem">Payment For</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Amount</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Payment Receive</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Date</mat-list-item>
+            <mat-list-item class="fieldNamesno" role="listitem" *ngIf="pulledData.res_lname">Payment For</mat-list-item>
+            <mat-list-item class="fieldNamesno" role="listitem" *ngIf="pulledData.med_name">Quantity</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">Amount</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">Payment Receive</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">Date</mat-list-item>
         </mat-list>
 
         <div class="inputs2">
-            <mat-form-field appearance="none">
-                <input class="paymentInfo" matInput  [(ngModel)]="pulledData.pt_desc" disabled>
+            <mat-form-field appearance="none" *ngIf="!pulledData.med_name && !pulledData.docu_prc">
+                <input class="paymentInfo" matInput value="Checkup" disabled>
             </mat-form-field>
-            <mat-form-field appearance="none">
+            <mat-form-field appearance="none" *ngIf="!pulledData.med_name && pulledData.docu_prc">
+                <input class="paymentInfo" matInput [(ngModel)]="pulledData.docu_type" disabled>
+            </mat-form-field>
+            <mat-form-field appearance="none" *ngIf="pulledData.med_name">
+                <input class="paymentInfo" matInput  [(ngModel)]="pulledData.fld_totalQuantity" disabled>
+            </mat-form-field>
+            <mat-form-field appearance="none" *ngIf="pulledData.med_name">
+                <input class="paymentInfo" matInput  [(ngModel)]="pulledData.fld_totalAmount" disabled>
+            </mat-form-field>
+            <mat-form-field appearance="none" *ngIf="pulledData.fld_amount">
                 <input class="paymentInfo" matInput  [(ngModel)]="pulledData.fld_amount" disabled>
+            </mat-form-field>
+            <mat-form-field appearance="none" *ngIf="pulledData.docu_prc">
+                <input class="paymentInfo" matInput  [(ngModel)]="pulledData.docu_prc" disabled>
             </mat-form-field>
             <mat-form-field appearance="none" *ngIf="pulledData.pt_isPayed === 1">
                 <input class="paymentInfo" matInput   [(ngModel)]="pulledData.pt_money_recieved" disabled>
@@ -55,7 +76,6 @@
                 <input class="paymentInfo" matInput [(ngModel)]="pulledData.pt_date" disabled>
             </mat-form-field>
         </div>
-
     </div>
 
 
@@ -63,5 +83,4 @@
 
 <mat-dialog-actions align="end">
   <button class="modalBtn" mat-raised-button mat-dialog-close>Cancel</button>
-  <button (click)="UpdateProject()" class="modalBtn1" mat-raised-button>Edit</button>
 </mat-dialog-actions>

@@ -27,8 +27,9 @@ import Swal from 'sweetalert2';
 export class Nav1Component implements OnInit {
 
   constructor(private paymentService: PaymentsService, public dialog: MatDialog, public router: Router ) { }
-  displayedColumns: string[] = ['print', 'pt_id', 'residents', 'pt_desc','amount', 'pt_isPayed', 'pt_date', 'actions'];
-  displayedColumns2: string[] = ['print', 'pt_id', 'name', 'pt_desc','quantity', 'amount', 'pt_isPayed', 'pt_date', 'actions'];
+  displayedColumns: string[] = ['print', 'pt_id', 'residents', 'for','amount', 'money recieved', 'date', 'actions'];
+  displayedColumns2: string[] = ['print', 'pt_id', 'name', 'for','quantity', 'amount', 'money recieved', 'date', 'actions'];
+  displayedColumns3: string[] = ['print', 'pt_id', 'medicine', 'quantity', 'amount', 'money recieved', 'date', 'actions'];
   isSidebarOpen=true;
 
   ngOnInit() {
@@ -79,21 +80,33 @@ export class Nav1Component implements OnInit {
       console.log(error);
     }
   }
-  
-  removeData = async (id: any): Promise<void> => {
-    try {
-      const data: any = {};
-      data.pt_isDeleted = 1;
-      const response = await this.paymentService.sendDashboardRequest("updatePayment/" + id +  "/checkup", data);
-      if (response.status.remarks == "success") {
-        this.ngOnInit();
-      }
-    } catch(error) {
-      console.log(error);
-    }
-  } 
 
-  payData = async (id: any): Promise<void> => {
+  removeRecord = async (id: number, method: string): Promise<void> => {
+    const warning = await Swal.fire({
+                  title:'Archive',
+                  text:`Are you sure you want to archive this payment?`,
+                  icon:'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3B8BEB',
+                  cancelButtonColor: '#DD2C00',
+                  confirmButtonText:'Archive'
+                });
+    if (warning.isConfirmed) {
+      try {
+        const data: any = {};
+        data.pt_isDeleted = 1;
+        const response = await this.paymentService.sendDashboardRequest(`updatePayment/${id}/${method}`, data);
+        if (response.status.remarks == "success") {
+          await Swal.fire('Success!', 'Payment is archived', 'success');
+          this.ngOnInit();
+        }
+      } catch(error) {
+        await Swal.fire('Oops...', 'Something went wrong', 'error');
+      }
+    }
+  }
+
+  payData = async (id: number): Promise<void> => {
     try {
       let data: any = {};
         data.pt_isPayed = 1;
@@ -105,7 +118,11 @@ export class Nav1Component implements OnInit {
     } catch(error) {
       console.log(error);
     }
-  } 
+  }   
+
+  viewRecord(id: number, method: string){
+    this.dialog.open(PaymentViewComponent, { data: {'id': id, 'method': method}});
+  }
   
 
   openSidebar() {
@@ -126,13 +143,6 @@ export class Nav1Component implements OnInit {
     this.router.navigate(["/nav2"]);
   }
 
-  ViewProject(id){
-    this.dialog.open(PaymentViewComponent, {data:id});
-    //this.paymentService.SharedData = d;
-   // console.log(id)
-   
-  }
-
   CheckOutProject(){
     this.dialog.open(PendingPaymentComponent, { data: {"name": "Christian"} });
   }
@@ -141,7 +151,7 @@ export class Nav1Component implements OnInit {
     this.dialog.open(PaymentUpdateComponent);
   }
 
-  PrintReceipt(){
+  printReceipt(){
     var docDefinition = {
       content: [
       {

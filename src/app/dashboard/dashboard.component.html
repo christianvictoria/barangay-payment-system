@@ -21,58 +21,55 @@
   </mat-toolbar>
   
   <div class="example-container">
-  <!-- <p class="contenttitle">Dashboard</p>
-  <mat-divider [vertical]="false" style="margin-right: 20px; margin-left: 20px;"></mat-divider> -->
-
-  <div class="dashboardCard">
-      <mat-card class="payment-card1">
-        <mat-card-content >
-          <p class="numbers" *ngIf="checkups">{{ checkups }}</p>
-        </mat-card-content>
-        <mat-card-content >
-          <p class="title">Total Checkup Payments</p>
-          <div class="iconsDashboard">
-            <img src="/assets/expense.png" class="img-card">
-          </div>
-        </mat-card-content>
-      </mat-card>
-
-      <mat-card class="payment-card2">
+    <div class="dashboardCard">
+        <mat-card class="payment-card1">
           <mat-card-content >
-            <p class="numbers" *ngIf="documents">{{ documents }}</p>
+            <p class="numbers" *ngIf="checkups">{{ checkups }}</p>
           </mat-card-content>
           <mat-card-content >
-            <p class="title">Total Document Payments</p>
+            <p class="title">Total Checkup Payments</p>
             <div class="iconsDashboard">
-              <img src="/assets/payment.png" class="img-card">
+              <img src="/assets/expense.png" class="img-card">
             </div>
           </mat-card-content>
-      </mat-card>
+        </mat-card>
 
-      <mat-card class="payment-card3">
-          <mat-card-content >            
-            <p class="numbers" *ngIf="expenses">{{ expenses }}</p>
-          </mat-card-content>
-          <mat-card-content >
-            <p class="title">Total Expenses</p>
-            <div class="iconsDashboard">
-              <img src="/assets/resident.png" class="img-card">
-            </div>
-          </mat-card-content>
-      </mat-card>
+        <mat-card class="payment-card2">
+            <mat-card-content >
+              <p class="numbers" *ngIf="documents">{{ documents }}</p>
+            </mat-card-content>
+            <mat-card-content >
+              <p class="title">Total Document Payments</p>
+              <div class="iconsDashboard">
+                <img src="/assets/payment.png" class="img-card">
+              </div>
+            </mat-card-content>
+        </mat-card>
 
-      <mat-card class="payment-card4">
-          <mat-card-content >
-            <p class="numbers" *ngIf="pending">{{ pending }}</p>
-          </mat-card-content>
-          <mat-card-content >
-            <p class="title">Pending Payments</p>
-            <div class="iconsDashboard">
-              <img src="/assets/activity.png" class="img-card">
-            </div>
-          </mat-card-content>
-      </mat-card>
-  </div>
+        <mat-card class="payment-card3">
+            <mat-card-content >            
+              <p class="numbers" *ngIf="expenses">{{ expenses }}</p>
+            </mat-card-content>
+            <mat-card-content >
+              <p class="title">Total Expenses</p>
+              <div class="iconsDashboard">
+                <img src="/assets/resident.png" class="img-card">
+              </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="payment-card4">
+            <mat-card-content >
+              <p class="numbers" *ngIf="pending">{{ pending }}</p>
+            </mat-card-content>
+            <mat-card-content >
+              <p class="title">Pending Payments</p>
+              <div class="iconsDashboard">
+                <img src="/assets/activity.png" class="img-card">
+              </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
 
   <div class="dashboardSecondCard">
     <mat-card class="chart-card">
@@ -87,26 +84,6 @@
             </canvas>
         </div>
     </mat-card>
-
-<!--     <mat-card class="chart-card">
-      <mat-card-title class="titlecases">Total Cases</mat-card-title>
-      <div class="sidecard">
-        <mat-card class="sideprop1">
-          <p class="numbers">82</p>
-            <div class="iconsCases">
-              <img src="/assets/settle.png" class="img-card">
-            </div>
-            <p>Settled Case</p>
-        </mat-card>
-        <mat-card class="sideprop2">
-            <p class="numbers">21</p>
-            <div class="iconsCases">
-              <img src="/assets/schedule.png" class="img-card">
-            </div>
-            <p>Scheduled Case</p>
-        </mat-card>
-    </div>
-    </mat-card> -->
   </div> 
 </div>
    

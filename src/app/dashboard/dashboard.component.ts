@@ -80,7 +80,7 @@ export class DashboardComponent implements OnInit {
     try {
       const samplePaymentIsDeleted: number = 0;
       const response = await this.dashboardService.sendDashboardRequest(`pending/${samplePaymentIsDeleted}`, null);
-      this.pending = response.payload.length;
+      (response.payload.length < 1) ? this.pending = "0" : this.pending = response.payload.length;
     } catch(error) {
       console.log(error);
     }

@@ -71,28 +71,28 @@ export class Nav2Component implements OnInit {
   updateExpense = (id: number): void => {
     this.dialog.open(ExpenseUpdateComponent, { data: id });
   }
-  // removeRecord = async (id: number): Promise<void> => {
-  //    const warning = await Swal.fire({
-  //                   title:'Archive',
-  //                   text:`Are you sure you want to archive this expense?`,
-  //                   icon:'warning',
-  //                   showCancelButton: true,
-  //                   confirmButtonColor: '#3B8BEB',
-  //                   cancelButtonColor: '#DD2C00',
-  //                   confirmButtonText:'Archive'
-  //                 });
-  //   if (warning.isConfirmed) {
-  //     await Swal.fire('Success!', 'Expense is archived', 'success');
-  //     try {
-  //       const data: any = {};
-  //       data.exp_isDeleted = 1;
-  //       const response = await this.dashboardService.sendDashboardRequest(`updateExpenses/${id}`, data);
-  //       if (response.status.remarks == "success") this.getExpenses();
-  //     } catch(error) {
-  //       await Swal.fire('Oops...', 'Something went wrong', 'error');
-  //     }
-  //   }
-  // }
+  removeRecord = async (id: number): Promise<void> => {
+     const warning = await Swal.fire({
+                    title:'Archive',
+                    text:`Are you sure you want to archive this expense?`,
+                    icon:'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3B8BEB',
+                    cancelButtonColor: '#DD2C00',
+                    confirmButtonText:'Archive'
+                  });
+    if (warning.isConfirmed) {
+      await Swal.fire('Success!', 'Expense is archived', 'success');
+      try {
+        const data: any = {};
+        data.exp_isDeleted = 1;
+        const response = await this.dashboardService.sendDashboardRequest(`updateExpenses/${id}`, data);
+        if (response.status.remarks == "success") this.getExpenses();
+      } catch(error) {
+        await Swal.fire('Oops...', 'Something went wrong', 'error');
+      }
+    }
+  }
   searchInput: string;
   filterExpenses = async (): Promise<void> => {
     const response = await this.dashboardService.sendDashboardRequest(`filterExpenses/${this.searchInput}`, null);

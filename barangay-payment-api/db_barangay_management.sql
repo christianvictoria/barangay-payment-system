@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2021 at 05:15 AM
+-- Generation Time: May 01, 2021 at 05:51 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.14
 
@@ -619,9 +619,9 @@ CREATE TABLE `tbl_payment_expenses` (
 --
 
 INSERT INTO `tbl_payment_expenses` (`exp_id`, `person_lname`, `person_fname`, `person_mname`, `exp_for`, `exp_desc`, `exp_money_release`, `exp_date`, `exp_isDeleted`) VALUES
-(1, 'Alip', 'Christian', 'Victoria', 'Feeding Program', 'For the Children of Balic-balic', 15000, '2021-04-15 06:51:03', 0),
-(2, 'Gerrylyn', 'Mijares', 'Gege', 'Nothing', 'Nothing', 1000, '2021-04-15 07:19:49', 0),
-(8, 'Aranda', 'Austin', 'Mahone', 'Dance Competition', 'Barangay Dance Competition', 15000, '2021-04-15 08:54:23', 0);
+(1, 'Alip', 'Christian', 'Victoria', 'Construction Materials', 'Barangay Hall Expansion', 10000, '2021-04-30 03:28:50', 0),
+(2, 'Mijares', 'Gerrylyn', 'Manaloto', 'Barangay Event', 'Dance Competition', 20000, '2021-05-01 01:44:11', 0),
+(3, '', '', '', '', '', 0, '2021-05-01 03:25:11', 1);
 
 -- --------------------------------------------------------
 
@@ -634,7 +634,6 @@ CREATE TABLE `tbl_payment_payments` (
   `checkup_id` int(10) DEFAULT NULL,
   `order_detail_id` int(11) DEFAULT NULL,
   `trans_id` int(10) DEFAULT NULL,
-  `pt_desc` char(50) NOT NULL,
   `pt_money_recieved` char(50) NOT NULL,
   `pt_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `pt_isPayed` int(1) NOT NULL DEFAULT 0,
@@ -645,12 +644,12 @@ CREATE TABLE `tbl_payment_payments` (
 -- Dumping data for table `tbl_payment_payments`
 --
 
-INSERT INTO `tbl_payment_payments` (`pt_id`, `checkup_id`, `order_detail_id`, `trans_id`, `pt_desc`, `pt_money_recieved`, `pt_date`, `pt_isPayed`, `pt_isDeleted`) VALUES
-(1, NULL, 140, NULL, 'Medicine Order', '618.75', '2021-04-26 05:57:17', 0, 0),
-(2, 109, NULL, NULL, 'Checkup', '550', '2021-04-26 05:58:34', 1, 0),
-(3, NULL, NULL, 1, 'documents', '50', '2021-04-26 05:59:47', 0, 0),
-(4, NULL, 140, NULL, 'Alaxan FR Medicine Order', '1000', '2021-04-26 06:13:06', 0, 0),
-(5, 109, NULL, NULL, 'Checkup', '500', '2021-04-28 02:02:49', 0, 0);
+INSERT INTO `tbl_payment_payments` (`pt_id`, `checkup_id`, `order_detail_id`, `trans_id`, `pt_money_recieved`, `pt_date`, `pt_isPayed`, `pt_isDeleted`) VALUES
+(1, NULL, 140, NULL, '618.75', '2021-04-26 05:57:17', 0, 0),
+(2, 109, NULL, NULL, '550', '2021-04-26 05:58:34', 1, 0),
+(3, NULL, NULL, 1, '50', '2021-04-26 05:59:47', 0, 0),
+(4, NULL, 140, NULL, '1000', '2021-04-26 06:13:06', 1, 1),
+(5, 109, NULL, NULL, '500', '2021-04-28 02:02:49', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1191,6 +1190,12 @@ ALTER TABLE `tbl_feedback_categories`
 --
 ALTER TABLE `tbl_feedback_feedbacks`
   MODIFY `fb_id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_payment_expenses`
+--
+ALTER TABLE `tbl_payment_expenses`
+  MODIFY `exp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_payment_payments`

@@ -16,15 +16,14 @@ export class PaymentViewComponent implements OnInit {
   pulledData: any = {};
 
   ngOnInit(): void {
-    //   console.log(this.ds.SharedData);
     console.log(this.data);
     this.getData();
   }
 
   getData(): void {
-    this.ds.sendAPIRequest("payments/checkup/" + this.data, null).subscribe(data => {
+    this.ds.sendAPIRequest(`payments/${this.data.method}/` + this.data.id, null).subscribe(data => {
       this.pulledData = data.payload[0];
-      console.log(data.payload);
+      console.table(data.payload);
     })
   }
 

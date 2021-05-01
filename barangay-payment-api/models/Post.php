@@ -4,6 +4,7 @@
 		private $sql;
 		private $data = array();
 		private $staus = array();
+		private $payments = array("checkup", "transaction", "order");
 
 		public function __construct(\PDO $pdo) {
 			$this->pdo = $pdo;
@@ -84,7 +85,6 @@
 								tbl_profiling_residents.res_lname,
 								tbl_profiling_residents.res_fname,
 								tbl_profiling_residents.res_mname,
-								$table.pt_desc,
 								tbl_clinic_checkups.fld_amount,
 								$table.pt_money_recieved,
 								$table.pt_date,
@@ -107,7 +107,6 @@
 								tbl_profiling_residents.res_mname,
 								tbl_docuissuance_documents.docu_type,
 								tbl_docuissuance_documents.docu_prc,
-								$table.pt_desc,
 								$table.pt_money_recieved,
 								$table.pt_date,
 								$table.pt_isPayed,
@@ -129,8 +128,8 @@
 								tbl_clinic_medicines.med_name,
 								tbl_clinic_medicine_orders.fld_totalQuantity,
 								tbl_clinic_medicine_orders.fld_totalAmount,
-								$table.pt_desc,
 								$table.pt_money_recieved,
+								$table.pt_date,
 								$table.pt_isPayed,
 								$table.pt_isDeleted
 								FROM $table
@@ -183,7 +182,7 @@
 
 				$sql = $this->pdo->prepare($sqlstr);
 				$sql->execute($values);
-				if ($payment == "checkup" || $payment == "transaction") return $this->select_payments($table, $payment, "0");
+				if (in_array($payment, $this->payments)) return $this->select_payments($table, $payment, "0");
 				return $this->select_expenses($table, null);
 
 			} catch(\PDOException $e) {
@@ -213,7 +212,7 @@
 
 				$sql = $this->pdo->prepare($sqlstr);
 				$sql->execute($values);
-				if ($payment == "checkup" || $payment == "transaction") return $this->select_payments($table, $payment, "0");
+				if (in_array($payment, $this->payments)) return $this->select_payments($table, $payment, "0");
 				return $this->select_expenses($table, null);
 
 			} catch(\PDOException $e) {
