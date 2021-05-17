@@ -2,7 +2,7 @@
     <mat-sidenav #sidebarRef opened mode='side' [(opened)]='isSidebarOpen'> 
         <img class="user-profile" src="/assets/logo.png">
         <mat-divider [vertical]="false"></mat-divider>
-        <h3>ADMIN</h3>
+        <!-- <h3>ADMIN</h3> -->
         <mat-list class="pointer">
             <mat-list-item (click)="openDashboard()"><mat-icon class="iconsidenav">dashboard</mat-icon> Dashboard </mat-list-item>
             <mat-list-item class="listprop"> <mat-icon class="iconsideselected">library_add</mat-icon>Barangay Payments </mat-list-item>
@@ -58,7 +58,7 @@
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>
                             <td mat-cell *matCellDef="let element">
                             <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
-                                <mat-icon style="font-size: 20px; color: #404040;">print</mat-icon>
+                                <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                             </button>
                             </td>
                     </ng-container>
@@ -145,7 +145,7 @@
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>
                             <td mat-cell *matCellDef="let element">
                             <button (click)="PrintReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
-                                <mat-icon style="font-size: 20px; color: #404040;">print</mat-icon>
+                                <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                             </button>
                             </td>
                     </ng-container>
@@ -243,7 +243,7 @@
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>
                             <td mat-cell *matCellDef="let element">
                             <button (click)="PrintReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
-                                <mat-icon style="font-size: 20px; color: #404040;">print</mat-icon>
+                                <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                             </button>
                             </td>
                     </ng-container>

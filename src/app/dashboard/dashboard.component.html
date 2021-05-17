@@ -1,91 +1,94 @@
-<mat-sidenav-container class="main-container"> 
-    <mat-sidenav #sidebarRef opened mode='side' [(opened)]='isSidebarOpen'> 
-        <img class="user-profile" src="/assets/logo.png">
-        <mat-divider [vertical]="false"></mat-divider>
-        <h3>ADMIN</h3>
-        <mat-list class="pointer">
-            <mat-list-item class="listprop" (click)="sidebarRef.toggle()"><mat-icon style="padding-right: 5px;">dashboard</mat-icon> Dashboard </mat-list-item>
-            <mat-list-item  style="color:#404040" (click)="openNav1()"> <mat-icon style="padding-right: 5px;">library_add</mat-icon>Barangay Payments </mat-list-item>
-            <mat-list-item  style="color:#404040"(click)="openNav2()"><mat-icon style="padding-right: 5px;">payments</mat-icon> Barangay Expenses </mat-list-item><br>
-            <mat-divider></mat-divider>
-        </mat-list>
-    </mat-sidenav>
+  <mat-sidenav-container class="main-container"> 
+      <mat-sidenav #sidebarRef opened mode='side' [(opened)]='isSidebarOpen'> 
+          <img class="user-profile" src="/assets/logo.png">
+          <mat-divider [vertical]="false"></mat-divider>
+          <!-- <h3>ADMIN</h3> -->
+          <mat-list class="pointer">
+              <mat-list-item class="listprop"><mat-icon style="padding-right: 5px;">dashboard</mat-icon> Dashboard </mat-list-item>
+              <mat-list-item  style="color:#404040" (click)="openNav1()"> <mat-icon style="padding-right: 5px;">library_add</mat-icon>Barangay Payments </mat-list-item>
+              <mat-list-item  style="color:#404040"(click)="openNav2()"><mat-icon style="padding-right: 5px;">payments</mat-icon> Barangay Expenses </mat-list-item><br>
+              <mat-divider></mat-divider>
+          </mat-list>
+      </mat-sidenav>
 
-  <mat-sidenav-content>
+    <mat-sidenav-content>
 
 
-  <mat-toolbar  style="color:rgb(255, 255, 255); background-color:#3B8BEB; padding-left: 30px;"><button mat-icon-button (click) ="sidebarRef.toggle()"><mat-icon style="margin-right: 50px;" >menu</mat-icon></button>Barangay Payment System
-  <div class="spacer"></div>
-  <a mat-button><img src="/assets/admin.png"></a>
-  <a mat-button (click)="logout()"> <mat-icon>logout</mat-icon></a>
-  </mat-toolbar>
-  
-  <div class="example-container">
-    <div class="dashboardCard">
-        <mat-card class="payment-card1">
-          <mat-card-content >
-            <p class="numbers" *ngIf="checkups">{{ checkups }}</p>
-          </mat-card-content>
-          <mat-card-content >
-            <p class="title">Total Checkup Payments</p>
-            <div class="iconsDashboard">
-              <img src="/assets/expense.png" class="img-card">
-            </div>
-          </mat-card-content>
-        </mat-card>
-
-        <mat-card class="payment-card2">
+    <mat-toolbar>
+        <button mat-icon-button (click) ="sidebarRef.toggle()">
+            <mat-icon class="menuicon">menu</mat-icon>
+        </button>Barangay Payment Dashboard
+      <div class="spacer"></div>
+      <a mat-button><img src="/assets/admin.png"></a>
+      <a mat-button (click)="logout()"> <mat-icon>logout</mat-icon></a>
+    </mat-toolbar>
+    
+    <div class="example-container">
+      <div class="dashboardCard">
+          <mat-card class="payment-card1">
             <mat-card-content >
-              <p class="numbers" *ngIf="documents">{{ documents }}</p>
+              <p class="numbers" *ngIf="checkups">{{ checkups }}</p>
             </mat-card-content>
             <mat-card-content >
-              <p class="title">Total Document Payments</p>
+              <p class="title">Total Checkup Payments</p>
               <div class="iconsDashboard">
-                <img src="/assets/payment.png" class="img-card">
+                <img src="/assets/expense.png" class="img-card">
               </div>
             </mat-card-content>
-        </mat-card>
+          </mat-card>
 
-        <mat-card class="payment-card3">
-            <mat-card-content >            
-              <p class="numbers" *ngIf="expenses">{{ expenses }}</p>
-            </mat-card-content>
-            <mat-card-content >
-              <p class="title">Total Expenses</p>
-              <div class="iconsDashboard">
-                <img src="/assets/resident.png" class="img-card">
-              </div>
-            </mat-card-content>
-        </mat-card>
+          <mat-card class="payment-card2">
+              <mat-card-content >
+                <p class="numbers" *ngIf="documents">{{ documents }}</p>
+              </mat-card-content>
+              <mat-card-content >
+                <p class="title">Total Document Payments</p>
+                <div class="iconsDashboard">
+                  <img src="/assets/payment.png" class="img-card">
+                </div>
+              </mat-card-content>
+          </mat-card>
 
-        <mat-card class="payment-card4">
-            <mat-card-content >
-              <p class="numbers" *ngIf="pending">{{ pending }}</p>
-            </mat-card-content>
-            <mat-card-content >
-              <p class="title">Pending Payments</p>
-              <div class="iconsDashboard">
-                <img src="/assets/activity.png" class="img-card">
-              </div>
-            </mat-card-content>
-        </mat-card>
-    </div>
+          <mat-card class="payment-card3">
+              <mat-card-content >            
+                <p class="numbers" *ngIf="expenses">{{ expenses }}</p>
+              </mat-card-content>
+              <mat-card-content >
+                <p class="title">Total Expenses</p>
+                <div class="iconsDashboard">
+                  <img src="/assets/resident.png" class="img-card">
+                </div>
+              </mat-card-content>
+          </mat-card>
 
-  <div class="dashboardSecondCard">
-    <mat-card class="chart-card">
-      <mat-card-title style="margin-bottom: 25px;" class="titlecases">Monthly Expenses Graph</mat-card-title>
-        <div class="chart-wrapper">
-            <canvas baseChart
-                    [datasets]="barChartData"
-                    [labels]="barChartLabels"
-                    [options]="barChartOptions"
-                    [legend]="barChartLegend"
-                    [chartType]="barChartType">
-            </canvas>
-        </div>
-    </mat-card>
-  </div> 
-</div>
-   
-</mat-sidenav-content>
-</mat-sidenav-container>
+          <mat-card class="payment-card4">
+              <mat-card-content >
+                <p class="numbers" *ngIf="pending">{{ pending }}</p>
+              </mat-card-content>
+              <mat-card-content >
+                <p class="title">Pending Payments</p>
+                <div class="iconsDashboard">
+                  <img src="/assets/activity.png" class="img-card">
+                </div>
+              </mat-card-content>
+          </mat-card>
+      </div>
+
+    <div class="dashboardSecondCard">
+      <mat-card class="chart-card">
+        <mat-card-title style="margin-bottom: 25px;" class="titlecases">Monthly Expenses Graph</mat-card-title>
+          <div class="chart-wrapper">
+              <canvas baseChart
+                      [datasets]="barChartData"
+                      [labels]="barChartLabels"
+                      [options]="barChartOptions"
+                      [legend]="barChartLegend"
+                      [chartType]="barChartType">
+              </canvas>
+          </div>
+      </mat-card>
+    </div> 
+  </div>
+    
+  </mat-sidenav-content>
+  </mat-sidenav-container>

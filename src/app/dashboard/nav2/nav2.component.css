@@ -120,17 +120,24 @@
     }
 
     .dlteBtn {
-        background-color: #dd2c00;
+        background-color: #DF492F;
         /* background-color: red; */
         border-radius: 6px;
         font-family: 'Poppins', sans-serif;
+        margin-right: 10px !important;
     }
 
     .updtBtn {
-        background-color: #4bb543;
+        background-color: #4DA8DA;
         border-radius: 6px;
         font-family: 'Poppins', sans-serif;
         margin-right: 10px;
+    }
+
+    .editBtn {
+        border-radius: 6px;
+        font-family: 'Poppins', sans-serif;
+        background-color: #4DA8DA;
     }
         
     .tabs-style {
