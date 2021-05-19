@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { Nav1Component } from './dashboard/nav1/nav1.component';
-import { Nav2Component } from './dashboard/nav2/nav2.component';
+import { DashboardComponent } from './components/dashboard.component';
+import { Nav1Component } from './components/nav1/nav1.component';
+import { Nav2Component } from './components/nav2/nav2.component';
 import { MatTabsModule } from '@angular/material/tabs';
 
 const routes: Routes = [

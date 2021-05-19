@@ -4,23 +4,22 @@
 </div>
 <div class="forms-cont">
   <div class="form">
-    <img src="../../assets/logo.png" alt="" class="src" style=" width: 50%">
+    <img src="../../assets/logo_SIA1.png" alt="" class="src" style=" width: 50%">
     <p class="title2">Log in first</p>
+<br>
+    <div class="form-input">
+      <input type="text" placeholder="Username"  class="one">
+      <mat-icon class="input-icons">
+        account_circle</mat-icon>
+    </div>
+    <br>
+    <div class="form-input">
+      <input type="password" placeholder="Password" class="one">
+      <mat-icon class="input-icons">lock
+      </mat-icon>
+    </div>
 
-    <!-- <input type="text" placeholder="Username" class="one" [(ngModel)]="inputLogid"> -->
-    <input type="text" placeholder="Username" class="one">
-    <mat-icon style="position: absolute; font-size: 30px; color: #007cc7; margin-top: 13px; margin-left: -556px;">account_circle</mat-icon>
-
-    <br><br>
-
-    <!-- <input type="password" placeholder="Password" class="one" [(ngModel)]="inputLogpass"> -->
-    <input type="password" placeholder="Password" class="one" [type]="hide ? 'password' : 'text'">
-    <mat-icon style="position: absolute; font-size: 30px; color: #007cc7; margin-top: 13px; margin-left: -556px;">lock</mat-icon>
-    <i cmatSuffix style="cursor: pointer; color: #007cc7;">
-    <mat-icon style="position: absolute; font-size: 30px; color: #007cc7; margin-top: 13px; margin-left: -45px;" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </i>
-    
-    <br><br>
+    <br>
     <button mat-raised-button color="primary" (click)="login()" class="button">Login</button>
     <p class="fpassword">Forgot Password? <span class="click">Click here.</span></p>
   </div>

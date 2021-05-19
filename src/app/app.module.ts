@@ -25,22 +25,22 @@ import { MatTabsModule } from '@angular/material/tabs'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { Nav1Component } from './dashboard/nav1/nav1.component';
-import { Nav2Component } from './dashboard/nav2/nav2.component';
+import { DashboardComponent } from './components/dashboard.component';
+import { Nav1Component } from './components/nav1/nav1.component';
+import { Nav2Component } from './components/nav2/nav2.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PaymentAddComponent } from './dashboard/payment-add/payment-add.component';
-import { PaymentViewComponent } from './dashboard/payment-view/payment-view.component';
-import { ExpenseAddComponent } from './dashboard/expense-add/expense-add.component';
-import { ExpenseViewComponent } from './dashboard/expense-view/expense-view.component';
-import { PaymentUpdateComponent } from './dashboard/payment-update/payment-update.component';
-import { ExpenseUpdateComponent } from './dashboard/expense-update/expense-update.component';
-import { PaymentModalComponent } from './dashboard/payment-modal/payment-modal.component';
-import { ExpenseModalComponent } from './dashboard/expense-modal/expense-modal.component';
-import { PendingPaymentComponent } from './dashboard/pending-payment/pending-payment.component';
-import { PendingExpenseComponent } from './dashboard/pending-expense/pending-expense.component';
-import { CheckoutPaymentComponent } from './dashboard/checkout-payment/checkout-payment.component';
-import { CheckoutExpenseComponent } from './dashboard/checkout-expense/checkout-expense.component';
+import { PaymentAddComponent } from './components/payment-add/payment-add.component';
+import { PaymentViewComponent } from './components/payment-view/payment-view.component';
+import { ExpenseAddComponent } from './components/expense-add/expense-add.component';
+import { ExpenseViewComponent } from './components/expense-view/expense-view.component';
+import { PaymentUpdateComponent } from './components/payment-update/payment-update.component';
+import { ExpenseUpdateComponent } from './components/expense-update/expense-update.component';
+import { PaymentModalComponent } from './components/payment-modal/payment-modal.component';
+import { ExpenseModalComponent } from './components/expense-modal/expense-modal.component';
+import { PendingPaymentComponent } from './components/pending-payment/pending-payment.component';
+import { PendingExpenseComponent } from './components/pending-expense/pending-expense.component';
+import { CheckoutPaymentComponent } from './components/checkout-payment/checkout-payment.component';
+import { CheckoutExpenseComponent } from './components/checkout-expense/checkout-expense.component';
 
 @NgModule({
   declarations: [
