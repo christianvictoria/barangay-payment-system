@@ -54,30 +54,43 @@
 
             <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="checkupsDataSource">
+
                     <ng-container matColumnDef="print">
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>
                             <td mat-cell *matCellDef="let element">
-                            <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
-                                <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
-                            </button>
+                            <ng-container *ngIf="element?.pt_isPayed === 1">
+                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
+                                    <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
+                                </button>
+                            </ng-container>
+                            <ng-container *ngIf="element?.pt_isPayed === 0">
+                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
+                                    <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
+                                </button>
+                            </ng-container>
                             </td>
                     </ng-container>
+
                     <ng-container matColumnDef="pt_id">
                         <th mat-header-cell *matHeaderCellDef> No. </th>
                         <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'checkup')"> {{element.pt_id}} </td>
                     </ng-container>
+
                     <ng-container matColumnDef="residents">
                         <th mat-header-cell *matHeaderCellDef> Name </th>
                         <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'checkup')"> {{element.res_lname}}, {{element.res_fname}} {{element.res_mname}} </td>
                     </ng-container>
+
                     <ng-container matColumnDef="for">
                         <th mat-header-cell *matHeaderCellDef> Payment For </th>
                         <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'checkup')">Checkup</td>
                     </ng-container>
+
                     <ng-container matColumnDef="amount">
                         <th mat-header-cell *matHeaderCellDef> Amount </th>
                         <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'checkup')"> {{element.fld_amount}} </td>
                     </ng-container>
+
                     <ng-container matColumnDef="money recieved">
                         <th mat-header-cell *matHeaderCellDef> Payment Recieved </th>
                         <ng-container *matCellDef="let element">
@@ -89,16 +102,19 @@
                             </ng-container>
                         </ng-container>
                     </ng-container>
+
                     <ng-container matColumnDef="date">
                         <th mat-header-cell *matHeaderCellDef> Date </th>
                         <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'checkup')"> {{element.pt_date}} </td>
                     </ng-container>
+
                     <ng-container matColumnDef="actions">
                     <th mat-header-cell *matHeaderCellDef> Action </th>
                         <td mat-cell *matCellDef="let element">
-                            <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'checkup')" mat-raised-button color="primary">Archive</button>
+                            <button class="viewBtn" mat-raised-button color="primary">View</button>
+                            <!-- <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'checkup')" mat-raised-button color="primary">Archive</button> -->
                             <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" disabled>Process</button>
+                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" [style.visibility]="true ? 'hidden': 'visible'">Process</button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
                                 <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Process</button>
@@ -144,9 +160,16 @@
                     <ng-container matColumnDef="print">
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>
                             <td mat-cell *matCellDef="let element">
-                            <button (click)="PrintReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
-                                <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
-                            </button>
+                            <ng-container *ngIf="element?.pt_isPayed === 1">
+                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
+                                    <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
+                                </button>
+                            </ng-container>
+                            <ng-container *ngIf="element?.pt_isPayed === 0">
+                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
+                                    <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
+                                </button>
+                            </ng-container>
                             </td>
                     </ng-container>
         
@@ -190,9 +213,10 @@
                     <ng-container matColumnDef="actions">
                     <th mat-header-cell *matHeaderCellDef> Action </th>
                         <td mat-cell *matCellDef="let element">
-                            <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'transaction')" mat-raised-button color="primary">Archive</button>
+                            <button class="viewBtn" mat-raised-button color="primary">View</button>
+                            <!-- <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'transaction')" mat-raised-button color="primary">Archive</button> -->
                             <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" disabled>Process</button>
+                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" [style.visibility]="true ? 'hidden': 'visible'">Process</button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
                                 <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Process</button>
@@ -242,9 +266,16 @@
                     <ng-container matColumnDef="print">
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>
                             <td mat-cell *matCellDef="let element">
-                            <button (click)="PrintReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
-                                <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
-                            </button>
+                            <ng-container *ngIf="element?.pt_isPayed === 1">
+                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
+                                    <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
+                                </button>
+                            </ng-container>
+                            <ng-container *ngIf="element?.pt_isPayed === 0">
+                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
+                                    <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
+                                </button>
+                            </ng-container>
                             </td>
                     </ng-container>
         
@@ -288,9 +319,10 @@
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef> Action </th>
                         <td mat-cell *matCellDef="let element">
-                            <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'order')" mat-raised-button color="primary">Archive</button>
+                            <button class="viewBtn" mat-raised-button color="primary">View</button>
+                            <!-- <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'order')" mat-raised-button color="primary">Archive</button> -->
                             <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" disabled>Process</button>
+                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" [style.visibility]="true ? 'hidden': 'visible'">Process</button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
                                 <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Process</button>

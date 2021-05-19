@@ -124,10 +124,9 @@
     }    
 
     .viewBtn {
-        background-color: #3B8BEB;
+        background-color: #1976D2;
         border-radius: 6px;
         font-family: 'Poppins', sans-serif;
-        margin-right: 10px;
     }
 
     .dlteBtn {
@@ -135,13 +134,14 @@
         /* background-color: red; */
         border-radius: 6px;
         font-family: 'Poppins', sans-serif;
+        margin-left: 10px;
     }
 
     .updtBtn {
         background-color: #4DA8DA;
         border-radius: 6px;
         font-family: 'Poppins', sans-serif;
-        margin-right: 10px;
+        margin-left: 10px;
     }
 
     .payBtn {
@@ -211,7 +211,7 @@
         font-size: 12pt;
         font-weight: bold;
         background-color: rgb(255, 255, 255);
-        color: rgb(151, 151, 151);
+        color: #404040
     }
 
     table {
@@ -296,3 +296,4 @@
     .mat-select {
         font-family: 'Poppins', sans-serif;
     }
+

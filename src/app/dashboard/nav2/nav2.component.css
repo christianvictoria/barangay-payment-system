@@ -106,38 +106,37 @@
     }
 
     .addBtn {
-        background-color: #3B8BEB;
+        background-color: #4DA8DA;
         border-radius: 6px;
         margin-top: 15px;
         font-family: 'Poppins', sans-serif;
     }
 
     .viewBtn {
-        background-color: #3B8BEB;
+        background-color: #1976D2;
         border-radius: 6px;
         font-family: 'Poppins', sans-serif;
-        margin-right: 10px;
     }
 
     .dlteBtn {
         background-color: #DF492F;
-        /* background-color: red; */
         border-radius: 6px;
         font-family: 'Poppins', sans-serif;
-        margin-right: 10px !important;
+        margin-left: 10px;
     }
 
     .updtBtn {
         background-color: #4DA8DA;
         border-radius: 6px;
         font-family: 'Poppins', sans-serif;
-        margin-right: 10px;
+        margin-left: 10px;
     }
 
     .editBtn {
         border-radius: 6px;
         font-family: 'Poppins', sans-serif;
         background-color: #4DA8DA;
+        margin-left: 10px;
     }
         
     .tabs-style {
@@ -194,7 +193,7 @@
         font-size: 12pt;
         font-weight: bold;
         background-color: rgb(255, 255, 255);
-        color: rgb(151, 151, 151);
+        color: #404040;
     }
 
     table {
