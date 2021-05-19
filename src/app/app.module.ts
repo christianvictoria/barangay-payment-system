@@ -21,7 +21,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { pdfMakeModule } from "pdfmake/build/pdfmake";  
 import { pdfFontsModule } from "pdfmake/build/vfs_fonts";  
 import { HttpClientModule } from '@angular/common/http';
-import { MatTabsModule } from '@angular/material/tabs'
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -84,7 +85,8 @@ import { CheckoutExpenseComponent } from './components/checkout-expense/checkout
     MatSidenavModule,
     MatGridListModule,
     ChartsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTableExporterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

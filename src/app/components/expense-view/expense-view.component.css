@@ -170,3 +170,13 @@
     font-family: 'Poppins', sans-serif;
     color: #3B8BEB;
   } 
+
+  :host /deep/ .mat-form-field-suffix { 
+    font-size: 16px !important;
+    color : rgb(187, 187, 187);
+  }
+  
+  :host /deep/ .mat-form-field-prefix { 
+    font-size: 16px !important;
+    color : rgb(187, 187, 187);
+  }
