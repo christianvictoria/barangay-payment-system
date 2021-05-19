@@ -86,6 +86,12 @@
 					echo json_encode($post->update_payment_expenses("tbl_payment_expenses", $d, "exp_id=".($req[1]), null));
 					break;
 				
+				// Login
+				case 'login':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+					echo json_encode($auth->login_user($d));
+				break;
+				
 				default:
 					http_response_code(403);
 					echo "Invalid Route/Endpoint";
