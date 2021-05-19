@@ -9,11 +9,10 @@
 <br>
     <div class="modalFields">
         <mat-list role="list">
-            <mat-list-item class="fieldNamesno"role="listitem">Last Name</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">First Name</mat-list-item>
-            <mat-list-item class="fieldNames"role="listitem">Middle Name</mat-list-item>
+            <mat-list-item class="fieldNamesno" role="listitem">Last Name</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">First Name</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">Middle Name</mat-list-item>
         </mat-list>
-
 
         <div class="inputs">
             <mat-form-field appearance="outline">
@@ -27,7 +26,7 @@
             </mat-form-field>
         </div>
 
-        <mat-list role="list">
+        <mat-list role="list" class="rightside">
             <mat-list-item class="fieldNamesno"role="listitem">Expense For</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Budget Fee</mat-list-item>
             <mat-list-item class="fieldNames"role="listitem">Purpose</mat-list-item>
@@ -35,14 +34,20 @@
 
         <div class="inputs2">
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_for">
+                <mat-select class="paymentInfo" [(ngModel)]="expensesPayload.exp_for">
+                    <mat-option value = "option"> Barangay Event </mat-option>
+                    <mat-option value = "option"> Construction Materials </mat-option>
+                    <mat-option value = "option"> Feeding Program </mat-option>
+                    <mat-option value = "option"> Clean Up Drive Program </mat-option>
+                    <mat-option value = "option"> Donation </mat-option>
+                </mat-select>
+                <!-- <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_for"> -->
             </mat-form-field>
             <mat-form-field appearance="outline">
-            <span matPrefix>Php &nbsp;</span>
                 <input matInput type="number" class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_money_release" placeholder="0" maxlength="8">
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <textarea class="paymentInfo" matInput rows="2" [(ngModel)]="expensesPayload.exp_desc"></textarea>
+                <textarea class="paymentInfo" matInput rows="1" [(ngModel)]="expensesPayload.exp_desc"></textarea>
             </mat-form-field>
         </div>
 

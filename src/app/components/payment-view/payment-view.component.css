@@ -35,13 +35,11 @@
     }
 
     .fieldNames {
-      margin-bottom: 23px;
-      margin-top: 18px;
       font-family: 'Poppins', sans-serif;
     }
 
     .fieldNamesno {
-      margin-top: -10px;
+      margin-top: -1px !important;
       font-family: 'Poppins', sans-serif;
     } 
 
@@ -130,9 +128,10 @@
         height: 70px;
         width: 200px;
         font-family: 'Poppins', sans-serif;
-        font-size: 10px;
+        font-size: 16px;
         float: right;
         text-align: center;
+        margin-bottom: 2px;
     }
 
     .fieldNames {
