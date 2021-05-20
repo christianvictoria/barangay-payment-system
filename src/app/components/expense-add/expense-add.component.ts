@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class ExpenseAddComponent implements OnInit {
 
+  expense_category;
   official: any[] = [];
   expensesPayload: Expenses;
   constructor(
@@ -40,4 +41,37 @@ export class ExpenseAddComponent implements OnInit {
   sendMessage = (): void => {
     this.dashboardService.updateResponse('Message from Sender Component to Receiver Component!');
   }
+  
+  ExpenseList: any = [
+    {'expenseFor': 'Airconditioner Maintenance'},
+    {'expenseFor': 'Bondpaper'},
+    {'expenseFor': 'Chainsaw Blade'},
+    {'expenseFor': 'Cleaning Tools'},
+    {'expenseFor': 'Computer'},
+    {'expenseFor': 'Fan'},
+    {'expenseFor': 'Feeding Program'},
+    {'expenseFor': 'Fire Truck Maintenance'},
+    {'expenseFor': 'Gasoline'},
+    {'expenseFor': 'Internet Bill'},
+    {'expenseFor': 'Light Bulb'},
+    {'expenseFor': 'Marker'},
+    {'expenseFor': 'Medicine'},
+    {'expenseFor': 'Mobile Maintenance'},
+    {'expenseFor': 'Office Chairs'},
+    {'expenseFor': 'Paper Clip'},
+    {'expenseFor': 'Pen'},
+    {'expenseFor': 'Pencil'},
+    {'expenseFor': 'Printer Ink'},
+    {'expenseFor': 'Printer'},
+    {'expenseFor': 'Road Tools'},
+    {'expenseFor': 'Stapler Ammo'},
+    {'expenseFor': 'Stapler'},
+    {'expenseFor': 'Syringe'},
+    {'expenseFor': 'Table'},
+    {'expenseFor': 'Water Bill'},
+    {'expenseFor': 'Water Dispenser'},
+    {'expenseFor': 'Weighing Scale'},
+    {'expenseFor': 'White Ink'},
+  ];
+
 }
