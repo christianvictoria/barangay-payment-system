@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationStart, Event as NavigationEvent } from '@angular/router';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
@@ -26,16 +26,25 @@ import Swal from 'sweetalert2';
 })
 export class Nav1Component implements OnInit {
 
-  constructor(private paymentService: PaymentsService, public dialog: MatDialog, public router: Router ) { }
+  constructor(private paymentService: PaymentsService, public dialog: MatDialog, public router: Router ) { 
+  }
+  
+  
   displayedColumns: string[] = ['print', 'pt_id', 'residents', 'for','amount', 'money recieved', 'date', 'actions'];
   displayedColumns2: string[] = ['print', 'pt_id', 'name', 'for','quantity', 'amount', 'money recieved', 'date', 'actions'];
   displayedColumns3: string[] = ['print', 'pt_id', 'medicine', 'quantity', 'amount', 'money recieved', 'date', 'actions'];
   isSidebarOpen=true;
+  isVisible = true; // whenever you need to hide an element
 
   ngOnInit() {
     this.checkups();
     this.documents();
     this.orders();
+    if(atob(localStorage.getItem(btoa("role"))) == "staff"){
+      this.isVisible = true;
+    }else{
+      this.isVisible = false;
+    }
   }
 
   isCheckupPending: string = "pending";
@@ -139,6 +148,9 @@ export class Nav1Component implements OnInit {
   }
   openNav2(){
     this.router.navigate(["/nav2"]);
+  }
+  openArchive(){
+    this.router.navigate(["/archive"]);
   }
 
   CheckOutProject(){

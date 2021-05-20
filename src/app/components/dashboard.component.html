@@ -8,7 +8,9 @@
               <mat-list-item  style="color:#404040" (click)="openNav1()"> <mat-icon style="padding-right: 5px;">library_add</mat-icon>Barangay Payments </mat-list-item>
               <mat-list-item  style="color:#404040"(click)="openNav2()"><mat-icon style="padding-right: 5px;">payments</mat-icon> Barangay Expenses </mat-list-item><br>
               <mat-divider></mat-divider>
+              <mat-list-item  [style.visibility]="isVisible ? 'hidden': 'visible'" id="archiveButton" (click)="openArchive()"><mat-icon class="iconsidenav">archive</mat-icon> Archives </mat-list-item>
           </mat-list>
+          
       </mat-sidenav>
 
     <mat-sidenav-content>

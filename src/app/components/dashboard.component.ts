@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationStart, Event as NavigationEvent } from '@angular/router';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
@@ -26,8 +26,9 @@ export class DashboardComponent implements OnInit {
     public dialog: MatDialog, 
     public router: Router, 
     private dashboardService: DashboardService
-  ) { }
-
+  ) {
+  }
+  isVisible = true;
   isSidebarOpen=true;
 
   openSidebar() {
@@ -43,7 +44,13 @@ export class DashboardComponent implements OnInit {
     this.getPendingPayments()
     this.getExpenses()
     this.getOrderPayments()
+    if(atob(localStorage.getItem(btoa("role"))) == "staff"){
+      this.isVisible = true;
+    }else{
+      this.isVisible = false;
+    }
   }
+
 
   
   getOrderPayments = async (): Promise<void> => {
@@ -114,6 +121,10 @@ export class DashboardComponent implements OnInit {
     openNav2(){
       this.router.navigate(["/nav2"]);
     }
+    openArchive(){
+      this.router.navigate(["/archive"]);
+    }
+
 }
 
 

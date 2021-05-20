@@ -42,6 +42,8 @@ import { PendingPaymentComponent } from './components/pending-payment/pending-pa
 import { PendingExpenseComponent } from './components/pending-expense/pending-expense.component';
 import { CheckoutPaymentComponent } from './components/checkout-payment/checkout-payment.component';
 import { CheckoutExpenseComponent } from './components/checkout-expense/checkout-expense.component';
+import { ArchiveComponent } from './components/archive/archive.component';
+
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { CheckoutExpenseComponent } from './components/checkout-expense/checkout
     PendingPaymentComponent,
     PendingExpenseComponent,
     CheckoutPaymentComponent,
-    CheckoutExpenseComponent
+    CheckoutExpenseComponent,
+    ArchiveComponent,
   ],
   imports: [
     HttpClientModule,

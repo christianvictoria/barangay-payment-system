@@ -37,6 +37,14 @@
 					}
 				break;
 
+				case 'pendingArchive':
+					if (count($req) > 1 && in_array($req[1], $paymentMethod)) {
+						echo json_encode($post->select_archives("tbl_payment_payments", $req[1], "pt_isPayed = $req[2] AND pt_isDeleted = $req[2]"), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($post->select("tbl_payment_payments", "pt_isPayed = $req[1] AND pt_isDeleted = $req[1]"), JSON_PRETTY_PRINT);
+					}
+				break;
+
 				case 'paid':
 					if (count($req) > 1 && in_array($req[1], $paymentMethod)) {
 						echo json_encode($post->select_payments("tbl_payment_payments", $req[1], "pt_isPayed = $req[2] AND pt_isDeleted = 0"), JSON_PRETTY_PRINT);

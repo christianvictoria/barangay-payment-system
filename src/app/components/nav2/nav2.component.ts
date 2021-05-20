@@ -38,6 +38,7 @@ export class Nav2Component implements OnInit {
   expenses: any[] = [];
   message: any;
   isSidebarOpen=true;
+  isVisible = true;
   private subs: Subscription;
   
   constructor(
@@ -53,6 +54,11 @@ export class Nav2Component implements OnInit {
   }
   ngOnInit(): void {
     this.getExpenses();
+    if(atob(localStorage.getItem(btoa("role"))) == "staff"){
+      this.isVisible = true;
+    }else{
+      this.isVisible = false;
+    }
   }
   ngOnDestroy() {
     this.subs.unsubscribe();
@@ -118,6 +124,9 @@ export class Nav2Component implements OnInit {
   }
   openNav1(){
     this.router.navigate(["/nav1"]);
+  }
+  openArchive(){
+    this.router.navigate(["/archive"]);
   }
   openPendingTrans(){
     this.router.navigate(["/PendingTransactions"]);
