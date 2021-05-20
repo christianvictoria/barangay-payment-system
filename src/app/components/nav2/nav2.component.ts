@@ -138,7 +138,7 @@ export class Nav2Component implements OnInit {
           this.printdata = data.payload[0];
           this.name = this.printdata.person_lname+', '+this.printdata.person_fname;
           this.date = this.printdata.exp_date;
-          this.expenseFor = this.printdata.exp_desc;
+          this.expenseFor = this.printdata.exp_for;
           this.amount = this.printdata.exp_money_release;
           console.log(this.printdata); 
   
