@@ -156,7 +156,8 @@ export class Nav1Component implements OnInit {
   change: number;
   printdata: any;
   
-    printReceipt(i): void {
+      //Checkup
+      printReceiptC(i): void {
       this.paymentService.sendAPIRequest(`payments/checkup/` + i, null).subscribe(data => {
         this.printdata = data.payload[0];
         this.name = this.printdata.res_lname+', '+this.printdata.res_fname;
@@ -164,16 +165,19 @@ export class Nav1Component implements OnInit {
         this.amount = this.printdata.fld_amount;
         this.receive = this.printdata.pt_money_recieved;
         this.change = this.amount - this.receive;
-        console.log(this.name);
+        console.log(this.name);  
 
         var docDefinition = {
+          info: {
+            title: 'Receipt For '+this.name+' ',
+          },
           content: [
           {
             text: 'Republic of the Philippines',
             fontSize: 15,
             alignment: 'center',
             bold: true,
-            margin: [0, 3,0, 3]   
+            margin: [0, 3,0, 3],
           },
           {
             text: 'CITY OF OLONGAPO',
@@ -187,14 +191,14 @@ export class Nav1Component implements OnInit {
             fontSize: 15,
             bold: true,
             alignment: 'center',
-            margin: [0, 8,0, 8]   
+            margin: [0, 10, 0, 10]   
           },
           {
             text: 'OFFICE OF THE LUPONG TAGAMAPAYAPA',
             fontSize: 20,
             bold: true,
             alignment: 'center',
-            margin: [0, 5,0, 5]   
+            margin: [0, 10, 0, 10]   
           },
           {
             text: 'Official Receipt',
@@ -212,15 +216,15 @@ export class Nav1Component implements OnInit {
                   style: 'details1'
                 },
                 { 
-                  text: 'Payment Fee: Php '+this.amount,
+                  text: 'Payment Fee: Php '+this.amount+'.00',
                   style: 'details1'
                 },
                 { 
-                  text: 'Cash: Php '+this.receive,
+                  text: 'Cash: Php '+this.receive+'.00',
                   style: 'details1'
                 },
                 { 
-                  text: 'Change: Php '+this.change,
+                  text: 'Change: Php '+this.change+'.00',
                   style: 'details1'
                 }
               ],
@@ -229,12 +233,13 @@ export class Nav1Component implements OnInit {
                   text: 'Date: '+this.date,
                   alignment: 'right' ,
                   style: 'details1'
-                },
-                { 
-                  text: `Bill No : ${((Math.random() *1000).toFixed(0))}`,
-                  alignment: 'right' ,
-                  style: 'details1'
                 }
+                // ,
+                // { 
+                //   text: `Bill No : ${((Math.random() *1000).toFixed(0))}`,
+                //   alignment: 'right' ,
+                //   style: 'details1'
+                // }
               ]
             ]
           },
@@ -251,24 +256,13 @@ export class Nav1Component implements OnInit {
           { 
             text: 'Receiver: Barangay Official' ,
             style: 'details1'
-          },
-          {
-            text: 'Terms and Conditions',
-            style: 'sectionHeader'
-          },
-          {
-              ul: [
-                'Terms and Conditions Here',
-                'Terms and Conditions Here',
-                'Terms and Conditions Here'
-              ], 
           }
         ],
         styles: {
           sectionHeader: {
             bold: true,
             fontSize: 18,
-            margin: [0, 35,0, 20]          
+            margin: [0, 70,0, 20]          
           },
           details: {
             bold: true,
@@ -294,6 +288,280 @@ export class Nav1Component implements OnInit {
           }
         }
       };
+
+    pdfMake.createPdf(docDefinition).open();
+      })
+  }
+
+  //Document
+  printReceiptD(i): void {
+    this.paymentService.sendAPIRequest(`payments/checkup/` + i, null).subscribe(data => {
+      this.printdata = data.payload[0];
+      this.name = this.printdata.res_lname+', '+this.printdata.res_fname;
+      this.date = this.printdata.pt_date;
+      this.amount = this.printdata.fld_amount;
+      this.receive = this.printdata.pt_money_recieved;
+      this.change = this.amount - this.receive;
+      console.log(this.name);  
+
+      var docDefinition = {
+        info: {
+          title: 'Receipt For '+this.name+' ',
+        },
+        content: [
+        {
+          text: 'Republic of the Philippines',
+          fontSize: 15,
+          alignment: 'center',
+          bold: true,
+          margin: [0, 3,0, 3],
+        },
+        {
+          text: 'CITY OF OLONGAPO',
+          fontSize: 15,
+          bold: true,
+          alignment: 'center',
+          margin: [0, 3,0, 3]   
+        },
+        {
+          text: 'Barangay Management System',
+          fontSize: 15,
+          bold: true,
+          alignment: 'center',
+          margin: [0, 10, 0, 10]   
+        },
+        {
+          text: 'OFFICE OF THE LUPONG TAGAMAPAYAPA',
+          fontSize: 20,
+          bold: true,
+          alignment: 'center',
+          margin: [0, 10, 0, 10]   
+        },
+        {
+          text: 'Official Receipt',
+          style: 'sectionHeader'
+        },
+        {
+          columns: [
+            [
+              { 
+                text: this.name,
+                style: 'details1' 
+              },
+              { 
+                text: 'Payment For: Checkup',
+                style: 'details1'
+              },
+              { 
+                text: 'Payment Fee: Php '+this.amount+'.00',
+                style: 'details1'
+              },
+              { 
+                text: 'Cash: Php '+this.receive+'.00',
+                style: 'details1'
+              },
+              { 
+                text: 'Change: Php '+this.change+'.00',
+                style: 'details1'
+              }
+            ],
+            [
+              {
+                text: 'Date: '+this.date,
+                alignment: 'right' ,
+                style: 'details1'
+              }
+              // ,
+              // { 
+              //   text: `Bill No : ${((Math.random() *1000).toFixed(0))}`,
+              //   alignment: 'right' ,
+              //   style: 'details1'
+              // }
+            ]
+          ]
+        },
+        {
+          columns: [
+            [{ text: 'Office Stamp', style:'officeStamp' }],
+            [{ text: 'Signature', alignment: 'right', italics: true, style:'signature'}],
+          ]
+        },
+        { 
+          text: 'Issued In: Barangay Barretto' ,
+          style: 'details2'
+        },
+        { 
+          text: 'Receiver: Barangay Official' ,
+          style: 'details1'
+        }
+      ],
+      styles: {
+        sectionHeader: {
+          bold: true,
+          fontSize: 18,
+          margin: [0, 70,0, 20]          
+        },
+        details: {
+          bold: true,
+          fontSize: 14,
+          margin: [0, 5,0, 5]          
+        },
+        details1: {
+          fontSize: 14,
+          margin: [0, 5,0, 5]          
+        },
+        details2: {
+          fontSize: 14,
+          margin: [0, 55,0, 5]          
+        },
+        signature: {
+          fontSize: 14,
+          margin: [0, 55,0, 20]          
+        },
+        officeStamp: {
+          bold: true,
+          fontSize: 18,
+          margin: [0, 55,0, 20]          
+        }
+      }
+    };
+
+    pdfMake.createPdf(docDefinition).open();
+      })
+  }
+
+  //Order
+  printReceiptO(i): void {
+    this.paymentService.sendAPIRequest(`payments/checkup/` + i, null).subscribe(data => {
+      this.printdata = data.payload[0];
+      this.name = this.printdata.res_lname+', '+this.printdata.res_fname;
+      this.date = this.printdata.pt_date;
+      this.amount = this.printdata.fld_amount;
+      this.receive = this.printdata.pt_money_recieved;
+      this.change = this.amount - this.receive;
+      console.log(this.name);  
+
+      var docDefinition = {
+        info: {
+          title: 'Receipt For '+this.name+' ',
+        },
+        content: [
+        {
+          text: 'Republic of the Philippines',
+          fontSize: 15,
+          alignment: 'center',
+          bold: true,
+          margin: [0, 3,0, 3],
+        },
+        {
+          text: 'CITY OF OLONGAPO',
+          fontSize: 15,
+          bold: true,
+          alignment: 'center',
+          margin: [0, 3,0, 3]   
+        },
+        {
+          text: 'Barangay Management System',
+          fontSize: 15,
+          bold: true,
+          alignment: 'center',
+          margin: [0, 10, 0, 10]   
+        },
+        {
+          text: 'OFFICE OF THE LUPONG TAGAMAPAYAPA',
+          fontSize: 20,
+          bold: true,
+          alignment: 'center',
+          margin: [0, 10, 0, 10]   
+        },
+        {
+          text: 'Official Receipt',
+          style: 'sectionHeader'
+        },
+        {
+          columns: [
+            [
+              { 
+                text: this.name,
+                style: 'details1' 
+              },
+              { 
+                text: 'Payment For: Checkup',
+                style: 'details1'
+              },
+              { 
+                text: 'Payment Fee: Php '+this.amount+'.00',
+                style: 'details1'
+              },
+              { 
+                text: 'Cash: Php '+this.receive+'.00',
+                style: 'details1'
+              },
+              { 
+                text: 'Change: Php '+this.change+'.00',
+                style: 'details1'
+              }
+            ],
+            [
+              {
+                text: 'Date: '+this.date,
+                alignment: 'right' ,
+                style: 'details1'
+              }
+              // ,
+              // { 
+              //   text: `Bill No : ${((Math.random() *1000).toFixed(0))}`,
+              //   alignment: 'right' ,
+              //   style: 'details1'
+              // }
+            ]
+          ]
+        },
+        {
+          columns: [
+            [{ text: 'Office Stamp', style:'officeStamp' }],
+            [{ text: 'Signature', alignment: 'right', italics: true, style:'signature'}],
+          ]
+        },
+        { 
+          text: 'Issued In: Barangay Barretto' ,
+          style: 'details2'
+        },
+        { 
+          text: 'Receiver: Barangay Official' ,
+          style: 'details1'
+        }
+      ],
+      styles: {
+        sectionHeader: {
+          bold: true,
+          fontSize: 18,
+          margin: [0, 70,0, 20]          
+        },
+        details: {
+          bold: true,
+          fontSize: 14,
+          margin: [0, 5,0, 5]          
+        },
+        details1: {
+          fontSize: 14,
+          margin: [0, 5,0, 5]          
+        },
+        details2: {
+          fontSize: 14,
+          margin: [0, 55,0, 5]          
+        },
+        signature: {
+          fontSize: 14,
+          margin: [0, 55,0, 20]          
+        },
+        officeStamp: {
+          bold: true,
+          fontSize: 18,
+          margin: [0, 55,0, 20]          
+        }
+      }
+    };
 
     pdfMake.createPdf(docDefinition).open();
       })

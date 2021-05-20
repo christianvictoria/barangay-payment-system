@@ -41,7 +41,7 @@
             <ng-container matColumnDef="print">
                 <th mat-header-cell *matHeaderCellDef> Receipt </th>
                     <td mat-cell *matCellDef="let element">
-                    <button (click)="PrintReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
+                    <button (click)="printReceipt(element.exp_id)" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
                         <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                     </button>
                     </td>

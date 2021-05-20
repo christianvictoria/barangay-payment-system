@@ -59,12 +59,12 @@
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>
                             <td mat-cell *matCellDef="let element">
                             <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button  (click)="printReceipt(element.pt_id)" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
+                                <button  (click)="printReceiptC(element.pt_id, 'checkup')" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
                                     <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                                 </button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
+                                <button (click)="printReceiptC()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
                                     <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                                 </button>
                             </ng-container>
@@ -161,12 +161,12 @@
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>
                             <td mat-cell *matCellDef="let element">
                             <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
+                                <button  (click)="printReceiptD(element.pt_id)" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
                                     <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                                 </button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
+                                <button (click)="printReceiptD()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
                                     <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                                 </button>
                             </ng-container>
@@ -267,12 +267,12 @@
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>
                             <td mat-cell *matCellDef="let element">
                             <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
+                                <button  (click)="printReceiptO(element.pt_id)" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
                                     <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                                 </button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
+                                <button (click)="printReceiptO()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
                                     <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                                 </button>
                             </ng-container>
