@@ -74,16 +74,22 @@ mat-dialog-button {
 
 .modalBtn {
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
     background-color: white;
     color: black;
+    width: 60px;
+    padding:0px 0px;
+    line-height: 36px;
+    font-size: 14px;
 }
 
 .modalBtn1 {
   font-family: 'Poppins', sans-serif;
-  font-size: 16px;
   background-color: #3B8BEB;
   color: white;
+  width: 60px;
+  padding:0px 0px;
+  line-height: 36px;
+  font-size: 14px;
 }
 
 .modalFields {

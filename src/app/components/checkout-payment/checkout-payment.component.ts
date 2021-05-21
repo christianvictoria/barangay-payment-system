@@ -4,6 +4,7 @@ import { Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import pdfMake from "pdfmake/build/pdfmake";  
 import pdfFonts from "pdfmake/build/vfs_fonts";  
+import {FormControl, Validators} from '@angular/forms';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 import Swal from 'sweetalert2';
@@ -80,6 +81,17 @@ export class CheckoutPaymentComponent implements OnInit {
     this.dashboardService.updateResponse('Message from Sender Component to Receiver Component!');
   }
   
+  inputer: any;
+  input = new FormControl('', [Validators.required, Validators.email]);
+
+  getErrorMessage() {
+    if (this.input.hasError('required')) {
+      return 'Please input the amount of payment here';
+    }
+
+    return this.input.hasError('email') ? 'This field is required' : '';
+  }
+
   name: string;
   date: string;
   expenseFor: string;

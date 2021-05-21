@@ -16,10 +16,12 @@
 
         <div class="inputs">
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.person_lname">
+                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.person_lname" required>
+                <mat-error *ngIf = "input.invalid">{{ getErrorMessage() }}</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.person_fname">
+                <input required="true" class="paymentInfo" matInput [(ngModel)]="expensesPayload.person_fname" required>
+                <mat-error *ngIf = "input.invalid">{{ getErrorMessage() }}</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.person_mname">
@@ -35,15 +37,20 @@
         <div class="inputs2">
             <mat-form-field appearance="outline">
                 <mat-select class="paymentInfo" [(ngModel)]="expensesPayload.exp_for" [(ngModel)]="expense_category" >
-                    <mat-option *ngFor="let category of ExpenseList" [value]="category.expenseFor" >{{ category.expenseFor }}</mat-option>
+                    <mat-option required="true" *ngFor="let category of ExpenseList" [value]="category.expenseFor" required>{{ category.expenseFor }}</mat-option>
+                    <mat-error *ngIf = "input.invalid">{{ getErrorMessage() }}</mat-error>
                 </mat-select>
                 <!-- <input class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_for"> -->
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <input matInput type="number" class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_money_release" placeholder="0" maxlength="8">
+                <input required="true" matInput type="number" class="paymentInfo" matInput [(ngModel)]="expensesPayload.exp_money_release" placeholder="0" maxlength="8" required>
+                <span matPrefix>Php&nbsp;</span>
+                <span matSuffix>.00</span>
+                <mat-error *ngIf = "input.invalid">{{ getErrorMessage() }}</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <textarea class="paymentInfo" matInput rows="1" [(ngModel)]="expensesPayload.exp_desc"></textarea>
+                <textarea required="true" class="paymentInfo" matInput rows="1" [(ngModel)]="expensesPayload.exp_desc" required></textarea>
+                <mat-error *ngIf = "input.invalid">{{ getErrorMessage() }}</mat-error>
             </mat-form-field>
         </div>
 

@@ -43,7 +43,7 @@
             <mat-list-item class="fieldNamesno" role="listitem" *ngIf="pulledData.res_lname">Payment For</mat-list-item>
             <mat-list-item class="fieldNamesno" role="listitem" *ngIf="pulledData.med_name">Quantity</mat-list-item>
             <mat-list-item class="fieldNames" role="listitem">Amount</mat-list-item>
-            <mat-list-item class="fieldNames" role="listitem">Payment Receive</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">Payment</mat-list-item>
             <mat-list-item class="fieldNames" role="listitem">Date</mat-list-item>
         </mat-list>
 
@@ -62,6 +62,8 @@
             </mat-form-field>
             <mat-form-field appearance="none" *ngIf="pulledData.fld_amount">
                 <input class="paymentInfo" matInput  [(ngModel)]="pulledData.fld_amount" disabled>
+                <span matPrefix>Php&nbsp;</span>
+                <span matSuffix>.00</span>
             </mat-form-field>
             <mat-form-field appearance="none" *ngIf="pulledData.docu_prc">
                 <input class="paymentInfo" matInput  [(ngModel)]="pulledData.docu_prc" disabled>
@@ -82,5 +84,5 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button class="modalBtn" mat-raised-button mat-dialog-close>Cancel</button>
+  <button class="modalBtn" mat-raised-button mat-dialog-close>Close</button>
 </mat-dialog-actions>

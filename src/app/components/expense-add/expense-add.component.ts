@@ -5,6 +5,7 @@ import { Expenses } from 'src/app/models/expenses';
 
 // Service
 import { DashboardService } from 'src/app/services/dashboard/dashboard.service';
+import {FormControl, Validators} from '@angular/forms';
 
 import Swal from 'sweetalert2';
 
@@ -73,5 +74,15 @@ export class ExpenseAddComponent implements OnInit {
     {'expenseFor': 'Weighing Scale'},
     {'expenseFor': 'White Ink'},
   ];
+
+  input = new FormControl('', [Validators.required, Validators.email]);
+
+  getErrorMessage() {
+    if (this.input.hasError('required')) {
+      return 'This field is required';
+    }
+
+    return this.input.hasError('email') ? 'This field is required' : '';
+  }
 
 }

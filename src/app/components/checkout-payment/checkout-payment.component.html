@@ -19,40 +19,45 @@
 
 
         <div class="inputs">
-            <mat-form-field appearance="none">
-                <input class="paymentInfo" [(ngModel)]="selectedPaymentPayload.pt_id" matInput>
+            <mat-form-field appearance="outline">
+                <input class="inputter" [(ngModel)]="selectedPaymentPayload.pt_id" matInput [readonly]="true">
             </mat-form-field>
 
-            <mat-form-field appearance="none" *ngIf="selectedPaymentPayload.med_name">
-                <input class="paymentInfo" [(ngModel)]="selectedPaymentPayload.med_name" matInput>
-            </mat-form-field>
-            <mat-form-field appearance="none" *ngIf="selectedPaymentPayload.checkup_id">
-                <input class="paymentInfo" [(ngModel)]="checkup" matInput>
-            </mat-form-field>
-            <mat-form-field appearance="none" *ngIf="selectedPaymentPayload.trans_id">
-                <input class="paymentInfo" [(ngModel)]="selectedPaymentPayload.docu_type" matInput>
+            <mat-form-field appearance="outline" *ngIf="selectedPaymentPayload.med_name">
+                <input class="inputter" [(ngModel)]="selectedPaymentPayload.med_name" matInput [readonly]="true">
             </mat-form-field>
 
-            <mat-form-field appearance="none" *ngIf="selectedPaymentPayload.fld_totalQuantity">
-                <input class="paymentInfo" [(ngModel)]="selectedPaymentPayload.fld_totalQuantity" matInput>
+            <mat-form-field appearance="outline" *ngIf="selectedPaymentPayload.checkup_id">
+                <input class="inputter" [(ngModel)]="checkup" matInput [readonly]="true">
             </mat-form-field>
 
-            <mat-form-field appearance="none" *ngIf="selectedPaymentPayload.fld_totalAmount">
-                <input class="paymentInfo" [(ngModel)]="selectedPaymentPayload.fld_totalAmount" matInput>
-            </mat-form-field>
-            <mat-form-field appearance="none" *ngIf="selectedPaymentPayload.fld_amount">
-                <input class="paymentInfo" [(ngModel)]="selectedPaymentPayload.fld_amount" matInput>
-            </mat-form-field>
-            <mat-form-field appearance="none" *ngIf="selectedPaymentPayload.docu_prc">
-                <input class="paymentInfo" [(ngModel)]="selectedPaymentPayload.docu_prc" matInput>
+            <mat-form-field appearance="outline" *ngIf="selectedPaymentPayload.trans_id">
+                <input class="inputter" [(ngModel)]="selectedPaymentPayload.docu_type" matInput [readonly]="true"> 
             </mat-form-field>
 
-            <mat-form-field appearance="none">
-                <input class="paymentInfo" (keyup)="getChange()" [(ngModel)]="pt_money_recieved" matInput >
+            <mat-form-field appearance="outline" *ngIf="selectedPaymentPayload.fld_totalQuantity">
+                <input class="inputter" [(ngModel)]="selectedPaymentPayload.fld_totalQuantity" matInput [readonly]="true">
             </mat-form-field>
 
-            <mat-form-field appearance="none">
-                <input class="paymentInfo" [(ngModel)]="paymentChange" matInput >
+            <mat-form-field appearance="outline" *ngIf="selectedPaymentPayload.fld_totalAmount">
+                <input class="inputter" [(ngModel)]="selectedPaymentPayload.fld_totalAmount" matInput  [readonly]="true">
+            </mat-form-field>
+            <mat-form-field appearance="outline" *ngIf="selectedPaymentPayload.fld_amount">
+                <input class="inputter" [(ngModel)]="selectedPaymentPayload.fld_amount" matInput  [readonly]="true">
+            </mat-form-field>
+            <mat-form-field appearance="outline" *ngIf="selectedPaymentPayload.docu_prc">
+                <input class="inputter" [(ngModel)]="selectedPaymentPayload.docu_prc" matInput  [readonly]="true">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <input class="paymentInfo" (keyup)="getChange()" [(ngModel)]="pt_money_recieved" matInput type="number" placeholder="Payment" maxlength="8" required>
+                <span matPrefix>Php&nbsp;</span>
+                <span matSuffix>.00</span>
+                <mat-error *ngIf = "input.invalid">{{ getErrorMessage() }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <input class="inputter" [(ngModel)]="paymentChange" matInput [readonly]="true">
             </mat-form-field>
         </div>
     </div>

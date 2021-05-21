@@ -30,19 +30,29 @@
 
     <mat-tab-group class="tabs-group" mat-stretch-tabs  animationDuration="500ms">
         <mat-tab>
+
             <ng-template mat-tab-label>
                 <span>Checkup Payments</span>
             </ng-template>
-            <div class="searchbardiv" style="overflow: auto;">
-                <div class="searchbar" style="float: right; width: 400px;">
-                  <mat-form-field>
+            
+            <div fxLayout="row" class="pending-style">
+                
+                <mat-form-field  class="dropdown" floatLabel="never" [style.visibility]="true ? 'hidden': 'visible'">
+                    <mat-label>Pending</mat-label>
+                    <mat-select #choosedValue1>
+                        <mat-option value="pending">Pending</mat-option>
+                        <mat-option value="paid">Paid</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+
+                <mat-form-field class="example-form-field1">
                     <mat-label>Search Record...</mat-label>
                     <input matInput (keyup)="filterCheckups($event)" #input/>
                     <button mat-button matSuffix mat-icon-button aria-label="Clear">
-                      <mat-icon style="font-size: 20px;" class="searchIcon">search</mat-icon>
+                        <mat-icon style="font-size: 20px;" class="searchIcon">search</mat-icon>
                     </button>
-                  </mat-form-field>
-                </div>
+                </mat-form-field>
             </div>
 
             <div class="example-container mat-elevation-z8">
@@ -106,18 +116,28 @@
             <ng-template mat-tab-label>
                 <span>Document Payments</span>
             </ng-template>
-            <div class="searchbardiv" style="overflow: auto;">
-                <div class="searchbar" style="float: right; width: 400px;">
-                  <mat-form-field>
+            
+            
+            <div fxLayout="row" class="pending-style">
+                
+                <mat-form-field  class="dropdown" floatLabel="never" [style.visibility]="true ? 'hidden': 'visible'">
+                    <mat-label>Pending</mat-label>
+                    <mat-select #choosedValue1>
+                        <mat-option value="pending">Pending</mat-option>
+                        <mat-option value="paid">Paid</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+
+                <mat-form-field class="example-form-field1">
                     <mat-label>Search Record...</mat-label>
                     <input matInput (keyup)="filterDocuments($event)" #input/>
                     <button mat-button matSuffix mat-icon-button aria-label="Clear">
-                      <mat-icon style="font-size: 20px;" class="searchIcon">search</mat-icon>
+                        <mat-icon style="font-size: 20px;" class="searchIcon">search</mat-icon>
                     </button>
-                  </mat-form-field>
-                </div>
+                </mat-form-field>
             </div>
-    
+
     
             <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="documentsDataSource">
@@ -185,17 +205,29 @@
             <ng-template mat-tab-label>
                 <span>Order Payments</span>
             </ng-template>
-            <div class="searchbardiv" style="overflow: auto;">
-                <div class="searchbar" style="float: right; width: 400px;">
-                  <mat-form-field>
+            
+         
+            
+            <div fxLayout="row" class="pending-style">
+                
+                <mat-form-field  class="dropdown" floatLabel="never" [style.visibility]="true ? 'hidden': 'visible'">
+                    <mat-label>Pending</mat-label>
+                    <mat-select #choosedValue1>
+                        <mat-option value="pending">Pending</mat-option>
+                        <mat-option value="paid">Paid</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+
+                <mat-form-field class="example-form-field1">
                     <mat-label>Search Record...</mat-label>
                     <input matInput (keyup)="filterOrders($event)" #input/>
                     <button mat-button matSuffix mat-icon-button aria-label="Clear">
-                      <mat-icon style="font-size: 20px;" class="searchIcon">search</mat-icon>
+                        <mat-icon style="font-size: 20px;" class="searchIcon">search</mat-icon>
                     </button>
-                  </mat-form-field>
-                </div>
+                </mat-form-field>
             </div>
+
     
     
             <div class="example-container mat-elevation-z8">
