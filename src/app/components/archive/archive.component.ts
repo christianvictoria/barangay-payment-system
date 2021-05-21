@@ -45,6 +45,10 @@ export class ArchiveComponent implements OnInit {
     // this.checkups();
     // this.documents();
     // this.orders();
+    if(sessionStorage.getItem(("test")) == null){
+      this.router.navigate(["/"])
+    }
+
   }
 
   isCheckupPending: string = "pending";
@@ -128,6 +132,7 @@ export class ArchiveComponent implements OnInit {
     this.isSidebarOpen = false;
   }
   logout(){
+    sessionStorage.removeItem("test");
     this.router.navigate(["/"]);
   }
   openDashboard(){
