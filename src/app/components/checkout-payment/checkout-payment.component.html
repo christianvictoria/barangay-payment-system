@@ -10,40 +10,49 @@
     <div class="modalFields">
         <mat-list role="list">
             <mat-list-item class="fieldNamesno" role="listitem">Payment Number</mat-list-item>
-            <mat-list-item class="fieldNames" role="listitem">Name</mat-list-item>
             <mat-list-item class="fieldNames" role="listitem">Payment For</mat-list-item>
-            <mat-list-item class="fieldNames" role="listitem">Subtotal</mat-list-item>
-            <mat-list-item class="fieldNames" role="listitem">Tax</mat-list-item>
-            <mat-list-item class="fieldNames" role="listitem">Total</mat-list-item>
-            <mat-list-item class="fieldNames" role="listitem">Cash</mat-list-item>
+            <mat-list-item class="fieldNames" *ngIf="selectedPaymentPayload.fld_totalQuantity" role="listitem">Quantity</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">Amount</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem">Money Received</mat-list-item>
             <mat-list-item class="fieldNames" role="listitem">Change</mat-list-item>
         </mat-list>
 
 
         <div class="inputs">
             <mat-form-field appearance="none">
-            <input class="paymentInfo" matInput>
+                <input class="paymentInfo" [(ngModel)]="selectedPaymentPayload.pt_id" matInput>
             </mat-form-field>
-            <mat-form-field appearance="none">
-            <input class="paymentInfo" matInput >
+
+            <mat-form-field appearance="none" *ngIf="selectedPaymentPayload.med_name">
+                <input class="paymentInfo" [(ngModel)]="selectedPaymentPayload.med_name" matInput>
             </mat-form-field>
-            <mat-form-field appearance="none">
-            <input class="paymentInfo" matInput>
+            <mat-form-field appearance="none" *ngIf="selectedPaymentPayload.checkup_id">
+                <input class="paymentInfo" [(ngModel)]="checkup" matInput>
             </mat-form-field>
-            <mat-form-field appearance="none">
-            <input class="paymentInfo" matInput>
+            <mat-form-field appearance="none" *ngIf="selectedPaymentPayload.trans_id">
+                <input class="paymentInfo" [(ngModel)]="selectedPaymentPayload.docu_type" matInput>
             </mat-form-field>
-            <mat-form-field appearance="none">
-            <input class="paymentInfo" matInput >
+
+            <mat-form-field appearance="none" *ngIf="selectedPaymentPayload.fld_totalQuantity">
+                <input class="paymentInfo" [(ngModel)]="selectedPaymentPayload.fld_totalQuantity" matInput>
             </mat-form-field>
-            <mat-form-field appearance="none">
-            <input class="paymentInfo" matInput >
+
+            <mat-form-field appearance="none" *ngIf="selectedPaymentPayload.fld_totalAmount">
+                <input class="paymentInfo" [(ngModel)]="selectedPaymentPayload.fld_totalAmount" matInput>
             </mat-form-field>
-            <mat-form-field appearance="none">
-            <input class="paymentInfo" matInput >
+            <mat-form-field appearance="none" *ngIf="selectedPaymentPayload.fld_amount">
+                <input class="paymentInfo" [(ngModel)]="selectedPaymentPayload.fld_amount" matInput>
             </mat-form-field>
+            <mat-form-field appearance="none" *ngIf="selectedPaymentPayload.docu_prc">
+                <input class="paymentInfo" [(ngModel)]="selectedPaymentPayload.docu_prc" matInput>
+            </mat-form-field>
+
             <mat-form-field appearance="none">
-            <input class="paymentInfo" matInput >
+                <input class="paymentInfo" (keyup)="getChange()" [(ngModel)]="pt_money_recieved" matInput >
+            </mat-form-field>
+
+            <mat-form-field appearance="none">
+                <input class="paymentInfo" [(ngModel)]="paymentChange" matInput >
             </mat-form-field>
         </div>
     </div>
@@ -53,5 +62,13 @@
 
 <mat-dialog-actions align="end">
   <button class="modalBtn" mat-raised-button mat-dialog-close>Cancel</button>
-  <button (click)="Confirmation()" class="modalBtn1" mat-raised-button>Confirm</button>
+  <ng-container *ngIf="selectedPaymentPayload.checkup_id">
+    <button (click)="payData('checkup')" class="modalBtn1" mat-raised-button mat-dialog-close>Confirm</button>
+  </ng-container>
+  <ng-container *ngIf="selectedPaymentPayload.trans_id">
+    <button (click)="payData('transaction')" class="modalBtn1" mat-raised-button mat-dialog-close>Confirm</button>
+  </ng-container>
+  <ng-container *ngIf="selectedPaymentPayload.order_detail_id">
+    <button (click)="payData('orders')" class="modalBtn1" mat-raised-button mat-dialog-close>Confirm</button>
+  </ng-container>
 </mat-dialog-actions>

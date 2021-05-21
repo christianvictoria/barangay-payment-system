@@ -21,7 +21,7 @@
 				// Request and params 
 				// payments/(type of payment)/(row id)
 				case 'payments':
-					if(in_array($req[1], $paymentMethod) && count($req) > 2 && count($req) < 3) {
+					if(in_array($req[1], $paymentMethod) && count($req) >= 3) {
 						echo json_encode($post->select_payments("tbl_payment_".$req[0], $req[1], "pt_id = $req[2]"), JSON_PRETTY_PRINT);
 					} else if (in_array($req[1], $paymentMethod)) {
 						echo json_encode($post->select_payments("tbl_payment_".$req[0], $req[1], null), JSON_PRETTY_PRINT);

@@ -3,6 +3,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PaymentUpdateComponent } from '../payment-update/payment-update.component';
 import { PaymentsService } from 'src/app/payments.service';
 
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-payment-view',
@@ -21,10 +22,21 @@ export class PaymentViewComponent implements OnInit {
   }
 
   getData(): void {
-    this.ds.sendAPIRequest(`payments/${this.data.archived}/${this.data.method}/` + this.data.id, null).subscribe(data => {
-      this.pulledData = data.payload[0];
-      console.table(data.payload);
-    })
+    try {
+      if (this.data.archived != "") {
+        this.ds.sendAPIRequest(`payments/${this.data.archived}/${this.data.method}/${this.data.id}`, null).subscribe(data => {
+          this.pulledData = data.payload[0];
+          console.table(data.payload);
+        })
+      } else {
+        this.ds.sendAPIRequest(`payments/${this.data.method}/${this.data.id}`, null).subscribe(data => {
+          this.pulledData = data.payload[0];
+          console.table(data.payload);
+        })
+      }
+    } catch(error) {
+      Swal.fire('Oops...', 'Something went wrong', 'error');
+    }
   }
 
   updateData = async (id: any): Promise<void> => {
@@ -37,7 +49,7 @@ export class PaymentViewComponent implements OnInit {
         console.log("success")
       }
     } catch(error) {
-      console.log(error);
+      await Swal.fire('Oops...', 'Something went wrong', 'error');
     }
   } 
 

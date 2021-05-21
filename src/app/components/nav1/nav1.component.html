@@ -63,12 +63,12 @@
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>
                             <td mat-cell *matCellDef="let element">
                             <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button  (click)="printReceiptC(element.pt_id, 'checkup')" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
+                                <button  (click)="printReceiptCheckup(element.pt_id, 'checkup')" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
                                     <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                                 </button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button (click)="printReceiptC()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
+                                <button (click)="printReceiptCheckup(element.pt_id, 'checkup')" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
                                     <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                                 </button>
                             </ng-container>
@@ -118,10 +118,10 @@
                             <button class="viewBtn"  (click)="viewRecord(element?.pt_id, 'checkup')" mat-raised-button color="primary">View</button>
                              
                             <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" [style.visibility]="true ? 'hidden': 'visible'">Process</button>
+                                <button class="payBtn" (click)="checkOutPayment(element?.pt_id, 'checkup')" mat-raised-button color="primary" [style.display]="true ? 'none': 'block'">Process</button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Process</button>
+                                <button class="payBtn" (click)="checkOutPayment(element?.pt_id, 'checkup')" mat-raised-button color="primary">Process</button>
                             </ng-container>
                             <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'checkup')" mat-raised-button color="primary"  [style.visibility]="isVisible ? 'hidden': 'visible'" [style.visibility]="isVisible ? 'hidden': 'visible'">Archive</button> 
                         </td>
@@ -168,12 +168,12 @@
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>
                             <td mat-cell *matCellDef="let element">
                             <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button  (click)="printReceiptD(element.pt_id)" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
+                                <button  (click)="printReceiptDocu(element.pt_id, 'transaction')" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
                                     <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                                 </button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button (click)="printReceiptD()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
+                                <button (click)="printReceiptDocu(element.pt_id, 'transaction')" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
                                     <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                                 </button>
                             </ng-container>
@@ -223,10 +223,10 @@
                             <button class="viewBtn" (click)="viewRecord(element?.pt_id, 'transaction')" mat-raised-button color="primary">View</button>
                               
                             <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" [style.visibility]="true ? 'hidden': 'visible'">Process</button>
+                                <button class="payBtn" (click)="checkOutPayment(element?.pt_id, 'transaction')" mat-raised-button color="primary" [style.display]="true ? 'none': 'block'">Process</button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Process</button>
+                                <button class="payBtn" (click)="checkOutPayment(element?.pt_id, 'transaction')" mat-raised-button color="primary">Process</button>
                             </ng-container>
                             <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'transaction')" mat-raised-button color="primary" [style.visibility]="isVisible ? 'hidden': 'visible'">Archive</button>
                         </td>
@@ -277,12 +277,12 @@
                         <th mat-header-cell *matHeaderCellDef> Receipt </th>
                             <td mat-cell *matCellDef="let element">
                             <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button  (click)="printReceiptO(element.pt_id)" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
+                                <button  (click)="printReceiptOrders(element.pt_id, 'order')" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
                                     <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                                 </button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button (click)="printReceiptO()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
+                                <button (click)="printReceiptOrders(element.pt_id, 'order')" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
                                     <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
                                 </button>
                             </ng-container>
@@ -332,10 +332,10 @@
                             <button class="viewBtn" (click)="viewRecord(element?.pt_id, 'order')" mat-raised-button color="primary">View</button>
                              
                             <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" [style.visibility]="true ? 'hidden': 'visible'">Process</button>
+                                <button class="payBtn" (click)="checkOutPayment(element?.pt_id, 'order')" mat-raised-button color="primary" [style.display]="true ? 'none': 'block'">Process</button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Process</button>
+                                <button class="payBtn" (click)="checkOutPayment(element?.pt_id, 'order')" mat-raised-button color="primary">Process</button>
                             </ng-container>
                             <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'order')" mat-raised-button color="primary" [style.visibility]="isVisible ? 'hidden': 'visible'">Archive</button> 
                         </td>
