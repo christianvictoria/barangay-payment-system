@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem(btoa("loginState"), btoa('true'))
           localStorage.setItem(btoa("role"), btoa(res.payload.fld_role))
           localStorage.setItem(btoa("token"), btoa(res.token))
+          window.sessionStorage.setItem('test', btoa(res.payload.fld_role));
           this.router.navigate(['/dashboard']);
         }
       }, error => {

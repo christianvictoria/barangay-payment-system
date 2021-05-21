@@ -54,6 +54,11 @@ export class Nav2Component implements OnInit {
   }
   ngOnInit(): void {
     this.getExpenses();
+
+    if(sessionStorage.getItem(("test")) == null){
+      this.router.navigate(["/"])
+    }
+    
     if(atob(localStorage.getItem(btoa("role"))) == "staff"){
       this.isVisible = true;
     }else{
@@ -132,6 +137,7 @@ export class Nav2Component implements OnInit {
     this.router.navigate(["/PendingTransactions"]);
   }
   logout(){
+    sessionStorage.removeItem("test");
     this.router.navigate(["/"]);
   }
   

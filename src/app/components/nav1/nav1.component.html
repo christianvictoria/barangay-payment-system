@@ -116,13 +116,14 @@
                     <th mat-header-cell *matHeaderCellDef> Action </th>
                         <td mat-cell *matCellDef="let element">
                             <button class="viewBtn"  (click)="viewRecord(element?.pt_id, 'checkup')" mat-raised-button color="primary">View</button>
-                            <!-- <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'checkup')" mat-raised-button color="primary">Archive</button> -->
+                             
                             <ng-container *ngIf="element?.pt_isPayed === 1">
                                 <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" [style.visibility]="true ? 'hidden': 'visible'">Process</button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
                                 <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Process</button>
                             </ng-container>
+                            <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'checkup')" mat-raised-button color="primary"  [style.visibility]="isVisible ? 'hidden': 'visible'" [style.visibility]="isVisible ? 'hidden': 'visible'">Archive</button> 
                         </td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
@@ -220,13 +221,14 @@
                     <th mat-header-cell *matHeaderCellDef> Action </th>
                         <td mat-cell *matCellDef="let element">
                             <button class="viewBtn" (click)="viewRecord(element?.pt_id, 'transaction')" mat-raised-button color="primary">View</button>
-                            <!-- <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'transaction')" mat-raised-button color="primary">Archive</button> -->
+                              
                             <ng-container *ngIf="element?.pt_isPayed === 1">
                                 <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" [style.visibility]="true ? 'hidden': 'visible'">Process</button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
                                 <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Process</button>
                             </ng-container>
+                            <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'transaction')" mat-raised-button color="primary" [style.visibility]="isVisible ? 'hidden': 'visible'">Archive</button>
                         </td>
                     </ng-container>
             
@@ -328,13 +330,14 @@
                         <th mat-header-cell *matHeaderCellDef> Action </th>
                         <td mat-cell *matCellDef="let element">
                             <button class="viewBtn" (click)="viewRecord(element?.pt_id, 'order')" mat-raised-button color="primary">View</button>
-                            <!-- <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'order')" mat-raised-button color="primary">Archive</button> -->
+                             
                             <ng-container *ngIf="element?.pt_isPayed === 1">
                                 <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" [style.visibility]="true ? 'hidden': 'visible'">Process</button>
                             </ng-container>
                             <ng-container *ngIf="element?.pt_isPayed === 0">
                                 <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Process</button>
                             </ng-container>
+                            <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'order')" mat-raised-button color="primary" [style.visibility]="isVisible ? 'hidden': 'visible'">Archive</button> 
                         </td>
                     </ng-container>
             

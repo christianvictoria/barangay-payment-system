@@ -122,7 +122,7 @@
 				'token'=>$this->token,
 				'status'=>$this->status,
 				'payload'=>$this->data,
-				'prepared_by'=>'Jason Paul Cruz, Developer',
+				'prepared_by'=>'Tracey Solis, Developer',
 				'timestamp'=>date('D M j, Y G:i:s T')
 			);
 		}

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 export class PaymentsService {
 baseURL: string = "http://localhost/barangay-payment-system/barangay-payment-api/";
 SharedData: number;
+loggedIn: any;
   constructor(private http: HttpClient, private router: Router) { }
 
   sendAPIRequest(method, data) {
@@ -28,7 +29,7 @@ SharedData: number;
   }
 
   isLoggedIn() {
-    return localStorage.getItem(btoa('token')) != null ? true : false
+    return localStorage.getItem(btoa('token')) != this.loggedIn ? true : false
   }
 
   logoutUser() {

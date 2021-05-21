@@ -42,11 +42,18 @@ export class Nav1Component implements OnInit {
     this.checkups();
     this.documents();
     this.orders();
+    
+    if(sessionStorage.getItem(("test")) == null){
+      this.router.navigate(["/"])
+    }
+
     if(atob(localStorage.getItem(btoa("role"))) == "staff"){
       this.isVisible = true;
     }else{
       this.isVisible = false;
     }
+
+    
   }
 
   isCheckupPending: string = "pending";
@@ -173,6 +180,7 @@ export class Nav1Component implements OnInit {
     this.isSidebarOpen = false;
   }
   logout(){
+    sessionStorage.removeItem("test");
     this.router.navigate(["/"]);
   }
   openDashboard(){

@@ -8,7 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 
 // Service
 import { DashboardService } from '../services/dashboard/dashboard.service';
-
+import { PaymentsService } from 'src/app/payments.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -38,7 +38,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     public dialog: MatDialog, 
     public router: Router, 
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private paymentService: PaymentsService
   ) {
   }
   isVisible = true;
@@ -52,11 +53,29 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   
     this.getCheckUpPayments()
     this.getDocumentPayments()
     this.getPendingPayments()
     this.getOrderPayments()
     this.getExpenses()
+    this.getDates()
+   
+    
+    if(sessionStorage.getItem(("test")) == null){
+      this.router.navigate(["/"])
+    }
+
+    if(atob(localStorage.getItem(btoa("role"))) == "staff"){
+      this.isVisible = true;
+    }else{
+      this.isVisible = false;
+    }
+    
+
+    
+  }
+  getDates(){
     this.getJan()
     this.getFeb()
     this.getMar()
@@ -69,18 +88,7 @@ export class DashboardComponent implements OnInit {
     this.getOct()
     this.getNov()
     this.getDec()
-    
-   
-
-    if(atob(localStorage.getItem(btoa("role"))) == "staff"){
-      this.isVisible = true;
-    }else{
-      this.isVisible = false;
-    }
   }
-
-
-  
   getOrderPayments = async (): Promise<void> => {
     try {
       const samplePaymentMethod: string = "order";
@@ -136,7 +144,7 @@ export class DashboardComponent implements OnInit {
       var year = currentTime.getFullYear()
       const response = await this.dashboardService.sendDashboardRequest(`jan/`, null);
       localStorage.setItem("jan", response.payload.length);
-      console.log(localStorage.getItem("jan"));
+     
     } catch(error) {
       console.log(error);
     }
@@ -147,7 +155,7 @@ export class DashboardComponent implements OnInit {
       var year = currentTime.getFullYear()
       const response = await this.dashboardService.sendDashboardRequest(`feb/`, null);
       localStorage.setItem("feb", response.payload.length);
-      console.log(localStorage.getItem("feb"));
+     
     } catch(error) {
       console.log(error);
     }
@@ -158,7 +166,7 @@ export class DashboardComponent implements OnInit {
       var year = currentTime.getFullYear()
       const response = await this.dashboardService.sendDashboardRequest(`mar/`, null);
       localStorage.setItem("mar", response.payload.length);
-      console.log(localStorage.getItem("mar"));
+
     } catch(error) {
       console.log(error);
     }
@@ -169,7 +177,7 @@ export class DashboardComponent implements OnInit {
       var year = currentTime.getFullYear()
       const response = await this.dashboardService.sendDashboardRequest(`apr/`, null);
       localStorage.setItem("apr", response.payload.length);
-      console.log(localStorage.getItem("apr"));
+      
     } catch(error) {
       console.log(error);
     }
@@ -180,7 +188,7 @@ export class DashboardComponent implements OnInit {
       var year = currentTime.getFullYear()
       const response = await this.dashboardService.sendDashboardRequest(`may/`, null);
       localStorage.setItem("may", response.payload.length);
-      console.log(localStorage.getItem("may"));
+    
     } catch(error) {
       console.log(error);
     }
@@ -191,7 +199,7 @@ export class DashboardComponent implements OnInit {
       var year = currentTime.getFullYear()
       const response = await this.dashboardService.sendDashboardRequest(`jun/`, null);
       localStorage.setItem("jun", response.payload.length);
-      console.log(localStorage.getItem("jun"));
+     
     } catch(error) {
       console.log(error);
     }
@@ -202,7 +210,7 @@ export class DashboardComponent implements OnInit {
       var year = currentTime.getFullYear()
       const response = await this.dashboardService.sendDashboardRequest(`jul/`, null);
       localStorage.setItem("jul", response.payload.length);
-      console.log(localStorage.getItem("jul"));
+    
     } catch(error) {
       console.log(error);
     }
@@ -213,7 +221,7 @@ export class DashboardComponent implements OnInit {
       var year = currentTime.getFullYear()
       const response = await this.dashboardService.sendDashboardRequest(`aug/`, null);
       localStorage.setItem("aug", response.payload.length);
-      console.log(localStorage.getItem("aug"));
+     
     } catch(error) {
       console.log(error);
     }
@@ -224,7 +232,7 @@ export class DashboardComponent implements OnInit {
       var year = currentTime.getFullYear()
       const response = await this.dashboardService.sendDashboardRequest(`sep/`, null);
       localStorage.setItem("sep", response.payload.length);
-      console.log(localStorage.getItem("sep"));
+  
     } catch(error) {
       console.log(error);
     }
@@ -235,7 +243,7 @@ export class DashboardComponent implements OnInit {
       var year = currentTime.getFullYear()
       const response = await this.dashboardService.sendDashboardRequest(`oct/`, null);
       localStorage.setItem("oct", response.payload.length);
-      console.log(localStorage.getItem("oct"));
+   
     } catch(error) {
       console.log(error);
     }
@@ -246,7 +254,7 @@ export class DashboardComponent implements OnInit {
       var year = currentTime.getFullYear()
       const response = await this.dashboardService.sendDashboardRequest(`nov/`, null);
       localStorage.setItem("nov", response.payload.length);
-      console.log(localStorage.getItem("nov"));
+    
     } catch(error) {
       console.log(error);
     }
@@ -257,7 +265,7 @@ export class DashboardComponent implements OnInit {
       var year = currentTime.getFullYear()
       const response = await this.dashboardService.sendDashboardRequest(`dec/`, null);
       localStorage.setItem("dec", response.payload.length);
-      console.log(localStorage.getItem("dec"));
+   
     } catch(error) {
       console.log(error);
     }
@@ -277,6 +285,7 @@ export class DashboardComponent implements OnInit {
     ];
     
     logout(){
+      sessionStorage.removeItem("test");
       this.router.navigate(["/"]);
     }
     openNav1(){
