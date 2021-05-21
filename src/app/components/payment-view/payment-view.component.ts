@@ -21,7 +21,7 @@ export class PaymentViewComponent implements OnInit {
   }
 
   getData(): void {
-    this.ds.sendAPIRequest(`payments/${this.data.method}/` + this.data.id, null).subscribe(data => {
+    this.ds.sendAPIRequest(`payments/${this.data.archived}/${this.data.method}/` + this.data.id, null).subscribe(data => {
       this.pulledData = data.payload[0];
       console.table(data.payload);
     })
