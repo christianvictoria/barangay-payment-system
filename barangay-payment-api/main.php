@@ -60,7 +60,105 @@
 					} else {
 						echo json_encode($post->select_expenses("tbl_payment_".$req[0], null), JSON_PRETTY_PRINT);
 					}
-				break;	
+				break;
+				
+
+				//reports
+				case 'jan':
+					if (count($req) > 1) {
+						echo json_encode($post->jan("tbl_payment_expenses", $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($post->jan("tbl_payment_expenses", null), JSON_PRETTY_PRINT);
+					}
+				break;
+
+				case 'feb':
+					if (count($req) > 1) {
+						echo json_encode($post->feb("tbl_payment_expenses", $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($post->feb("tbl_payment_expenses", null), JSON_PRETTY_PRINT);
+					}
+				break;
+
+				case 'mar':
+					if (count($req) > 1) {
+						echo json_encode($post->mar("tbl_payment_expenses", $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($post->mar("tbl_payment_expenses", null), JSON_PRETTY_PRINT);
+					}
+				break;
+
+				case 'apr':
+					if (count($req) > 1) {
+						echo json_encode($post->apr("tbl_payment_expenses", $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($post->apr("tbl_payment_expenses", null), JSON_PRETTY_PRINT);
+					}
+				break;
+
+				case 'may':
+					if (count($req) > 1) {
+						echo json_encode($post->may("tbl_payment_expenses", $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($post->may("tbl_payment_expenses", null), JSON_PRETTY_PRINT);
+					}
+				break;
+
+				case 'jun':
+					if (count($req) > 1) {
+						echo json_encode($post->jun("tbl_payment_expenses", $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($post->jun("tbl_payment_expenses", null), JSON_PRETTY_PRINT);
+					}
+				break;
+
+				case 'jul':
+					if (count($req) > 1) {
+						echo json_encode($post->jul("tbl_payment_expenses", $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($post->jul("tbl_payment_expenses", null), JSON_PRETTY_PRINT);
+					}
+				break;
+
+				case 'aug':
+					if (count($req) > 1) {
+						echo json_encode($post->aug("tbl_payment_expenses", $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($post->aug("tbl_payment_expenses", null), JSON_PRETTY_PRINT);
+					}
+				break;
+
+				case 'sep':
+					if (count($req) > 1) {
+						echo json_encode($post->sep("tbl_payment_expenses", $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($post->sep("tbl_payment_expenses", null), JSON_PRETTY_PRINT);
+					}
+				break;
+
+				case 'oct':
+					if (count($req) > 1) {
+						echo json_encode($post->oct("tbl_payment_expenses", $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($post->oct("tbl_payment_expenses", null), JSON_PRETTY_PRINT);
+					}
+				break;
+
+				case 'nov':
+					if (count($req) > 1) {
+						echo json_encode($post->nov("tbl_payment_expenses", $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($post->nov("tbl_payment_expenses", null), JSON_PRETTY_PRINT);
+					}
+				break;
+
+				case 'dec':
+					if (count($req) > 1) {
+						echo json_encode($post->dec("tbl_payment_expenses", $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($post->dec("tbl_payment_expenses", null), JSON_PRETTY_PRINT);
+					}
+				break;
 							// expenses/(row id)
 				case 'filterExpenses':
 					if (count($req) > 1) {

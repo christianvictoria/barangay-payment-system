@@ -96,6 +96,247 @@
 			return $this->sendPayload($data, "success", $errmsg, $code);
 		}
 
+		public function jan($table, $filter_data) {
+			$this->sql = "SELECT * FROM tbl_payment_expenses WHERE exp_date BETWEEN CONCAT(YEAR(CURDATE()),'-01-01') AND CONCAT(YEAR(CURDATE()),'-01-31')";
+			if ($filter_data != null) {
+				$this->sql .= " exp_date BETWEEN STR_TO_DATE('$filter_data-05-01', '%Y-%m-%d') AND STR_TO_DATE('$filter_data-05-31', '%Y-%m-%d')";
+			}
+
+			$data = array(); $errmsg = ""; $code = 0;
+			try {
+				if ($res = $this->pdo->query($this->sql)->fetchAll()) {
+					foreach ($res as $rec) {
+						array_push($data, $rec);
+						$res = null; $code = 200;
+					}
+				}
+			} catch(\PDOException $e) {
+				$errmsg = $e->getMessage(); $code = 401;
+			}
+			return $this->sendPayload($data, "success", $errmsg, $code);
+		}
+
+		public function feb($table, $filter_data) {
+			$this->sql = "SELECT * FROM tbl_payment_expenses WHERE exp_date BETWEEN CONCAT(YEAR(CURDATE()),'-02-01') AND CONCAT(YEAR(CURDATE()),'-02-31')";
+			if ($filter_data != null) {
+				$this->sql .= " exp_date BETWEEN STR_TO_DATE('$filter_data-05-01', '%Y-%m-%d') AND STR_TO_DATE('$filter_data-05-31', '%Y-%m-%d')";
+			}
+
+			$data = array(); $errmsg = ""; $code = 0;
+			try {
+				if ($res = $this->pdo->query($this->sql)->fetchAll()) {
+					foreach ($res as $rec) {
+						array_push($data, $rec);
+						$res = null; $code = 200;
+					}
+				}
+			} catch(\PDOException $e) {
+				$errmsg = $e->getMessage(); $code = 401;
+			}
+			return $this->sendPayload($data, "success", $errmsg, $code);
+		}
+
+		public function mar($table, $filter_data) {
+			$this->sql = "SELECT * FROM tbl_payment_expenses WHERE exp_date BETWEEN CONCAT(YEAR(CURDATE()),'-03-01') AND CONCAT(YEAR(CURDATE()),'-03-31')";
+			if ($filter_data != null) {
+				$this->sql .= " exp_date BETWEEN STR_TO_DATE('$filter_data-05-01', '%Y-%m-%d') AND STR_TO_DATE('$filter_data-05-31', '%Y-%m-%d')";
+			}
+
+			$data = array(); $errmsg = ""; $code = 0;
+			try {
+				if ($res = $this->pdo->query($this->sql)->fetchAll()) {
+					foreach ($res as $rec) {
+						array_push($data, $rec);
+						$res = null; $code = 200;
+					}
+				}
+			} catch(\PDOException $e) {
+				$errmsg = $e->getMessage(); $code = 401;
+			}
+			return $this->sendPayload($data, "success", $errmsg, $code);
+		}
+
+		public function apr($table, $filter_data) {
+			$this->sql = "SELECT * FROM tbl_payment_expenses WHERE exp_date BETWEEN CONCAT(YEAR(CURDATE()),'-04-01') AND CONCAT(YEAR(CURDATE()),'-04-31')";
+			if ($filter_data != null) {
+				$this->sql .= " exp_date BETWEEN STR_TO_DATE('$filter_data-05-01', '%Y-%m-%d') AND STR_TO_DATE('$filter_data-05-31', '%Y-%m-%d')";
+			}
+
+			$data = array(); $errmsg = ""; $code = 0;
+			try {
+				if ($res = $this->pdo->query($this->sql)->fetchAll()) {
+					foreach ($res as $rec) {
+						array_push($data, $rec);
+						$res = null; $code = 200;
+					}
+				}
+			} catch(\PDOException $e) {
+				$errmsg = $e->getMessage(); $code = 401;
+			}
+			return $this->sendPayload($data, "success", $errmsg, $code);
+		}
+
+		public function may($table, $filter_data) {
+			$this->sql = "SELECT * FROM tbl_payment_expenses WHERE exp_date BETWEEN CONCAT(YEAR(CURDATE()),'-05-01') AND CONCAT(YEAR(CURDATE()),'-05-31')";
+			if ($filter_data != null) {
+				$this->sql .= " exp_date BETWEEN STR_TO_DATE('$filter_data-05-01', '%Y-%m-%d') AND STR_TO_DATE('$filter_data-05-31', '%Y-%m-%d')";
+			}
+
+			$data = array(); $errmsg = ""; $code = 0;
+			try {
+				if ($res = $this->pdo->query($this->sql)->fetchAll()) {
+					foreach ($res as $rec) {
+						array_push($data, $rec);
+						$res = null; $code = 200;
+					}
+				}
+			} catch(\PDOException $e) {
+				$errmsg = $e->getMessage(); $code = 401;
+			}
+			return $this->sendPayload($data, "success", $errmsg, $code);
+		}
+
+		public function jun($table, $filter_data) {
+			$this->sql = "SELECT * FROM tbl_payment_expenses WHERE exp_date BETWEEN CONCAT(YEAR(CURDATE()),'-06-01') AND CONCAT(YEAR(CURDATE()),'-06-31')";
+			if ($filter_data != null) {
+				$this->sql .= " exp_date BETWEEN STR_TO_DATE('$filter_data-05-01', '%Y-%m-%d') AND STR_TO_DATE('$filter_data-05-31', '%Y-%m-%d')";
+			}
+
+			$data = array(); $errmsg = ""; $code = 0;
+			try {
+				if ($res = $this->pdo->query($this->sql)->fetchAll()) {
+					foreach ($res as $rec) {
+						array_push($data, $rec);
+						$res = null; $code = 200;
+					}
+				}
+			} catch(\PDOException $e) {
+				$errmsg = $e->getMessage(); $code = 401;
+			}
+			return $this->sendPayload($data, "success", $errmsg, $code);
+		}
+
+		public function jul($table, $filter_data) {
+			$this->sql = "SELECT * FROM tbl_payment_expenses WHERE exp_date BETWEEN CONCAT(YEAR(CURDATE()),'-07-01') AND CONCAT(YEAR(CURDATE()),'-07-31')";
+			if ($filter_data != null) {
+				$this->sql .= " exp_date BETWEEN STR_TO_DATE('$filter_data-05-01', '%Y-%m-%d') AND STR_TO_DATE('$filter_data-05-31', '%Y-%m-%d')";
+			}
+
+			$data = array(); $errmsg = ""; $code = 0;
+			try {
+				if ($res = $this->pdo->query($this->sql)->fetchAll()) {
+					foreach ($res as $rec) {
+						array_push($data, $rec);
+						$res = null; $code = 200;
+					}
+				}
+			} catch(\PDOException $e) {
+				$errmsg = $e->getMessage(); $code = 401;
+			}
+			return $this->sendPayload($data, "success", $errmsg, $code);
+		}
+
+		public function aug($table, $filter_data) {
+			$this->sql = "SELECT * FROM tbl_payment_expenses WHERE exp_date BETWEEN CONCAT(YEAR(CURDATE()),'-08-01') AND CONCAT(YEAR(CURDATE()),'-08-31')";
+			if ($filter_data != null) {
+				$this->sql .= " exp_date BETWEEN STR_TO_DATE('$filter_data-05-01', '%Y-%m-%d') AND STR_TO_DATE('$filter_data-05-31', '%Y-%m-%d')";
+			}
+
+			$data = array(); $errmsg = ""; $code = 0;
+			try {
+				if ($res = $this->pdo->query($this->sql)->fetchAll()) {
+					foreach ($res as $rec) {
+						array_push($data, $rec);
+						$res = null; $code = 200;
+					}
+				}
+			} catch(\PDOException $e) {
+				$errmsg = $e->getMessage(); $code = 401;
+			}
+			return $this->sendPayload($data, "success", $errmsg, $code);
+		}
+
+
+		public function sep($table, $filter_data) {
+			$this->sql = "SELECT * FROM tbl_payment_expenses WHERE exp_date BETWEEN CONCAT(YEAR(CURDATE()),'-09-01') AND CONCAT(YEAR(CURDATE()),'-09-31')";
+			if ($filter_data != null) {
+				$this->sql .= " exp_date BETWEEN STR_TO_DATE('$filter_data-05-01', '%Y-%m-%d') AND STR_TO_DATE('$filter_data-05-31', '%Y-%m-%d')";
+			}
+
+			$data = array(); $errmsg = ""; $code = 0;
+			try {
+				if ($res = $this->pdo->query($this->sql)->fetchAll()) {
+					foreach ($res as $rec) {
+						array_push($data, $rec);
+						$res = null; $code = 200;
+					}
+				}
+			} catch(\PDOException $e) {
+				$errmsg = $e->getMessage(); $code = 401;
+			}
+			return $this->sendPayload($data, "success", $errmsg, $code);
+		}
+
+		public function oct($table, $filter_data) {
+			$this->sql = "SELECT * FROM tbl_payment_expenses WHERE exp_date BETWEEN CONCAT(YEAR(CURDATE()),'-10-01') AND CONCAT(YEAR(CURDATE()),'-10-31')";
+			if ($filter_data != null) {
+				$this->sql .= " exp_date BETWEEN STR_TO_DATE('$filter_data-05-01', '%Y-%m-%d') AND STR_TO_DATE('$filter_data-05-31', '%Y-%m-%d')";
+			}
+
+			$data = array(); $errmsg = ""; $code = 0;
+			try {
+				if ($res = $this->pdo->query($this->sql)->fetchAll()) {
+					foreach ($res as $rec) {
+						array_push($data, $rec);
+						$res = null; $code = 200;
+					}
+				}
+			} catch(\PDOException $e) {
+				$errmsg = $e->getMessage(); $code = 401;
+			}
+			return $this->sendPayload($data, "success", $errmsg, $code);
+		}
+
+		public function nov($table, $filter_data) {
+			$this->sql = "SELECT * FROM tbl_payment_expenses WHERE exp_date BETWEEN CONCAT(YEAR(CURDATE()),'-11-01') AND CONCAT(YEAR(CURDATE()),'-11-31')";
+			if ($filter_data != null) {
+				$this->sql .= " exp_date BETWEEN STR_TO_DATE('$filter_data-05-01', '%Y-%m-%d') AND STR_TO_DATE('$filter_data-05-31', '%Y-%m-%d')";
+			}
+
+			$data = array(); $errmsg = ""; $code = 0;
+			try {
+				if ($res = $this->pdo->query($this->sql)->fetchAll()) {
+					foreach ($res as $rec) {
+						array_push($data, $rec);
+						$res = null; $code = 200;
+					}
+				}
+			} catch(\PDOException $e) {
+				$errmsg = $e->getMessage(); $code = 401;
+			}
+			return $this->sendPayload($data, "success", $errmsg, $code);
+		}
+
+		public function dec($table, $filter_data) {
+			$this->sql = "SELECT * FROM tbl_payment_expenses WHERE exp_date BETWEEN CONCAT(YEAR(CURDATE()),'-12-01') AND CONCAT(YEAR(CURDATE()),'-12-31')";
+			if ($filter_data != null) {
+				$this->sql .= " exp_date BETWEEN STR_TO_DATE('$filter_data-05-01', '%Y-%m-%d') AND STR_TO_DATE('$filter_data-05-31', '%Y-%m-%d')";
+			}
+
+			$data = array(); $errmsg = ""; $code = 0;
+			try {
+				if ($res = $this->pdo->query($this->sql)->fetchAll()) {
+					foreach ($res as $rec) {
+						array_push($data, $rec);
+						$res = null; $code = 200;
+					}
+				}
+			} catch(\PDOException $e) {
+				$errmsg = $e->getMessage(); $code = 401;
+			}
+			return $this->sendPayload($data, "success", $errmsg, $code);
+		}
+
 		public function select_payments($table, $payment, $filter_data) {
 			if (isset($payment) && $payment == "checkup") {
 				$this->sql = "SELECT 
