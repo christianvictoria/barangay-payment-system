@@ -33,98 +33,72 @@
             <ng-template mat-tab-label>
                 <span>Checkup Payments</span>
             </ng-template>
-
-            <div fxLayout="row" class="pending-style">
-                
-                <mat-form-field  class="dropdown" floatLabel="never">
-                    <mat-label>Archives</mat-label>
-                    <mat-select #choosedValue1 (valueChange)="selectCheckup(choosedValue1.value)">
-                        <mat-option value="Archive">Archives</mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field class="example-form-field1">
-                    <mat-label>Search</mat-label>
-                    <input matInput type="text">
+            <div class="searchbardiv" style="overflow: auto;">
+                <div class="searchbar" style="float: right; width: 400px;">
+                  <mat-form-field>
+                    <mat-label>Search Record...</mat-label>
+                    <input matInput (keyup)="filterCheckups($event)" #input/>
                     <button mat-button matSuffix mat-icon-button aria-label="Clear">
-                        <mat-icon style="font-size: 20px; color: #404040;">search</mat-icon>
+                      <mat-icon style="font-size: 20px;" class="searchIcon">search</mat-icon>
                     </button>
-                </mat-form-field>
+                  </mat-form-field>
+                </div>
             </div>
 
             <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="checkupsDataSource">
 
-                    <ng-container matColumnDef="print">
-                        <th mat-header-cell *matHeaderCellDef> Receipt </th>
-                            <td mat-cell *matCellDef="let element">
-                            <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button  (click)="printReceipt(element.pt_id)" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
-                                    <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
-                                </button>
-                            </ng-container>
-                            <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
-                                    <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
-                                </button>
-                            </ng-container>
-                            </td>
-                    </ng-container>
-
                     <ng-container matColumnDef="pt_id">
                         <th mat-header-cell *matHeaderCellDef> No. </th>
-                        <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'checkup')"> {{element.pt_id}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.pt_id}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="residents">
                         <th mat-header-cell *matHeaderCellDef> Name </th>
-                        <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'checkup')"> {{element.res_lname}}, {{element.res_fname}} {{element.res_mname}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.res_lname}}, {{element.res_fname}} {{element.res_mname}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="for">
                         <th mat-header-cell *matHeaderCellDef> Payment For </th>
-                        <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'checkup')">Checkup</td>
+                        <td mat-cell *matCellDef="let element">Checkup</td>
                     </ng-container>
 
                     <ng-container matColumnDef="amount">
                         <th mat-header-cell *matHeaderCellDef> Amount </th>
-                        <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'checkup')"> {{element.fld_amount}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.fld_amount}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="money recieved">
                         <th mat-header-cell *matHeaderCellDef> Payment Recieved </th>
                         <ng-container *matCellDef="let element">
                             <ng-container *ngIf="element.pt_isPayed === 1">
-                                <td mat-cell (click)="viewRecord(element?.pt_id, 'checkup')"> {{element.pt_money_recieved}} </td>
+                                <td mat-cell> {{element.pt_money_recieved}} </td>
                             </ng-container>
                             <ng-container *ngIf="element.pt_isPayed === 0">
-                                <td mat-cell style="color: red" (click)="viewRecord(element?.pt_id, 'checkup')"> Unpaid </td>
+                                <td mat-cell style="color: red"> Unpaid </td>
                             </ng-container>
                         </ng-container>
                     </ng-container>
 
                     <ng-container matColumnDef="date">
                         <th mat-header-cell *matHeaderCellDef> Date </th>
-                        <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'checkup')"> {{element.pt_date}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.pt_date}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="actions">
                     <th mat-header-cell *matHeaderCellDef> Action </th>
                         <td mat-cell *matCellDef="let element">
-                            <button class="viewBtn"  (click)="viewRecord(element?.pt_id, 'checkup')" mat-raised-button color="primary">View</button>
+                            <button class="viewBtn" (click)="viewRecord(element?.pt_id, 'checkup')" mat-raised-button color="primary">View</button>
                             <!-- <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'checkup')" mat-raised-button color="primary">Archive</button> -->
-                            <ng-container *ngIf="element?.pt_isPayed === 1">
+                            <!-- <ng-container *ngIf="element?.pt_isPayed === 1">
                                 <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" [style.visibility]="true ? 'hidden': 'visible'">Process</button>
-                            </ng-container>
-                            <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Process</button>
-                            </ng-container>
+                            </ng-container> -->
                         </td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
-                <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[10, 20, 30]"></mat-paginator>
             </div>
         </mat-tab>
 
@@ -132,82 +106,58 @@
             <ng-template mat-tab-label>
                 <span>Document Payments</span>
             </ng-template>
-
-            <div fxLayout="row" class="pending-style">
-                
-                <mat-form-field  class="dropdown" floatLabel="never">
-                    <mat-label>Pending</mat-label>
-                    <mat-select #choosedValue2 (valueChange)="selectDocu(choosedValue2.value)">
-                        <mat-option value="pending">Pending</mat-option>
-                        <mat-option value="paid">Paid</mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-    
-                <mat-form-field class="example-form-field1">
-                    <mat-label>Search</mat-label>
-                    <input matInput type="text">
+            <div class="searchbardiv" style="overflow: auto;">
+                <div class="searchbar" style="float: right; width: 400px;">
+                  <mat-form-field>
+                    <mat-label>Search Record...</mat-label>
+                    <input matInput (keyup)="filterDocuments($event)" #input/>
                     <button mat-button matSuffix mat-icon-button aria-label="Clear">
-                        <mat-icon style="font-size: 20px; color: #404040;">search</mat-icon>
+                      <mat-icon style="font-size: 20px;" class="searchIcon">search</mat-icon>
                     </button>
-                </mat-form-field>
+                  </mat-form-field>
+                </div>
             </div>
     
     
             <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="documentsDataSource">
                             
-                    <ng-container matColumnDef="print">
-                        <th mat-header-cell *matHeaderCellDef> Receipt </th>
-                            <td mat-cell *matCellDef="let element">
-                            <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
-                                    <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
-                                </button>
-                            </ng-container>
-                            <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
-                                    <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
-                                </button>
-                            </ng-container>
-                            </td>
-                    </ng-container>
         
                     <ng-container matColumnDef="pt_id">
                     <th mat-header-cell *matHeaderCellDef> No. </th>
-                    <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'transaction')"> {{element.pt_id}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.pt_id}} </td>
                     </ng-container>
                 
                     <ng-container matColumnDef="residents">
                     <th mat-header-cell *matHeaderCellDef> Name </th>
-                    <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'transaction')"> {{element.res_lname}}, {{element.res_fname}} {{element.res_mname}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.res_lname}}, {{element.res_fname}} {{element.res_mname}} </td>
                     </ng-container>
                 
                     <ng-container matColumnDef="for">
                     <th mat-header-cell *matHeaderCellDef> Payment For </th>
-                    <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'transaction')"> {{element.docu_type}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.docu_type}} </td>
                     </ng-container>
             
                     <ng-container matColumnDef="amount">
                     <th mat-header-cell *matHeaderCellDef> Amount </th>
-                    <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'transaction')"> {{element.docu_prc}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.docu_prc}} </td>
                     </ng-container>
     
                     <ng-container matColumnDef="money recieved">
                     <th mat-header-cell *matHeaderCellDef> Payment Recieved </th>
                     <ng-container *matCellDef="let element">
                         <ng-container *ngIf="element.pt_isPayed === 1">
-                            <td mat-cell (click)="viewRecord(element?.pt_id, 'transaction')"> {{element.pt_money_recieved}} </td>
+                            <td mat-cell> {{element.pt_money_recieved}} </td>
                         </ng-container>
                         <ng-container *ngIf="element.pt_isPayed === 0">
-                            <td mat-cell style="color: red" (click)="viewRecord(element?.pt_id, 'transaction')"> Unpaid </td>
+                            <td mat-cell style="color: red"> Unpaid </td>
                         </ng-container>
                     </ng-container>
                     </ng-container>
                 
                     <ng-container matColumnDef="date">
                     <th mat-header-cell *matHeaderCellDef> Date </th>
-                    <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'transaction')"> {{element.pt_date}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.pt_date}} </td>
                     </ng-container>
                     
                     <ng-container matColumnDef="actions">
@@ -215,19 +165,16 @@
                         <td mat-cell *matCellDef="let element">
                             <button class="viewBtn" (click)="viewRecord(element?.pt_id, 'transaction')" mat-raised-button color="primary">View</button>
                             <!-- <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'transaction')" mat-raised-button color="primary">Archive</button> -->
-                            <ng-container *ngIf="element?.pt_isPayed === 1">
+                            <!-- <ng-container *ngIf="element?.pt_isPayed === 1">
                                 <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" [style.visibility]="true ? 'hidden': 'visible'">Process</button>
-                            </ng-container>
-                            <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Process</button>
-                            </ng-container>
+                            </ng-container> -->
                         </td>
                     </ng-container>
             
                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
-                <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[10, 20, 30]"></mat-paginator>
                 </div>
             
         </mat-tab>
@@ -238,82 +185,56 @@
             <ng-template mat-tab-label>
                 <span>Order Payments</span>
             </ng-template>
-
-            <div fxLayout="row" class="pending-style">
-                
-                <mat-form-field  class="dropdown" floatLabel="never">
-                    <mat-label>Pending</mat-label>
-                    <mat-select #choosedValue3 (valueChange)="selectOrder(choosedValue3.value)">
-                        <mat-option value="pending">Pending</mat-option>
-                        <mat-option value="paid">Paid</mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-    
-                <mat-form-field class="example-form-field1">
-                    <mat-label>Search</mat-label>
-                    <input matInput type="text">
+            <div class="searchbardiv" style="overflow: auto;">
+                <div class="searchbar" style="float: right; width: 400px;">
+                  <mat-form-field>
+                    <mat-label>Search Record...</mat-label>
+                    <input matInput (keyup)="filterOrders($event)" #input/>
                     <button mat-button matSuffix mat-icon-button aria-label="Clear">
-                        <mat-icon style="font-size: 20px; color: #404040;">search</mat-icon>
+                      <mat-icon style="font-size: 20px;" class="searchIcon">search</mat-icon>
                     </button>
-                </mat-form-field>
+                  </mat-form-field>
+                </div>
             </div>
     
     
             <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="ordersDataSource">
-                            
-                    <ng-container matColumnDef="print">
-                        <th mat-header-cell *matHeaderCellDef> Receipt </th>
-                            <td mat-cell *matCellDef="let element">
-                            <ng-container *ngIf="element?.pt_isPayed === 1">
-                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear">
-                                    <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
-                                </button>
-                            </ng-container>
-                            <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button (click)="printReceipt()" mat-button matSuffix mat-mat-icon-button aria-label="Clear" [style.visibility]="true ? 'hidden': 'visible'">
-                                    <mat-icon style="font-size: 20px; color: #1499e0;">print</mat-icon>
-                                </button>
-                            </ng-container>
-                            </td>
-                    </ng-container>
-        
                     <ng-container matColumnDef="pt_id">
                         <th mat-header-cell *matHeaderCellDef> No. </th>
-                        <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'order')"> {{element.pt_id}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.pt_id}} </td>
                     </ng-container>
                 
                     <ng-container matColumnDef="medicine">
                         <th mat-header-cell *matHeaderCellDef> Medicine </th>
-                        <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'order')"> {{element.med_name}}</td>
+                        <td mat-cell *matCellDef="let element"> {{element.med_name}}</td>
                     </ng-container>
             
                     <ng-container matColumnDef="quantity">
                         <th mat-header-cell *matHeaderCellDef> Quantity </th>
-                        <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'order')"> {{element.fld_totalQuantity}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.fld_totalQuantity}} </td>
                     </ng-container>
             
                     <ng-container matColumnDef="amount">
                         <th mat-header-cell *matHeaderCellDef> Amount </th>
-                        <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'order')"> {{element.fld_totalAmount}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.fld_totalAmount}} </td>
                     </ng-container>
     
                     <ng-container matColumnDef="money recieved">
                         <th mat-header-cell *matHeaderCellDef> Payment Recieved </th>
                         <ng-container *matCellDef="let element">
                             <ng-container *ngIf="element.pt_isPayed === 1">
-                                <td mat-cell (click)="viewRecord(element?.pt_id, 'order')"> {{element.pt_money_recieved}} </td>
+                                <td mat-cell> {{element.pt_money_recieved}} </td>
                             </ng-container>
                             <ng-container *ngIf="element.pt_isPayed === 0">
-                                <td mat-cell style="color: red" (click)="viewRecord(element?.pt_id, 'order')"> Unpaid </td>
+                                <td mat-cell style="color: red"> Unpaid </td>
                             </ng-container>
                         </ng-container>
                     </ng-container>
                 
                     <ng-container matColumnDef="date">
                         <th mat-header-cell *matHeaderCellDef> Date </th>
-                        <td mat-cell *matCellDef="let element" (click)="viewRecord(element?.pt_id, 'order')"> {{element.pt_date}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.pt_date}} </td>
                     </ng-container>
                     
                     <ng-container matColumnDef="actions">
@@ -321,19 +242,16 @@
                         <td mat-cell *matCellDef="let element">
                             <button class="viewBtn" (click)="viewRecord(element?.pt_id, 'order')" mat-raised-button color="primary">View</button>
                             <!-- <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'order')" mat-raised-button color="primary">Archive</button> -->
-                            <ng-container *ngIf="element?.pt_isPayed === 1">
+                            <!-- <ng-container *ngIf="element?.pt_isPayed === 1">
                                 <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" [style.visibility]="true ? 'hidden': 'visible'">Process</button>
-                            </ng-container>
-                            <ng-container *ngIf="element?.pt_isPayed === 0">
-                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary">Process</button>
-                            </ng-container>
+                            </ng-container> -->
                         </td>
                     </ng-container>
             
                     <tr mat-header-row *matHeaderRowDef="displayedColumns3; sticky: true;"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
                 </table>
-                <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[10, 20, 30]"></mat-paginator>
                 </div>
             
         </mat-tab>

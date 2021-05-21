@@ -507,6 +507,8 @@
 			return $this->sendPayload($data, "success", $errmsg, $code);
 		}
 
+		
+
 		public function new_payment_expenses($table, $data, $payment) {
 			$fields = []; $values = [];
 			foreach ($data as $key => $value) {

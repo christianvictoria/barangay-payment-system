@@ -26,6 +26,8 @@ import Swal from 'sweetalert2';
 })
 export class Nav1Component implements OnInit {
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(private paymentService: PaymentsService, public dialog: MatDialog, public router: Router ) { 
   }
   
@@ -61,6 +63,7 @@ export class Nav1Component implements OnInit {
       (this.isCheckupPending === "pending") ? number = 0 : number = 1;
       const response = await this.paymentService.sendDashboardRequest(`${this.isCheckupPending}/checkup/${number}`, null);
       this.checkupsDataSource = new MatTableDataSource(response.payload);
+      this.checkupsDataSource.paginator = this.paginator; 
     } catch(error) {
       console.log(error);
     }
@@ -73,6 +76,7 @@ export class Nav1Component implements OnInit {
       (this.isDocuPending === "pending") ? number = 0 : number = 1;
       const response = await this.paymentService.sendDashboardRequest(`${this.isDocuPending}/transaction/${number}`, null);
       this.documentsDataSource = new MatTableDataSource(response.payload);
+      this.documentsDataSource.paginator = this.paginator; 
     } catch (error) {
       console.log(error);
     }
@@ -85,6 +89,7 @@ export class Nav1Component implements OnInit {
       (this.isOrderPending === "pending") ? number = 0 : number = 1;
       const response = await this.paymentService.sendDashboardRequest(`${this.isOrderPending}/order/${number}`, null);
       this.ordersDataSource = new MatTableDataSource(response.payload);
+      this.documentsDataSource.paginator = this.paginator; 
     } catch (error) {
       console.log(error);
     }
@@ -127,7 +132,34 @@ export class Nav1Component implements OnInit {
     } catch(error) {
       console.log(error);
     }
-  }   
+  }  
+
+  filterCheckups(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.checkupsDataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.checkupsDataSource.paginator) {
+      this.checkupsDataSource.paginator.firstPage();
+    }
+  }
+
+  filterDocuments(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.documentsDataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.documentsDataSource.paginator) {
+      this.documentsDataSource.paginator.firstPage();
+    }
+  }
+
+  filterOrders(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.ordersDataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.ordersDataSource.paginator) {
+      this.ordersDataSource.paginator.firstPage();
+    }
+  } 
 
   viewRecord(id: number, method: string){
     this.dialog.open(PaymentViewComponent, { data: {'id': id, 'method': method}});
