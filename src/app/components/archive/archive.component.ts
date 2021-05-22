@@ -36,12 +36,14 @@ export class ArchiveComponent implements OnInit {
   displayedColumns: string[] = ['pt_id', 'residents', 'for','amount', 'money recieved', 'date', 'actions'];
   displayedColumns2: string[] = ['pt_id', 'name', 'for','quantity', 'amount', 'money recieved', 'date', 'actions'];
   displayedColumns3: string[] = ['pt_id', 'medicine', 'quantity', 'amount', 'money recieved', 'date', 'actions'];
+  displayedColumns4: string[] = ['exp_id', 'exp_name', 'exp_for','exp_money_release', 'exp_date', 'exp_actions'];
   isSidebarOpen=true;
 
   ngOnInit() {
     this.archievedCheckups();
     this.archievedDocuments();
     this.archievedOrders();
+    this.archivedExpenses();
     // this.checkups();
     // this.documents();
     // this.orders();
@@ -92,6 +94,18 @@ export class ArchiveComponent implements OnInit {
     }
   }
 
+  expensesArchiveDataSource: any;
+  archivedExpenses = async (): Promise<void> => {
+    try {
+      const response = await this.paymentService.sendDashboardRequest(`archivesExpenses/1`, null);
+      this.expensesArchiveDataSource = new MatTableDataSource(response.payload);
+      this.expensesArchiveDataSource.paginator = this.paginator; 
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+
   filterCheckups(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.checkupsDataSource.filter = filterValue.trim().toLowerCase();
@@ -116,6 +130,15 @@ export class ArchiveComponent implements OnInit {
 
     if (this.ordersDataSource.paginator) {
       this.ordersDataSource.paginator.firstPage();
+    }
+  }
+
+  filterExpenses(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.expensesArchiveDataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.expensesArchiveDataSource.paginator) {
+      this.expensesArchiveDataSource.paginator.firstPage();
     }
   }
 

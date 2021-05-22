@@ -15,13 +15,21 @@
                 <mat-list-item class="fieldNames" role="listitem">Last Name</mat-list-item>
                 <mat-list-item class="fieldNames" role="listitem">Middle Name</mat-list-item>
             </ng-container>
+            <ng-container *ngIf="pulledData.person_fname">
+                <mat-list-item class="fieldNames" role="listitem">First Name</mat-list-item>
+                <mat-list-item class="fieldNames" role="listitem">Last Name</mat-list-item>
+                <mat-list-item class="fieldNames" role="listitem">Middle Name</mat-list-item>
+            </ng-container>
             <mat-list-item class="fieldNames" role="listitem" *ngIf="pulledData.med_name">Medicine Name</mat-list-item>
         </mat-list>
 
 
         <div class="inputs">
-            <mat-form-field appearance="none">
+            <mat-form-field *ngIf="pulledData.pt_id" appearance="none">
                 <input class="paymentInfo" matInput [(ngModel)]="pulledData.pt_id" disabled>
+            </mat-form-field>
+            <mat-form-field *ngIf="pulledData.exp_id" appearance="none">
+                <input class="paymentInfo" matInput [(ngModel)]="pulledData.exp_id" disabled>
             </mat-form-field>
             <ng-container *ngIf="pulledData.res_lname">
                 <mat-form-field appearance="none">
@@ -34,22 +42,40 @@
                     <input class="paymentInfo" matInput  [(ngModel)]="pulledData.res_mname" disabled >
                 </mat-form-field>
             </ng-container>
+            <ng-container *ngIf="pulledData.person_lname">
+                <mat-form-field appearance="none">
+                    <input class="paymentInfo" matInput [(ngModel)]="pulledData.person_fname" disabled>
+                </mat-form-field>
+                <mat-form-field appearance="none">
+                    <input class="paymentInfo" matInput  [(ngModel)]="pulledData.person_lname" disabled>
+                </mat-form-field>
+                <mat-form-field appearance="none">
+                    <input class="paymentInfo" matInput  [(ngModel)]="pulledData.person_mname" disabled >
+                </mat-form-field>
+            </ng-container>
             <mat-form-field appearance="none" *ngIf="pulledData.med_name">
                 <input class="paymentInfo" matInput  [(ngModel)]="pulledData.med_name" disabled >
             </mat-form-field>
         </div>
 
         <mat-list role="list">
-            <mat-list-item class="fieldNamesno" role="listitem" *ngIf="pulledData.res_lname">Payment For</mat-list-item>
+            <mat-list-item class="fieldNamesno" role="listitem" *ngIf="pulledData.res_lname || pulledData.person_lname">Payment For</mat-list-item>
             <mat-list-item class="fieldNamesno" role="listitem" *ngIf="pulledData.med_name">Quantity</mat-list-item>
-            <mat-list-item class="fieldNames" role="listitem">Amount</mat-list-item>
-            <mat-list-item class="fieldNames" role="listitem">Payment</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem" *ngIf="!pulledData.exp_id">Amount</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem" *ngIf="!pulledData.exp_id">Payment</mat-list-item>
+            <mat-list-item class="fieldNames" role="listitem" *ngIf="pulledData.exp_id">Budget Fee</mat-list-item>
             <mat-list-item class="fieldNames" role="listitem">Date</mat-list-item>
         </mat-list>
 
         <div class="inputs2">
-            <mat-form-field appearance="none" *ngIf="!pulledData.med_name && !pulledData.docu_prc">
+            <mat-form-field appearance="none" *ngIf="!pulledData.med_name && !pulledData.docu_prc && !pulledData.exp_id">
                 <input class="paymentInfo" matInput value="Checkup" disabled>
+            </mat-form-field>
+            <mat-form-field appearance="none" *ngIf="pulledData.exp_id">
+                <input class="paymentInfo" matInput  [(ngModel)]="pulledData.exp_for" disabled>
+            </mat-form-field>
+            <mat-form-field appearance="none" *ngIf="pulledData.exp_id">
+                <input class="paymentInfo" matInput  [(ngModel)]="pulledData.exp_money_release" disabled>
             </mat-form-field>
             <mat-form-field appearance="none" *ngIf="!pulledData.med_name && pulledData.docu_prc">
                 <input class="paymentInfo" matInput [(ngModel)]="pulledData.docu_type" disabled>
@@ -74,8 +100,11 @@
             <mat-form-field appearance="none" *ngIf="pulledData.pt_isPayed === 0">
                 <input class="paymentInfo" matInput  value="Unpaid" disabled>
             </mat-form-field>
-            <mat-form-field appearance="none">
+            <mat-form-field appearance="none" *ngIf="pulledData.pt_id">
                 <input class="paymentInfo" matInput [(ngModel)]="pulledData.pt_date" disabled>
+            </mat-form-field>
+            <mat-form-field appearance="none" *ngIf="pulledData.exp_id">
+                <input class="paymentInfo" matInput [(ngModel)]="pulledData.exp_date" disabled>
             </mat-form-field>
         </div>
     </div>

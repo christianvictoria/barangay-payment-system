@@ -56,10 +56,10 @@
 				break;
 
 				case 'archivesExpenses':
-					if (count($req) > 1) {
-						echo json_encode($gm->select("tbl_payment_expenses", $req[1]), JSON_PRETTY_PRINT);
+					if (count($req) > 2) {
+						echo json_encode($gm->select("tbl_payment_expenses", "exp_isDeleted = $req[1] AND exp_id = $req[2]"), JSON_PRETTY_PRINT);
 					} else {
-						echo json_encode($gm->select("tbl_payment_expenses", null), JSON_PRETTY_PRINT);
+						echo json_encode($gm->select("tbl_payment_expenses", "exp_isDeleted = $req[1]"), JSON_PRETTY_PRINT);
 					}
 				break;
 				

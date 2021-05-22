@@ -288,6 +288,80 @@
             
         </mat-tab>
 
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <span>Expenses Archive</span>
+            </ng-template>
+            
+         
+            
+            <div fxLayout="row" class="pending-style">
+                
+                <mat-form-field  class="dropdown" floatLabel="never" [style.visibility]="true ? 'hidden': 'visible'">
+                    <mat-label>Pending</mat-label>
+                    <mat-select #choosedValue1>
+                        <mat-option value="pending">Pending</mat-option>
+                        <mat-option value="paid">Paid</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+
+                <mat-form-field class="example-form-field1">
+                    <mat-label>Search Record...</mat-label>
+                    <input matInput (keyup)="filterExpenses($event)" #input/>
+                    <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                        <mat-icon style="font-size: 20px;" class="searchIcon">search</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+
+            <div class="example-container mat-elevation-z8">
+                <table mat-table [dataSource]="expensesArchiveDataSource">
+                    <ng-container matColumnDef="exp_id">
+                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.exp_id}} </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="exp_name">
+                        <th mat-header-cell *matHeaderCellDef> Given To </th>
+                        <td mat-cell *matCellDef="let element"> {{element.person_fname}} {{element.person_mame}} {{element.person_lname}}</td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="exp_for">
+                        <th mat-header-cell *matHeaderCellDef> Used For </th>
+                        <td mat-cell *matCellDef="let element"> {{element.exp_for}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="exp_money_release">
+                        <th mat-header-cell *matHeaderCellDef> Budget Fee </th>
+                        <td mat-cell *matCellDef="let element"> {{element.exp_money_release}} </td>
+                    </ng-container>
+    
+                
+                    <ng-container matColumnDef="exp_date">
+                        <th mat-header-cell *matHeaderCellDef> Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.exp_date}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="exp_actions">
+                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                        <td mat-cell *matCellDef="let element">
+                            <button class="viewBtn" (click)="viewRecord(element?.exp_id, 'expenses')" mat-raised-button color="primary">View</button>
+                            <!-- <button class="dlteBtn" (click)="removeRecord(element?.pt_id, 'order')" mat-raised-button color="primary">Archive</button> -->
+                            <!-- <ng-container *ngIf="element?.pt_isPayed === 1">
+                                <button class="payBtn" (click)="payData(element?.pt_id)" mat-raised-button color="primary" [style.visibility]="true ? 'hidden': 'visible'">Process</button>
+                            </ng-container> -->
+                        </td>
+                    </ng-container>
+            
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns4; sticky: true;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns4;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[10, 20, 30]"></mat-paginator>
+                </div>
+            
+        </mat-tab>
+
     </mat-tab-group>
 
             
