@@ -271,7 +271,11 @@ export class Nav1Component implements OnInit {
                 style: 'details1'
               },
               { 
-                text: 'Cash: Php '+this.receive+'.00',
+                text: 'Payment Received: Php '+this.receive+'.00',
+                style: 'details1'
+              },
+              { 
+                text: 'Change: Php '+(this.receive - this.amount)+'.00',
                 style: 'details1'
               }
             ],
@@ -402,7 +406,11 @@ export class Nav1Component implements OnInit {
                   style: 'details1'
                 },
                 { 
-                  text: 'Cash: Php '+this.receive+'.00',
+                  text: 'Payment Received: Php '+this.receive+'.00',
+                  style: 'details1'
+                },
+                { 
+                  text: 'Change: Php '+(this.receive - this.amount)+'.00',
                   style: 'details1'
                 }
               ],
@@ -529,6 +537,10 @@ export class Nav1Component implements OnInit {
             },
             { 
               text: 'Payment Received: Php '+this.receive+'.00',
+              style: 'details1'
+            },
+            { 
+              text: 'Change: Php '+(this.receive - this.amount)+'.00',
               style: 'details1'
             }
           ],

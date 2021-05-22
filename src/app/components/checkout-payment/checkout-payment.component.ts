@@ -167,7 +167,11 @@ export class CheckoutPaymentComponent implements OnInit {
                 style: 'details1'
               },
               { 
-                text: 'Cash: Php '+this.receive+'.00',
+                text: 'Payment Received: Php '+this.receive+'.00',
+                style: 'details1'
+              },
+              { 
+                text: 'Change: Php '+(this.receive - this.amount)+'.00',
                 style: 'details1'
               }
             ],
@@ -298,7 +302,11 @@ export class CheckoutPaymentComponent implements OnInit {
                   style: 'details1'
                 },
                 { 
-                  text: 'Cash: Php '+this.receive+'.00',
+                  text: 'Payment Received: Php '+this.receive+'.00',
+                  style: 'details1'
+                },
+                { 
+                  text: 'Change: Php '+(this.receive - this.amount)+'.00',
                   style: 'details1'
                 }
               ],
@@ -373,6 +381,7 @@ export class CheckoutPaymentComponent implements OnInit {
     this.name = this.printdata.med_name;
     this.date = this.printdata.pt_date;
     this.amount = this.printdata.fld_totalAmount;
+    this.receive = this.printdata.pt_money_recieved;
     console.log(this.printdata); 
 
     const docDefinition = {
@@ -424,7 +433,11 @@ export class CheckoutPaymentComponent implements OnInit {
               style: 'details1'
             },
             { 
-              text: 'Payment Received: Php '+this.pt_money_recieved+'.00',
+              text: 'Payment Received: Php '+this.receive+'.00',
+              style: 'details1'
+            },
+            { 
+              text: 'Change: Php '+(this.receive - this.amount)+'.00',
               style: 'details1'
             }
           ],
