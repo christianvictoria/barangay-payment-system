@@ -54,6 +54,14 @@
 						echo json_encode($post->select_expenses("tbl_payment_".$req[0], null), JSON_PRETTY_PRINT);
 					}
 				break;
+
+				case 'archivesExpenses':
+					if (count($req) > 1) {
+						echo json_encode($gm->select("tbl_payment_expenses", $req[1]), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($gm->select("tbl_payment_expenses", null), JSON_PRETTY_PRINT);
+					}
+				break;
 				
 
 				//reports
