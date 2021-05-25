@@ -73,7 +73,7 @@
   <ng-container *ngIf="selectedPaymentPayload.trans_id">
     <button (click)="payData('transaction')" class="modalBtn1" mat-raised-button mat-dialog-close>Confirm</button>
   </ng-container>
-  <ng-container *ngIf="selectedPaymentPayload.order_detail_id">
+  <ng-container *ngIf="selectedPaymentPayload.med_name">
     <button (click)="payData('orders')" class="modalBtn1" mat-raised-button mat-dialog-close>Confirm</button>
   </ng-container>
 </mat-dialog-actions>

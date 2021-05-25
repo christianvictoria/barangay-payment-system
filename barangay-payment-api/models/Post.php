@@ -388,7 +388,8 @@
 								tbl_clinic_medicine_orders.fld_totalQuantity,
 								tbl_clinic_medicine_orders.fld_totalAmount,
 								tbl_payment_payments.pt_money_recieved,
-								tbl_payment_payments.pt_date
+								tbl_payment_payments.pt_date,
+								tbl_payment_payments.pt_isPayed
 								from tbl_payment_payments
 								LEFT JOIN tbl_clinic_medicine_orders on tbl_clinic_medicine_orders.medOrder_id =  tbl_payment_payments.medOrder_id
 								LEFT JOIN tbl_clinic_order_details on tbl_clinic_order_details.med_order_id =  tbl_clinic_medicine_orders.medOrder_id
@@ -465,7 +466,8 @@
 								tbl_clinic_medicine_orders.fld_totalQuantity,
 								tbl_clinic_medicine_orders.fld_totalAmount,
 								tbl_payment_payments.pt_money_recieved,
-								tbl_payment_payments.pt_date
+								tbl_payment_payments.pt_date,
+								tbl_payment_payments.pt_isPayed
 								from tbl_payment_payments
 								LEFT JOIN tbl_clinic_medicine_orders on tbl_clinic_medicine_orders.medOrder_id =  tbl_payment_payments.medOrder_id
 								LEFT JOIN tbl_clinic_order_details on tbl_clinic_order_details.med_order_id =  tbl_clinic_medicine_orders.medOrder_id

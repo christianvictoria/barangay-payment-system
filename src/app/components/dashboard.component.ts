@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
   getOrderPayments = async (): Promise<void> => {
     try {
       const samplePaymentMethod: string = "order";
-      const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}`, null);
+      const response = await this.dashboardService.sendDashboardRequest(`payments/${samplePaymentMethod}/1`, null);
       (response.payload.length < 1) ? this.orders = "0" : this.orders = response.payload.length;
     } catch(error) {
       console.log(error);
