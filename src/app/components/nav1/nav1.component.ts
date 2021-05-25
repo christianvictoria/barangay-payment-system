@@ -55,8 +55,7 @@ export class Nav1Component implements OnInit {
     if(sessionStorage.getItem(("test")) == null){
       this.router.navigate(["/"])
     }
-
-    if(atob(localStorage.getItem(btoa("role"))) == "staff"){
+    if(sessionStorage.getItem("test") == "staff"){
       this.isVisible = true;
     }else{
       this.isVisible = false;
