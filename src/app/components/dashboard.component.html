@@ -39,12 +39,13 @@
             </mat-card-content>
           </mat-card>
 
+
           <mat-card class="payment-card2">
               <mat-card-content >
                 <p class="numbers" *ngIf="documents">{{ documents }}</p>
               </mat-card-content>
               <mat-card-content >
-                <p class="title">Total Document Payments</p>
+                <p class="title">Document Transactions</p>
                 <div class="iconsDashboard">
                   <img src="/assets/payment.png" class="img-card">
                 </div>
@@ -61,6 +62,18 @@
                   <img src="/assets/resident.png" class="img-card">
                 </div>
               </mat-card-content>
+          </mat-card>
+
+          <mat-card class="payment-card1">
+            <mat-card-content >
+              <p class="numbers" *ngIf="checkups">{{ checkups }}</p>
+            </mat-card-content>
+            <mat-card-content >
+              <p class="title">Total Order Payments</p>
+              <div class="iconsDashboard">
+                <img src="/assets/expense.png" class="img-card">
+              </div>
+            </mat-card-content>
           </mat-card>
 
           <mat-card class="payment-card4">

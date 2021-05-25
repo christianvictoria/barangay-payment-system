@@ -119,6 +119,7 @@ export class DashboardComponent implements OnInit {
     }
   }  
 
+
   getPendingPayments = async (): Promise<void> => {
     try {
       const samplePaymentIsDeleted: number = 0;

@@ -1,25 +1,34 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
 <div class="image">
-  <img src="../../assets/ulo-ng-apo-web.jpeg" alt="" class="src"
-    style="width: 200%; margin-left: -600px; margin-top: -70px ;">
-</div>
-<div class="forms-cont">
-  <div class="form">
-    <img src="../../assets/logo_SIA1.png" alt="" class="src" style=" width: 50%">
-    <p class="title2">Log in first</p>
-
-    <input type="text" placeholder="Username" class="one" [(ngModel)]="usernameInput">
-    <mat-icon style="position: absolute; font-size: 30px; color: #007cc7; margin-top: 12px; margin-left: -470px;">
-      account_circle</mat-icon>
-
-    <br><br>
-
-    <input type="password" placeholder="Password" class="one" [(ngModel)]="passwordInput">
-    <mat-icon style="position: absolute; font-size: 30px; color: #007cc7; margin-top: 12px; margin-left: -470px;">lock
-    </mat-icon>
-
-    <br><br>
-    <button mat-raised-button color="primary" class="button" (click)="login()">Login</button>
-    <br><br>
-    <p class="fpassword">Forgot Password? <span class="click">Click here.</span></p>
+    <img src="../../assets/ulo-ng-apo-web.jpeg" alt="" class="src"
+      style="width: 200%; margin-left: -600px; margin-top: -70px ;">
   </div>
-</div>
+  <div class="forms-cont">
+    <div class="form">
+      <img src="../../assets/logo_SIA1.png" alt="" class="src" style=" width: 50%">
+      <p class="title2">Log in first</p>
+  
+      <div class="form-input">
+        <mat-icon class="input-icons">
+            account_circle</mat-icon>
+        <input [(ngModel)]="iUser" type="text" placeholder="Username" class="one">
+      </div>
+      <br>
+      <div class="form-input">
+        <mat-icon class="input-icons">lock
+        </mat-icon>
+        <input [(ngModel)]="iPass" [type]="hide ? 'password' : 'text'" placeholder="Password" class="one">
+        <button mat-icon-button class="viewPasswordIcon">
+          <mat-icon (click)="hide = !hide" matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </div>
+  
+      <br>
+      <button (click)="login()" mat-raised-button color="primary" class="button">LOGIN</button>
+      <p class="fpassword">Forgot Password? <span class="click">Click here.</span></p>
+    </div>
+  </div>

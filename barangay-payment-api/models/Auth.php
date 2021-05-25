@@ -1,12 +1,24 @@
 <?php
 	class Auth {
 		protected $gm, $pdo;
-		private $status =array();
-		private $data = array();
-		private $token = array();
+
 		public function __construct(\PDO $pdo) {
 			$this->pdo = $pdo;
 			$this->gm = new GlobalMethods($pdo);
+		}
+
+		function encryptPassword($pword): ?string {
+			$hashFormat="$2y$10$";
+			$saltLength=22;
+			$salt=$this->generateSalt($saltLength);
+			return crypt($pword, $hashFormat.$salt);
+		}
+
+		function generateSalt($len){
+			$urs=md5(uniqid(mt_rand(), true));
+			$b64String=base64_encode($urs);
+			$mb64String=str_replace('+','.', $b64String);
+			return substr($mb64String, 0, $len);
 		}
 
 		# JWT
@@ -41,92 +53,62 @@
 
 		#./JWT
 
-		public function showToken(){
-			return $this->generateToken($user_data[0], $user_data[1], $user_data[2]);
+		public function showToken($data){
+			$user_data = []; 
+			foreach ($data as $key => $value) {
+				array_push($user_data, $value);
+			}
+			return $this->generateToken($user_data[1], $user_data[2], $user_data[3]);
 		}
 
-		//ENCRYPT PASSWORD
-		function encryptPassword($pword): ?string{
-            $hashFormat ="$2y$10$";
-            $saltLength =22;
-            $salt = $this->generateSalt($saltLength);
-            return crypt($pword, $hashFormat.$salt);
-        }
+		function login($dt){
+			define('TIMEZONE', 'Asia/Taipei');
+			date_default_timezone_set(TIMEZONE);
 
-		//GENERATE SALT
-		function generateSalt($len){
-            $urs=md5(uniqid(mt_rand(), true));
-            $b64string = base64_encode($urs);
-            $mb64string = str_replace('+','.', $b64string);
-            return substr($mb64string, 0, $len);
-        }
+			$this->sql="SELECT * FROM tbl_users WHERE fld_username='$dt->username' LIMIT 1";
+
+			try {
+				if ($res = $this->pdo->query($this->sql)->fetchColumn()>0) {
+					$result=$this->pdo->query($this->sql)->fetchAll();
+
+					$data = array(); $code = 0; $msg = ""; $remarks = "";
+					foreach ($result as $rec) { 
+						if($this->pwordCheck($dt->password, $rec['fld_password'])){
+							$code = 200; $msg = "Successfully retrieved the requested records"; $remarks = "success";
+							$data = array(
+								"id"=>$rec['fld_id'],
+								"username"=>$rec['fld_username'],
+								"role"=>$rec['fld_role'],
+								"subsystem"=>$rec['fld_subsystem']
+							);
+						} else{
+							$data = array(); $code = 401; $msg = "Incorrect Password"; $remarks = "failed";
+						}
+					}
+				} else{
+					http_response_code(401);
+					$data = array(); $code = 401; $msg = "User does not exist"; $remarks = "failed";
+				}
+			} catch (\PDOException $e) {
+				$msg = $e->getMessage(); $code = 401; $remarks = "failed";
+			}
+			return $this->sendPayload($data, $remarks, $msg, $code);
+		}
+
+		public function sendPayload($payload, $remarks, $message, $code) {
+			$status = array("remarks"=>$remarks, "message"=>$message);
+			http_response_code($code);
+			return array(
+				"status"=>$status,
+				"payload"=>$payload,
+				'prepared_by'=>'Bernie L. Inociete Jr., Developer',
+				"timestamp"=>date_create()
+			);
+		} 
 
 		function pwordCheck($pw, $existingpw){
 			$hash=crypt($pw, $existingpw);
-			if($hash === $existingpw) {return true;} else {return false;}
+			if($hash === $existingpw){return true;} else {return false;}
 		}
-
-		function login_user($dt){
-			$fld_username = $dt->fld_username;
-			$fld_password = $dt->fld_password;
-
-			$sqlstr="SELECT * FROM tbl_users WHERE fld_username='$fld_username' LIMIT 1";
-			if(strpos($fld_username, "payment_") !== false){
-				if($result=$this->pdo->query($sqlstr)){
-					if($result->rowCount() > 0){
-						$res=$result->fetch();
-						if($this->pwordCheck($fld_password, $res['fld_password'])){
-							http_response_code(200);
-							$this->data = array(
-								'fld_username'=>$res['fld_username'],
-								'fld_role'=>$res['fld_role']            
-							);
-							$this->token = $this->generateToken($res['fld_username'], $res['fld_role'], $res['fld_id']);
-							$this->status = array(
-								'remarks'=>'success',
-								'message'=>'successfully logged in'
-							);
-						} else {
-							http_response_code(200);
-							$this->status = array(
-								'remarks'=>'failed',
-								'message'=>'Incorrect username or password'
-							);
-						}
-	
-					} else {
-						http_response_code(200);
-						$this->status = array(
-							'remarks'=>'failed',
-							'message'=>'Incorrect username or password'
-	
-						);
-					}
-				} else {
-					http_response_code(200);
-					$this->status = array(
-						'remarks'=>'failed',
-						'message'=>'Incorrect username or password'
-	
-					);
-				} 
-			} else {
-				http_response_code(200);
-					$this->status = array(
-						'remarks'=>'Incorrect Subsystem',
-						'message'=>'Incorrect Subsystem, please login with the Payment Subsystem credentials'
-					);
-			}
-			
-			return array(
-				'token'=>$this->token,
-				'status'=>$this->status,
-				'payload'=>$this->data,
-				'prepared_by'=>'Tracey Solis, Developer',
-				'timestamp'=>date('D M j, Y G:i:s T')
-			);
-		}
-
-
 	}
 ?>
