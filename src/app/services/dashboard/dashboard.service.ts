@@ -7,6 +7,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class DashboardService {
   BASE_URL = 'http://localhost/barangay-payment-system/barangay-payment-api/';
+  // BASE_URL = 'https://sia-barangay-management-system.000webhostapp.com/pamyent-api/';
   constructor(private http: HttpClient) { }
   
   private subject = new Subject<any>();

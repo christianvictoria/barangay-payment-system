@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class PaymentsService {
-baseURL: string = "http://localhost/barangay-payment-system/barangay-payment-api/";
+  baseURL = 'http://localhost/barangay-payment-system/barangay-payment-api/';
+  // baseURL = 'https://sia-barangay-management-system.000webhostapp.com/pamyent-api/';
 SharedData: number;
 loggedIn: any;
   constructor(private http: HttpClient, private router: Router) { }
@@ -31,6 +32,7 @@ loggedIn: any;
   isLoggedIn() {
     return localStorage.getItem(btoa('token')) != this.loggedIn ? true : false
   }
+  
 
   logoutUser() {
     localStorage.removeItem(btoa("username"))
