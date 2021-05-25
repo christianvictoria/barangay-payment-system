@@ -357,7 +357,7 @@
 								LEFT JOIN tbl_profiling_residents
 								ON tbl_clinic_checkups.patient_id = tbl_profiling_residents.res_id
 								WHERE $table.trans_id is NULL 
-								AND $table.order_detail_id is NULL
+								AND $table.medOrder_id is NULL
 								AND $table.pt_isDeleted = 0 ";
 			} else if (isset($payment) && $payment == "transaction") {
 				$this->sql = "SELECT 
@@ -380,29 +380,21 @@
 								LEFT JOIN tbl_docuissuance_documents
 								ON tbl_docuissuance_doctransaction.docu_id = tbl_docuissuance_documents.docu_id
 								WHERE $table.checkup_id is NULL 
-								AND $table.order_detail_id is NULL
+								AND $table.medOrder_id is NULL
 								AND $table.pt_isDeleted = 0 ";
 			} else if (isset($payment) && $payment == "order") {
-				$this->sql = "SELECT 
-								$table.pt_id,
-								$table.order_detail_id,
+				$this->sql = "SELECT tbl_payment_payments.pt_id,
 								tbl_clinic_medicines.med_name,
 								tbl_clinic_medicine_orders.fld_totalQuantity,
 								tbl_clinic_medicine_orders.fld_totalAmount,
-								$table.pt_money_recieved,
-								$table.pt_date,
-								$table.pt_isPayed,
-								$table.pt_isDeleted
-								FROM $table
-								LEFT JOIN tbl_clinic_order_details
-								ON $table.order_detail_id = tbl_clinic_order_details.order_detail_id
-								LEFT JOIN tbl_clinic_medicines 
-								ON tbl_clinic_order_details.med_id = tbl_clinic_medicines.med_id
-								LEFT JOIN tbl_clinic_medicine_orders
-								ON tbl_clinic_order_details.med_order_id = tbl_clinic_medicine_orders.medOrder_id
-								WHERE $table.checkup_id is NULL
-								AND $table.trans_id is NULL
-								AND $table.pt_isDeleted = 0 ";
+								tbl_payment_payments.pt_money_recieved,
+								tbl_payment_payments.pt_date
+								from tbl_payment_payments
+								LEFT JOIN tbl_clinic_medicine_orders on tbl_clinic_medicine_orders.medOrder_id =  tbl_payment_payments.medOrder_id
+								LEFT JOIN tbl_clinic_order_details on tbl_clinic_order_details.med_order_id =  tbl_clinic_medicine_orders.medOrder_id
+								LEFT JOIN tbl_clinic_medicines on tbl_clinic_order_details.med_id = tbl_clinic_medicines.med_id WHERE tbl_payment_payments.checkup_id is NULL
+								AND tbl_payment_payments.trans_id is NULL
+								AND tbl_payment_payments.pt_isDeleted = 0 ";
 			}
 
 			if ($filter_data != null) $this->sql .= "AND $filter_data";
@@ -442,7 +434,7 @@
 								LEFT JOIN tbl_profiling_residents
 								ON tbl_clinic_checkups.patient_id = tbl_profiling_residents.res_id
 								WHERE $table.trans_id is NULL 
-								AND $table.order_detail_id is NULL
+								AND $table.medOrder_id is NULL
 								AND $table.pt_isDeleted = 1 ";
 			} else if (isset($payment) && $payment == "transaction") {
 				$this->sql = "SELECT 
@@ -465,29 +457,21 @@
 								LEFT JOIN tbl_docuissuance_documents
 								ON tbl_docuissuance_doctransaction.docu_id = tbl_docuissuance_documents.docu_id
 								WHERE $table.checkup_id is NULL 
-								AND $table.order_detail_id is NULL
+								AND $table.medOrder_id is NULL
 								AND $table.pt_isDeleted = 1 ";
 			} else if (isset($payment) && $payment == "order") {
-				$this->sql = "SELECT 
-								$table.pt_id,
-								$table.order_detail_id,
+				$this->sql = "SELECT tbl_payment_payments.pt_id,
 								tbl_clinic_medicines.med_name,
 								tbl_clinic_medicine_orders.fld_totalQuantity,
 								tbl_clinic_medicine_orders.fld_totalAmount,
-								$table.pt_money_recieved,
-								$table.pt_date,
-								$table.pt_isPayed,
-								$table.pt_isDeleted
-								FROM $table
-								LEFT JOIN tbl_clinic_order_details
-								ON $table.order_detail_id = tbl_clinic_order_details.order_detail_id
-								LEFT JOIN tbl_clinic_medicines 
-								ON tbl_clinic_order_details.med_id = tbl_clinic_medicines.med_id
-								LEFT JOIN tbl_clinic_medicine_orders
-								ON tbl_clinic_order_details.med_order_id = tbl_clinic_medicine_orders.medOrder_id
-								WHERE $table.checkup_id is NULL
-								AND $table.trans_id is NULL
-								AND $table.pt_isDeleted = 1 ";
+								tbl_payment_payments.pt_money_recieved,
+								tbl_payment_payments.pt_date
+								from tbl_payment_payments
+								LEFT JOIN tbl_clinic_medicine_orders on tbl_clinic_medicine_orders.medOrder_id =  tbl_payment_payments.medOrder_id
+								LEFT JOIN tbl_clinic_order_details on tbl_clinic_order_details.med_order_id =  tbl_clinic_medicine_orders.medOrder_id
+								LEFT JOIN tbl_clinic_medicines on tbl_clinic_order_details.med_id = tbl_clinic_medicines.med_id WHERE tbl_payment_payments.checkup_id is NULL
+								AND tbl_payment_payments.trans_id is NULL
+								AND tbl_payment_payments.pt_isDeleted = 1 ";
 			}
 
 			if ($filter_data != null) $this->sql .= "AND $filter_data";
