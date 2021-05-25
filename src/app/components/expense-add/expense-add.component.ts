@@ -73,6 +73,7 @@ export class ExpenseAddComponent implements OnInit {
     {'expenseFor': 'Water Dispenser'},
     {'expenseFor': 'Weighing Scale'},
     {'expenseFor': 'White Ink'},
+    {'expenseFor': 'Others (Specify in Description)'},
   ];
 
   input = new FormControl('', [Validators.required, Validators.email]);
